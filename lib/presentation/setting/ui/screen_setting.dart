@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/setting_bloc.dart';
-import 'widget/tab_menu_model.dart';
+import '../bloc/setting_bloc.dart';
 import 'widget/widget_tab_menu_list.dart';
+import 'widget/tab_menu_model.dart';
 
 class SettingScreen extends StatelessWidget {
   @override

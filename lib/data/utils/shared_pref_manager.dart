@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum SharedPreferenceKey {
   keyAccessToken,
+  languageCode,
 }
 
 extension SharedPreferenceKeyExt on SharedPreferenceKey {
@@ -16,6 +17,7 @@ extension SharedPreferenceKeyExt on SharedPreferenceKey {
   /// The existing [SharedPreferenceKey] values before moved to enum.
   Map<SharedPreferenceKey, String> get _mapFromPreviousKeyValues => {
         SharedPreferenceKey.keyAccessToken: 'key_accessToken',
+        SharedPreferenceKey.languageCode: 'key_languageCode',
       };
 }
 

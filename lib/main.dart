@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'config/app_config.dart';
+import 'config/language.dart';
 import 'config/navigation_util.dart';
 import 'config/theme.dart';
 import 'generated/l10n.dart';
@@ -14,12 +15,12 @@ void main() async {
   // await Firebase.initializeApp();
   // Listen for flavor triggered by iOS / android build
   await const MethodChannel('flavor').invokeMethod<String>('getFlavor').then(
-        (String? flavor) async {
+    (String? flavor) async {
       final appConfig = AppConfig.getInstance(flavorName: flavor);
       print("App Config : ${appConfig!.apiBaseUrl}");
     },
   ).catchError(
-        (error) {
+    (error) {
       AppConfig.getInstance(flavorName: "development");
 
       print("Error when set up enviroment $error");
@@ -43,10 +44,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   AppTheme appTheme = getIt<AppTheme>();
+  AppLanguage appLanguage = getIt<AppLanguage>();
 
   @override
   void initState() {
     appTheme.addListener(() {
+      setState(() {});
+    });
+    appLanguage.addListener(() {
       setState(() {});
     });
     super.initState();
@@ -74,6 +79,7 @@ class _MyAppState extends State<MyApp> {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: appTheme.currentTheme,
+        locale: AppLanguage.languageCodeLocale,
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,

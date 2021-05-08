@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zporter_preview/presentation/setting/account/page_account.dart';
-import 'package:zporter_preview/presentation/setting/settings/page_settings.dart';
+import 'package:zporter_preview/config/navigation_util.dart';
+import 'package:zporter_preview/generated/l10n.dart';
+import 'package:zporter_preview/presentation/setting/ui/account/page_account.dart';
+import 'package:zporter_preview/presentation/setting/ui/settings/page_settings.dart';
 
 enum TabMenuItem {
   ACCOUNT,
@@ -72,19 +74,19 @@ extension TabMenuItemExtends on TabMenuItem {
   String get title {
     switch (this) {
       case TabMenuItem.ACCOUNT:
-        return 'Account';
+        return S.of(NavigationUtil.currentContext!).account;
       case TabMenuItem.SETTINGS:
-        return 'Settings';
+        return S.of(NavigationUtil.currentContext!).settings;
       case TabMenuItem.HEALTH:
-        return 'Health';
+        return S.of(NavigationUtil.currentContext!).health;
       case TabMenuItem.BIOGRAPHY:
-        return 'Biography';
+        return S.of(NavigationUtil.currentContext!).biography;
       case TabMenuItem.FOOTBALL:
-        return 'Football';
+        return S.of(NavigationUtil.currentContext!).football;
       case TabMenuItem.MEDIA:
-        return 'Media';
+        return S.of(NavigationUtil.currentContext!).media;
       case TabMenuItem.STRONG:
-        return 'Strong';
+        return S.of(NavigationUtil.currentContext!).strong;
       default:
         return '';
     }

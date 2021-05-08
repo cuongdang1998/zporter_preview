@@ -8,4 +8,10 @@ class SessionUtils {
             SharedPreferenceKey.keyAccessToken,
             accessToken,
           );
+
+  static void saveLanguageCode(String languageCode) =>
+      getIt.get<SharedPreferencesManager>().putString(
+            SharedPreferenceKey.languageCode,
+            languageCode,
+          );
 }

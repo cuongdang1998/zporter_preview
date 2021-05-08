@@ -57,13 +57,75 @@ class S {
     );
   }
 
-  /// `Heelo {name}`
-  String title(Object name) {
+  // skipped getter for the 'title' key
+
+  /// `Account`
+  String get account {
     return Intl.message(
-      'Heelo $name',
-      name: 'title',
+      'Account',
+      name: 'account',
       desc: '',
-      args: [name],
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Health`
+  String get health {
+    return Intl.message(
+      'Health',
+      name: 'health',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biography`
+  String get biography {
+    return Intl.message(
+      'Biography',
+      name: 'biography',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Football`
+  String get football {
+    return Intl.message(
+      'Football',
+      name: 'football',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Media`
+  String get media {
+    return Intl.message(
+      'Media',
+      name: 'media',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Strong`
+  String get strong {
+    return Intl.message(
+      'Strong',
+      name: 'strong',
+      desc: '',
+      args: [],
     );
   }
 }

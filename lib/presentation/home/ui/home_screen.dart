@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             style: Theme.of(context).textTheme.bodyText1,
           ),
           Text(
-            S.current.title("Hoang"),
+            S.current.home,
             style: Theme.of(context).textTheme.bodyText2,
           ),
           OutlinedButton(

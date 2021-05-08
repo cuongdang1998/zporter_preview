@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:zporter_preview/presentation/setting/widget/tab_menu_model.dart';
+import 'package:zporter_preview/presentation/setting/ui/widget/tab_menu_model.dart';
 
 part 'setting_event.dart';
 

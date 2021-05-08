@@ -1,4 +1,11 @@
 {
   "home": "Trang chủ",
-  "title": "Xin chào {}"
+  "title": "Xin chào {}",
+  "account": "Tài khoản",
+  "settings": "Cài đặt",
+  "health": "Sức khoẻ",
+  "biography": "Tiểu sử",
+  "football": "Bóng đá",
+  "media": "Mạng xã hội",
+  "strong": "Khoẻ mạnh"
 }

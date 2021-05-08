@@ -1,4 +1,11 @@
 {
   "home": "Home",
-  "title": "Hello {}"
+  "title": "Hello {}",
+  "account": "Account",
+  "settings": "Settings",
+  "health": "Health",
+  "biography":"Biography",
+  "football": "Football",
+  "media": "Media",
+  "strong": "Strong"
 }

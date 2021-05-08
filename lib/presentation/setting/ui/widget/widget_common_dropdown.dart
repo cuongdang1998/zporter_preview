@@ -1,12 +1,19 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
+import 'model_drop_down_item.dart';
+
 class CommonDropDown extends StatelessWidget {
-  final List<String> languages = [
-    "Vietnamese",
-    "English",
-    "Swedish",
-  ];
+  final List<ModelDropDownItem> items;
+  final ModelDropDownItem selectedItem;
+  final ValueChanged onChange;
+
+  const CommonDropDown({
+    Key? key,
+    required this.items,
+    required this.selectedItem,
+    required this.onChange,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +27,15 @@ class CommonDropDown extends StatelessWidget {
             left: 0,
             child: Container(
               height: 55,
-              child: DropdownSearch<String>(
+              child: DropdownSearch<ModelDropDownItem>(
                 mode: Mode.MENU,
                 showSelectedItem: true,
-                items: languages,
-                // label: "Language",
-                maxHeight: languages.length > 5 ? 250 : languages.length * 50.0,
-                onChanged: (value) {},
-                selectedItem: "Brazil",
+                items: items,
+                itemAsString: (item) => item.displayText,
+                maxHeight: items.length > 5 ? 250 : items.length * 50.0,
+                onChanged: onChange,
+                compareFn: (t1, t2) => t1.key == t2!.key,
+                selectedItem: selectedItem,
                 dropDownButton: Icon(Icons.arrow_drop_down_sharp),
                 dropdownSearchDecoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(15, 20, 0, 0),
@@ -42,7 +50,7 @@ class CommonDropDown extends StatelessWidget {
                   return Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     child: Text(
-                      lang,
+                      lang.displayText,
                       style: TextStyle(
                           color: isSelected ? Colors.blue : Colors.grey),
                     ),

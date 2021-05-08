@@ -1,4 +1,11 @@
 {
   "home": "Hem",
-  "title": "Hej"
+  "title": "Hej {}",
+  "account": "Konto",
+  "settings": "Inställningar",
+  "health": "Hälsa",
+  "biography": "Biografi",
+  "football": "Fotboll",
+  "media": "Media",
+  "strong": "Stark"
 }

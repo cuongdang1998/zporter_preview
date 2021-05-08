@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:zporter_preview/config/app_config.dart';
+import 'package:zporter_preview/config/language.dart';
 import 'package:zporter_preview/config/theme.dart';
 import 'package:zporter_preview/data/login/data_sources/remote/login_api.dart';
 import 'package:zporter_preview/data/login/repositories/login_repository_impl.dart';
@@ -21,7 +22,9 @@ Future _registerAppComponents() async {
   getIt.registerSingleton<SharedPreferencesManager>(sharedPreferencesManager!);
 
   final appTheme = AppTheme();
+  final languageApp = AppLanguage();
   getIt.registerSingleton(appTheme);
+  getIt.registerSingleton(languageApp);
 }
 
 Future<void> _registerNetworkComponents() async {
