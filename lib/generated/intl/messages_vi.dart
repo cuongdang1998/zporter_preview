@@ -23,10 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("Tài khoản"),
     "biography" : MessageLookupByLibrary.simpleMessage("Tiểu sử"),
+    "cancel" : MessageLookupByLibrary.simpleMessage("Huỷ"),
     "football" : MessageLookupByLibrary.simpleMessage("Bóng đá"),
     "health" : MessageLookupByLibrary.simpleMessage("Sức khoẻ"),
     "home" : MessageLookupByLibrary.simpleMessage("Trang chủ"),
     "media" : MessageLookupByLibrary.simpleMessage("Mạng xã hội"),
+    "select" : MessageLookupByLibrary.simpleMessage("Chọn"),
     "settings" : MessageLookupByLibrary.simpleMessage("Cài đặt"),
     "strong" : MessageLookupByLibrary.simpleMessage("Khoẻ mạnh")
   };

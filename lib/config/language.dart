@@ -6,11 +6,12 @@ import 'package:zporter_preview/utils/di/injection.dart';
 import 'package:zporter_preview/utils/session_utils.dart';
 
 class AppLanguage with ChangeNotifier {
-  static String? languageCode = getIt
+  static String? getLanguageCode() => getIt
       .get<SharedPreferencesManager>()
       .getString(SharedPreferenceKey.languageCode);
-  static Locale languageCodeLocale =
-      languageCode != null ? Locale(languageCode!) : Locale('sv');
+
+  static Locale getLanguageCodeLocale() =>
+      getLanguageCode() != null ? Locale(getLanguageCode()!) : Locale('sv');
 
   void changeLanguage(lang) {
     SessionUtils.saveLanguageCode(lang!.langCode);
@@ -23,6 +24,8 @@ class AppLanguage with ChangeNotifier {
     CountryLangModel(langCode: "en", langName: "English"),
     CountryLangModel(langCode: "sv", langName: "Swedish"),
   ];
-  static CountryLangModel selectedItem =
-      languages.firstWhere((langModel) => langModel.langCode == languageCode);
+
+  static CountryLangModel getSelectedItem() => languages.firstWhere(
+        (langModel) => langModel.langCode == getLanguageCode(),
+      );
 }

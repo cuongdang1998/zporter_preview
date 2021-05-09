@@ -23,10 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("Account"),
     "biography" : MessageLookupByLibrary.simpleMessage("Biography"),
+    "cancel" : MessageLookupByLibrary.simpleMessage("Cancel"),
     "football" : MessageLookupByLibrary.simpleMessage("Football"),
     "health" : MessageLookupByLibrary.simpleMessage("Health"),
     "home" : MessageLookupByLibrary.simpleMessage("Home"),
     "media" : MessageLookupByLibrary.simpleMessage("Media"),
+    "select" : MessageLookupByLibrary.simpleMessage("Select"),
     "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "strong" : MessageLookupByLibrary.simpleMessage("Strong")
   };

@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: appTheme.currentTheme,
-        locale: AppLanguage.languageCodeLocale,
+        locale: AppLanguage.getLanguageCodeLocale(),
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,

@@ -23,8 +23,11 @@ class CommonTextField extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue),
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  border: OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: Colors.black54,
+                    ),
                   ),
                 ),
                 cursorColor: Colors.black,

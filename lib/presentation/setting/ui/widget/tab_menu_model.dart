@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/navigation_util.dart';
 import 'package:zporter_preview/generated/l10n.dart';
 import 'package:zporter_preview/presentation/setting/ui/account/page_account.dart';
+import 'package:zporter_preview/presentation/setting/ui/football/page_football.dart';
 import 'package:zporter_preview/presentation/setting/ui/settings/page_settings.dart';
 
 enum TabMenuItem {
@@ -40,14 +41,7 @@ extension TabMenuItemExtends on TabMenuItem {
           ),
         );
       case TabMenuItem.FOOTBALL:
-        return Container(
-          child: Center(
-            child: Text(
-              TabMenuItem.FOOTBALL.toString(),
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        );
+        return FootballPage();
       case TabMenuItem.BIOGRAPHY:
         return Container(
           child: Center(

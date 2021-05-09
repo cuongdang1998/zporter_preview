@@ -42,8 +42,11 @@ class CommonDropDown extends StatelessWidget {
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue),
                   ),
-                  border: OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: Colors.black54,
+                    ),
                   ),
                 ),
                 popupItemBuilder: (context, lang, isSelected) {

@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/language.dart';
+import 'package:zporter_preview/generated/l10n.dart';
+import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_date_picker.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_dropdown.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_text_field.dart';
 import 'package:zporter_preview/utils/di/injection.dart';
 import 'widget_settings/widget_notification_tile.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  DateTime? selectedDate;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,12 +26,18 @@ class SettingsPage extends StatelessWidget {
             CommonTextField(),
             CommonDropDown(
               items: AppLanguage.languages,
-              selectedItem: AppLanguage.selectedItem,
+              selectedItem: AppLanguage.getSelectedItem(),
               onChange: (lang) {
                 getIt<AppLanguage>().changeLanguage(lang);
               },
             ),
             NotificationTileWidget(),
+            CommonDateTimePicker(
+              onSelectedDate: (selectedDate) {
+                print("selected date $selectedDate");
+              },
+              selectedDate: DateTime(1998, 10, 04),
+            )
           ],
         ),
       ),
