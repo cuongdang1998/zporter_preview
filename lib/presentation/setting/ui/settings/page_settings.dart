@@ -24,6 +24,17 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             CommonTextField(
               labelText: 'Email',
+              onChange: (value) {
+                print("${validateEmail(value)}");
+              },
+            ),
+            CommonTextField(
+              labelText: 'Password',
+              isAutoFocus: true,
+              isPassword: true,
+              onChange: (pass) {
+                print('${validatePassword(pass)}');
+              },
             ),
             CommonDropDown(
               items: AppLanguage.languages,
@@ -45,5 +56,25 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
+  }
+
+  bool validateEmail(String email) {
+    return RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email);
+  }
+
+  bool validatePassword(String pass) {
+    return RegExp(
+            r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$")
+        .hasMatch(pass);
+
+    /// r'^
+    ///   (?=.*[A-Z])       // should contain at least one upper case
+    ///   (?=.*[a-z])       // should contain at least one lower case
+    ///   (?=.*?[0-9])      // should contain at least one digit
+    ///   (?=.*?[!@#\$&*~]) // should contain at least one Special character
+    ///    .{8,}             // Must be at least 8 characters in length
+    /// $
   }
 }
