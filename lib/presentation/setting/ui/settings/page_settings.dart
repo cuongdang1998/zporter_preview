@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/language.dart';
-import 'package:zporter_preview/generated/l10n.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_date_picker.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_dropdown.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_text_field.dart';
@@ -23,13 +22,16 @@ class _SettingsPageState extends State<SettingsPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            CommonTextField(),
+            CommonTextField(
+              labelText: 'Email',
+            ),
             CommonDropDown(
               items: AppLanguage.languages,
               selectedItem: AppLanguage.getSelectedItem(),
               onChange: (lang) {
                 getIt<AppLanguage>().changeLanguage(lang);
               },
+              labelText: 'Language',
             ),
             NotificationTileWidget(),
             CommonDateTimePicker(
@@ -37,6 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 print("selected date $selectedDate");
               },
               selectedDate: DateTime(1998, 10, 04),
+              labelText: "Birthday",
             )
           ],
         ),

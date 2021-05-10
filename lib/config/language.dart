@@ -27,5 +27,9 @@ class AppLanguage with ChangeNotifier {
 
   static CountryLangModel getSelectedItem() => languages.firstWhere(
         (langModel) => langModel.langCode == getLanguageCode(),
+        orElse: () => CountryLangModel(
+          langCode: "sv",
+          langName: "Swedish",
+        ),
       );
 }

@@ -9,15 +9,17 @@ class CommonDateTimePicker extends StatefulWidget {
   final DateTime? lastDate;
   final DateTime? currentDate;
   final ValueChanged onSelectedDate;
+  final String? labelText;
 
-  CommonDateTimePicker({
-    Key? key,
-    this.selectedDate,
-    required this.onSelectedDate,
-    this.firstDate,
-    this.lastDate,
-    this.currentDate,
-  }) : super(key: key);
+  CommonDateTimePicker(
+      {Key? key,
+      this.selectedDate,
+      required this.onSelectedDate,
+      this.firstDate,
+      this.lastDate,
+      this.currentDate,
+      this.labelText})
+      : super(key: key);
 
   @override
   _CommonDateTimePickerState createState() => _CommonDateTimePickerState();
@@ -26,37 +28,66 @@ class CommonDateTimePicker extends StatefulWidget {
 class _CommonDateTimePickerState extends State<CommonDateTimePicker> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        await pickDateDialog(widget.selectedDate);
-      },
-      child: Container(
-        height: 55,
-        padding: EdgeInsets.only(left: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-              color: Colors.black54,
-            )),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              widget.selectedDate == null
-                  ? '- / - / -'
-                  : '${widget.selectedDate!.year}/ ${convertNumber(widget.selectedDate!.month)} / ${convertNumber(widget.selectedDate!.day)}',
-              style: TextStyle(
-                fontSize: 18,
+    return SizedBox(
+      height: 62,
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: GestureDetector(
+              onTap: () async {
+                await pickDateDialog(widget.selectedDate);
+              },
+              child: Container(
+                height: 55,
+                alignment: Alignment.bottomCenter,
+                padding: EdgeInsets.only(left: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: Colors.black54,
+                    )),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.selectedDate == null
+                          ? '- / - / -'
+                          : '${widget.selectedDate!.year}/ ${convertNumber(widget.selectedDate!.month)} / ${convertNumber(widget.selectedDate!.day)}',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Icon(
+                        Icons.calendar_today_rounded,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Icon(
-                Icons.calendar_today_rounded,
+          ),
+          Positioned(
+            top: 0,
+            left: 10,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 10,
               ),
-            )
-          ],
-        ),
+              color: Colors.grey,
+              child: Center(
+                child: Text(
+                  widget.labelText ?? '',
+                  style: TextStyle(fontSize: 14, color: Colors.black54),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
