@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/config/colors.dart';
 
 class TabItem extends StatelessWidget {
   final Size size;
@@ -28,7 +29,7 @@ class TabItem extends StatelessWidget {
               child: Text(
                 tabText,
                 style: TextStyle(
-                  color: isSelected ? Colors.orange : Colors.grey,
+                  color: isSelected ? AppColors.yellowColor : AppColors.greyColor,
                   fontSize: 14,
                 ),
               ),
@@ -40,7 +41,7 @@ class TabItem extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 2,
-                color: isSelected ? Colors.orange : Colors.transparent,
+                color: isSelected ? AppColors.yellowColor : Colors.transparent,
               ),
             )
           ],

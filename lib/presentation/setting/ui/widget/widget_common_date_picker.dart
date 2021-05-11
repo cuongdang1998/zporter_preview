@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/language.dart';
 import 'package:zporter_preview/generated/l10n.dart';
 
@@ -45,10 +46,11 @@ class _CommonDateTimePickerState extends State<CommonDateTimePicker> {
                 alignment: Alignment.bottomCenter,
                 padding: EdgeInsets.only(left: 15),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.black54,
-                    )),
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: AppColors.greyColor,
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -82,7 +84,10 @@ class _CommonDateTimePickerState extends State<CommonDateTimePicker> {
               child: Center(
                 child: Text(
                   widget.labelText ?? '',
-                  style: TextStyle(fontSize: 14, color: Colors.black54),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
             ),

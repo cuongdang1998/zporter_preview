@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/config/colors.dart';
 
 // ignore: must_be_immutable
 class NotificationButton extends StatefulWidget {
@@ -38,7 +39,7 @@ class _NotificationButtonState extends State<NotificationButton> {
                 height: 14,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.black38,
+                  color: AppColors.black1Color,
                 ),
               ),
             ),
@@ -52,7 +53,8 @@ class _NotificationButtonState extends State<NotificationButton> {
                 child: Container(
                   width: 20,
                   height: 20,
-                  color: widget.isSelected ? Colors.blue : Colors.black,
+                  color:
+                      widget.isSelected ? AppColors.blueColor : AppColors.white,
                 ),
               ),
             ),

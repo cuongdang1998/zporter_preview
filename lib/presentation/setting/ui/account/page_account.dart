@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -7,7 +8,20 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  double _currentSliderValue = 20;
+  double currentSliderValue = 0;
+  List<String> energyLevel = [
+    'No football today',
+    'Other',
+    'Gym',
+    'Personal Trainer',
+    'Team Training',
+    'Match'
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +29,16 @@ class _AccountPageState extends State<AccountPage> {
       color: Colors.white,
       child: Column(
         children: [
-          Slider(
-            value: _currentSliderValue,
-            min: 0,
-            max: 100,
-            divisions: 5,
-            label: _currentSliderValue.round().toString(),
-            onChanged: (double value) {
-              setState(() {
-                _currentSliderValue = value;
-              });
+          CommonSlider(
+            divisionNum: 5,
+            // minValue: 1,
+            // maxValue: 6,
+            // currentSliderValue: 3,
+            onChange: (valueNode) {
+              print('$valueNode');
             },
-            activeColor: Colors.green,
-            autofocus: true,
-          )
+            // levelList: energyLevel,
+          ),
         ],
       ),
     );
