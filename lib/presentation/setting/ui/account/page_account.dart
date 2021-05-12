@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
+import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_font_back_button.dart';
+import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_yes_now_button.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
 
 import 'widget/widget_expansion_custom.dart';
@@ -147,6 +149,25 @@ class _AccountPageState extends State<AccountPage> {
                   print('onDelete ' + tag);
                 },
               ),
+              FontBackButton(
+                isSelectedFirst: true,
+                onBackTap: () {
+                  print("on back tap");
+                },
+                onFontTap: () {
+                  print("on font tap");
+                },
+              ),
+              YesNoButton(
+                isYes: true,
+                buttonHeight: 30,
+                onYesTap: (value) {
+                  print("isYes $value}");
+                },
+                onNoTap: (value) {
+                  print("isYes $value");
+                },
+              )
             ],
           ),
         ),
