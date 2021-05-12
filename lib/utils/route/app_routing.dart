@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/presentation/home/home_route.dart';
 import 'package:zporter_preview/presentation/login/login_route.dart';
+import 'package:zporter_preview/presentation/screen_line_chart/dashboard_route.dart';
 import 'package:zporter_preview/presentation/setting/setting_route.dart';
 
 enum RouteDefine {
   HomeScreen,
   LoginScreen,
   ListUserScreen,
-  SettingScreen
+  SettingScreen,
+  DashBoardScreen
 }
 
 class AppRouting {
@@ -16,6 +18,7 @@ class AppRouting {
       RouteDefine.LoginScreen.name: (_) => LoginRoute.route,
       RouteDefine.HomeScreen.name: (_) => HomeRoute.route,
       RouteDefine.SettingScreen.name: (_) => SettingRoute.route,
+      RouteDefine.DashBoardScreen.name: (_) => DashBoardRoute.route,
     };
 
     final routeBuilder = routes[settings.name];

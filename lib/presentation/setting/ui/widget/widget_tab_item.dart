@@ -18,8 +18,9 @@ class TabItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
+    return RawMaterialButton(
+      onPressed: onTap,
+      splashColor: AppColors.yellowColor,
       child: Container(
         width: size.width / 3,
         height: 50,
@@ -29,7 +30,8 @@ class TabItem extends StatelessWidget {
               child: Text(
                 tabText,
                 style: TextStyle(
-                  color: isSelected ? AppColors.yellowColor : AppColors.greyColor,
+                  color:
+                      isSelected ? AppColors.yellowColor : AppColors.greyColor,
                   fontSize: 14,
                 ),
               ),
