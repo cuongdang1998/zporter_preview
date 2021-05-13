@@ -3,13 +3,15 @@ import 'package:zporter_preview/presentation/home/home_route.dart';
 import 'package:zporter_preview/presentation/login/login_route.dart';
 import 'package:zporter_preview/presentation/screen_line_chart/dashboard_route.dart';
 import 'package:zporter_preview/presentation/setting/setting_route.dart';
+import 'package:zporter_preview/presentation/walk_through/walk_through_route.dart';
 
 enum RouteDefine {
   HomeScreen,
   LoginScreen,
   ListUserScreen,
   SettingScreen,
-  DashBoardScreen
+  DashBoardScreen,
+  WalkThroughScreen
 }
 
 class AppRouting {
@@ -19,6 +21,7 @@ class AppRouting {
       RouteDefine.HomeScreen.name: (_) => HomeRoute.route,
       RouteDefine.SettingScreen.name: (_) => SettingRoute.route,
       RouteDefine.DashBoardScreen.name: (_) => DashBoardRoute.route,
+      RouteDefine.WalkThroughScreen.name: (_) => WalkThroughRoute.route,
     };
 
     final routeBuilder = routes[settings.name];

@@ -22,7 +22,7 @@ class CommonSlider extends StatefulWidget {
     this.maxValue = 100,
     List<String>? levelList,
     required this.onChange,
-    this.measureUnit = '%',
+    this.measureUnit = '',
   })  : this.levelList = levelList ?? [],
         this.minValue = minValue ?? 0,
         this.currentSliderValue = currentSliderValue ?? minValue ?? 0,

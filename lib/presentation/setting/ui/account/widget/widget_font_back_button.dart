@@ -36,7 +36,7 @@ class _FontBackButtonState extends State<FontBackButton> {
       height: 33,
       width: 130,
       decoration: BoxDecoration(
-        color: AppColors.greyColor,
+        color: AppColors.blackColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Row(
