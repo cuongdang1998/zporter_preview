@@ -12,12 +12,19 @@ class $AssetsImagesGen {
 
   SvgGenImage get cashIcon1 =>
       const SvgGenImage('assets/images/cash_icon_1.svg');
+  AssetGenImage get pageImageOne =>
+      const AssetGenImage('assets/images/page_image_one.png');
+  AssetGenImage get pageImageThree =>
+      const AssetGenImage('assets/images/page_image_three.png');
+  AssetGenImage get pageImageTwo =>
+      const AssetGenImage('assets/images/page_image_two.png');
 }
 
 class $AssetsTranslationsGen {
   const $AssetsTranslationsGen();
 
   String get enUS => 'assets/translations/en-US.json';
+  String get svSE => 'assets/translations/sv-SE.json';
   String get viVN => 'assets/translations/vi-VN.json';
 }
 
