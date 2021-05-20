@@ -4,7 +4,7 @@ import 'package:zporter_preview/config/colors.dart';
 import 'widget_common_button_item.dart';
 
 class YesNoButton extends StatefulWidget {
-  final bool? isYes;
+  final bool isYes;
   final ValueChanged onYesTap;
   final ValueChanged onNoTap;
   final double? buttonHeight;

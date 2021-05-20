@@ -3,13 +3,13 @@ import 'package:zporter_preview/config/colors.dart';
 
 class CommonButtonItem extends StatelessWidget {
   final String buttonName;
-  final bool? isSelected;
+  final bool isSelected;
   final VoidCallback? onTap;
   final double? buttonWidth;
-  final Color? selectedColor;
-  final Color? unSelectedColor;
-  final Color? selectedTextColor;
-  final Color? unSelectedTextColor;
+  final Color selectedColor;
+  final Color unSelectedColor;
+  final Color selectedTextColor;
+  final Color unSelectedTextColor;
 
   CommonButtonItem({
     Key? key,
@@ -35,7 +35,7 @@ class CommonButtonItem extends StatelessWidget {
         width: buttonWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: isSelected! ? selectedColor : unSelectedColor,
+          color: isSelected ? selectedColor : unSelectedColor,
         ),
         duration: Duration(
           milliseconds: 200,
@@ -46,7 +46,7 @@ class CommonButtonItem extends StatelessWidget {
             buttonName,
             style: TextStyle(
               fontSize: 14,
-              color: isSelected! ? selectedTextColor : unSelectedTextColor,
+              color: isSelected ? selectedTextColor : unSelectedTextColor,
             ),
           ),
         ),

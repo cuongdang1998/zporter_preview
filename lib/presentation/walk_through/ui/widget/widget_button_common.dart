@@ -4,10 +4,10 @@ import 'package:zporter_preview/config/colors.dart';
 
 /// Using RawMaterialButton
 class AppCommonButton extends StatelessWidget {
-  final Color? borderColor;
-  final Color? backgroundColor;
-  final TextStyle? textButtonStyle;
-  final Color? splashColor;
+  final Color borderColor;
+  final Color backgroundColor;
+  final TextStyle textButtonStyle;
+  final Color splashColor;
   final String textButton;
   final double? heightButton;
   final double? widthButton;
@@ -48,13 +48,13 @@ class AppCommonButton extends StatelessWidget {
             5,
           ),
           borderSide: BorderSide(
-            color: borderColor!,
+            color: borderColor,
             width: 2,
           ),
         ),
-        splashColor: splashColor!,
+        splashColor: splashColor,
         child: Center(
-          child: Text(textButton, style: textButtonStyle!),
+          child: Text(textButton, style: textButtonStyle),
         ),
         onPressed: onPress,
       ),

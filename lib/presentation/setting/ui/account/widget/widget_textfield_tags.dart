@@ -5,9 +5,7 @@ class TextFieldTags extends StatefulWidget {
   final TagsStyle tagsStyle;
   final TextFieldStyle textFieldStyle;
   final void Function(String tag) onTag;
-
   final void Function(String tag) onDelete;
-
   final List<String>? initialTags;
 
   const TextFieldTags({

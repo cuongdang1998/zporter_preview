@@ -6,7 +6,7 @@ import 'package:zporter_preview/config/colors.dart';
 import 'widget_common_button_item.dart';
 
 class FontBackButton extends StatefulWidget {
-  final bool? isSelectedFirst;
+  final bool isSelectedFirst;
   final VoidCallback onFontTap;
   final VoidCallback onBackTap;
 
