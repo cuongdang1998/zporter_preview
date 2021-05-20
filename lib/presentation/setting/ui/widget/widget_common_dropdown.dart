@@ -23,54 +23,49 @@ class CommonDropDown extends StatelessWidget {
     return Container(
       height: 55,
       margin: EdgeInsets.only(bottom: 28),
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          primaryColor: AppColors.blueColor,
-        ),
-        child: DropdownSearch<ModelDropDownItem>(
-          mode: Mode.MENU,
-          showSelectedItem: true,
-          items: items,
-          itemAsString: (item) => item.displayText,
-          maxHeight: items.length > 5 ? 250 : items.length * 50.0,
-          onChanged: onChange,
-          compareFn: (t1, t2) => t1.key == t2!.key,
-          selectedItem: selectedItem,
-          dropDownButton: Icon(Icons.arrow_drop_down_sharp),
-          dropdownSearchDecoration: InputDecoration(
-            contentPadding: EdgeInsets.fromLTRB(15, 20, 0, 0),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppColors.blueColor,
-              ),
+      child: DropdownSearch<ModelDropDownItem>(
+        mode: Mode.MENU,
+        showSelectedItem: true,
+        items: items,
+        itemAsString: (item) => item.displayText,
+        maxHeight: items.length > 5 ? 250 : items.length * 50.0,
+        onChanged: onChange,
+        compareFn: (t1, t2) => t1.key == t2!.key,
+        selectedItem: selectedItem,
+        dropDownButton: Icon(Icons.arrow_drop_down_sharp),
+        dropdownSearchDecoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(15, 20, 0, 0),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.blueColor,
             ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(
-                color: AppColors.greyColor,
-              ),
-            ),
-            labelText: labelText,
-            labelStyle: TextStyle(
-              fontSize: 20,
-            ),
-            alignLabelWithHint: true,
           ),
-          popupItemBuilder: (context, lang, isSelected) {
-            return Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 15,
-              ),
-              child: Text(
-                lang.displayText,
-                style: TextStyle(
-                  color: isSelected ? AppColors.blueColor : AppColors.greyColor,
-                ),
-              ),
-            );
-          },
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+              color: AppColors.greyColor,
+            ),
+          ),
+          labelText: labelText,
+          labelStyle: TextStyle(
+            fontSize: 20,
+          ),
+          alignLabelWithHint: true,
         ),
+        popupItemBuilder: (context, lang, isSelected) {
+          return Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 15,
+            ),
+            child: Text(
+              lang.displayText,
+              style: TextStyle(
+                color: isSelected ? AppColors.blueColor : AppColors.greyColor,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
