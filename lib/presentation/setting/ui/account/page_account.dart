@@ -8,6 +8,9 @@ import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_sli
 import 'widget/widget_expansion_custom.dart';
 import 'widget/widget_textfield_tags.dart';
 
+const loremIpsum =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
 class AccountPage extends StatefulWidget {
   @override
   _AccountPageState createState() => _AccountPageState();
@@ -40,6 +43,7 @@ class _AccountPageState extends State<AccountPage> {
         color: Colors.white,
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CommonSlider(
                 divisionNum: 5,
@@ -167,7 +171,8 @@ class _AccountPageState extends State<AccountPage> {
                 onNoTap: (value) {
                   print("isYes $value");
                 },
-              )
+              ),
+              DiaryDataTable(),
             ],
           ),
         ),
@@ -176,5 +181,149 @@ class _AccountPageState extends State<AccountPage> {
   }
 }
 
-const loremIpsum =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+class DiaryDataTable extends StatelessWidget {
+  const DiaryDataTable({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ColumnTitles(),
+          ContentRows(),
+        ],
+      ),
+    );
+  }
+}
+
+class ColumnTitles extends StatelessWidget {
+  const ColumnTitles({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ColumnCellTitle(
+              isSort: true,
+              title: 'Date',
+              onSort: (){
+                print("on tap");
+              },
+            ),
+            ColumnCellTitle(
+              title: 'Energy',
+            ),
+            ColumnCellTitle(
+              title: 'Sleep',
+            ),
+            ColumnCellTitle(
+              title: 'Eat',
+            ),
+            ColumnCellTitle(
+              title: 'Pain',
+            ),
+            ColumnCellTitle(
+              title: '',
+              isSort: false,
+              width: 30,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ColumnCellTitle extends StatelessWidget {
+  final double? width;
+  final double? height;
+  final String title;
+  final bool? isSort;
+  final VoidCallback? onSort;
+
+  const ColumnCellTitle({
+    Key? key,
+    this.width = 65,
+    this.height = 30,
+    required this.title,
+    this.isSort = false,
+    this.onSort,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: GestureDetector(
+        onTap: isSort! ? onSort : null,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: TextStyle(fontSize: 14),
+            ),
+            Visibility(
+              visible: isSort!,
+              child: Icon(
+                Icons.arrow_drop_down_sharp,
+                size: 18,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ContentRows extends StatelessWidget {
+  final List<String>? rowDataList;
+
+  ContentRows({Key? key, List<String>? rowDataList})
+      : rowDataList = rowDataList ?? [],
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: ListView.builder(
+        padding: EdgeInsets.zero,
+        itemCount: rowDataList!.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return RowItem();
+        },
+      ),
+    );
+  }
+}
+
+class RowItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [],
+      ),
+    );
+  }
+}
+class DiaryData {
+
+}
