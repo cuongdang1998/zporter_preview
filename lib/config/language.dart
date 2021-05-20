@@ -14,9 +14,14 @@ class AppLanguage with ChangeNotifier {
       getLanguageCode() != null ? Locale(getLanguageCode()!) : Locale('sv');
 
   void changeLanguage(lang) {
-    SessionUtils.saveLanguageCode(lang!.langCode);
-    S.load(Locale(lang.langCode));
-    notifyListeners();
+    if (lang!.langCode !=
+        getIt
+            .get<SharedPreferencesManager>()
+            .getString(SharedPreferenceKey.languageCode)) {
+      SessionUtils.saveLanguageCode(lang!.langCode);
+      S.load(Locale(lang.langCode));
+      notifyListeners();
+    }
   }
 
   static final languages = [
