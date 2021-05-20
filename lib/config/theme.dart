@@ -16,7 +16,7 @@ class AppTheme with ChangeNotifier {
 
   static ThemeData get lightTheme {
     return ThemeData(
-      primarySwatch: Colors.blue,
+      primarySwatch: AppColors.blueMaterialColor,
       fontFamily: FontFamily.raleway,
       textTheme: _lightTextTheme,
       primaryTextTheme: _lightTextTheme,
