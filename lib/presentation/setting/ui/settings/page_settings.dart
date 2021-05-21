@@ -17,7 +17,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: SingleChildScrollView(
         child: Column(

@@ -86,7 +86,7 @@ class _CommonDateTimePickerState extends State<CommonDateTimePicker> {
                   widget.labelText ?? '',
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.black54,
+                    color: AppColors.black1Color,
                   ),
                 ),
               ),

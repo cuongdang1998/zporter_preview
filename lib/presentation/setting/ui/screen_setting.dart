@@ -10,7 +10,6 @@ class SettingScreen extends StatelessWidget {
     final bloc = context.read<SettingBloc>();
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: const Color(0xff262545),
       appBar: AppBar(),
       body: Container(
         child: Column(
