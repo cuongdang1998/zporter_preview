@@ -22,9 +22,9 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
   @override
   void initState() {
     _bloc = BlocProvider.of(context);
-    _timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {
-      _bloc.add(ChangePageEvent());
-    });
+    // _timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {
+    //   _bloc.add(ChangePageEvent());
+    // });
     super.initState();
   }
 
