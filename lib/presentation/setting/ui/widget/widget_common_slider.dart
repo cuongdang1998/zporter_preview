@@ -12,19 +12,20 @@ class CommonSlider extends StatefulWidget {
   final List<String> levelList;
   final ValueChanged onChange;
   final String measureUnit;
+  final bool isShowStar;
 
   CommonSlider({
     Key? key,
     double? currentSliderValue,
-    required this.divisionNum,
-    double? minValue,
-    this.maxValue = 100,
     List<String>? levelList,
+    required this.divisionNum,
+    this.minValue = 0,
+    this.maxValue = 100,
     required this.onChange,
-    this.measureUnit = '',
+    this.measureUnit = '%',
+    this.isShowStar = false,
   })  : this.levelList = levelList ?? [],
-        this.minValue = minValue ?? 0,
-        this.currentSliderValue = currentSliderValue ?? minValue ?? 0,
+        this.currentSliderValue = currentSliderValue ?? minValue,
         super(key: key);
 
   @override
@@ -143,7 +144,7 @@ class _CommonSliderState extends State<CommonSlider> {
           ),
         ),
         Visibility(
-          visible: widget.levelList.isEmpty,
+          visible: widget.levelList.isEmpty && !widget.isShowStar,
           child: Align(
             alignment: Alignment.centerRight,
             child: Padding(
@@ -157,7 +158,38 @@ class _CommonSliderState extends State<CommonSlider> {
               ),
             ),
           ),
-        )
+        ),
+        Visibility(
+          visible: widget.isShowStar,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: EdgeInsets.only(right: _levelPdRight),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(
+                  _currentValue % 2 != 0
+                      ? (_currentValue ~/ 2) + 1
+                      : _currentValue ~/ 2,
+                  (index) {
+                    return (index == (_currentValue ~/ 2) &&
+                            _currentValue % 2 != 0)
+                        ? Icon(
+                            Icons.star_half,
+                            size: 12,
+                            color: AppColors.greyColor,
+                          )
+                        : Icon(
+                            Icons.star,
+                            size: 12,
+                            color: AppColors.greyColor,
+                          );
+                  },
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

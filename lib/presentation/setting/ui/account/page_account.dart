@@ -49,14 +49,15 @@ class _AccountPageState extends State<AccountPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CommonSlider(
-                divisionNum: 5,
-                minValue: 1,
-                maxValue: 6,
-                currentSliderValue: 1,
+                divisionNum: 10,
+                minValue: 0,
+                maxValue: 10,
+                currentSliderValue: 0,
                 onChange: (valueNode) {
                   print('$valueNode');
                 },
-                levelList: energyLevel,
+                isShowStar: true,
+                // levelList: energyLevel,
               ),
               ExpandableNotifier(
                 child: ScrollOnExpand(
