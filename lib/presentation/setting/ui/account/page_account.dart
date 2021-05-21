@@ -21,12 +21,12 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   double currentSliderValue = 0;
   List<String> energyLevel = [
-    'No football today',
+    'No football\n     today',
     'Other',
     'Gym',
     'Personal Trainer',
     'Team Training',
-    'Match'
+    'Match',
   ];
   List<bool> expansionPanelStatus = [true, true];
 
@@ -49,13 +49,13 @@ class _AccountPageState extends State<AccountPage> {
             children: [
               CommonSlider(
                 divisionNum: 5,
-                // minValue: 1,
-                // maxValue: 6,
-                // currentSliderValue: 3,
+                minValue: 1,
+                maxValue: 6,
+                currentSliderValue: 1,
                 onChange: (valueNode) {
                   print('$valueNode');
                 },
-                // levelList: energyLevel,
+                levelList: energyLevel,
               ),
               ExpandableNotifier(
                 child: ScrollOnExpand(
@@ -179,7 +179,7 @@ class _AccountPageState extends State<AccountPage> {
                 onChange: (value) {
                   print("value $value");
                 },
-              )
+              ),
             ],
           ),
         ),

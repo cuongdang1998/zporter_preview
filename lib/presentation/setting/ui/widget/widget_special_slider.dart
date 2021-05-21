@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
 
 final double _levelPdLeft = 15;
 final double _levelPdRight = 15;
 
-class CommonSlider extends StatefulWidget {
+class SpecialSlider extends StatefulWidget {
   final double currentSliderValue;
   final int divisionNum;
   final double minValue;
@@ -13,7 +15,7 @@ class CommonSlider extends StatefulWidget {
   final ValueChanged onChange;
   final String measureUnit;
 
-  CommonSlider({
+  SpecialSlider({
     Key? key,
     double? currentSliderValue,
     required this.divisionNum,
@@ -28,10 +30,10 @@ class CommonSlider extends StatefulWidget {
         super(key: key);
 
   @override
-  _CommonSliderState createState() => _CommonSliderState();
+  _SpecialSliderState createState() => _SpecialSliderState();
 }
 
-class _CommonSliderState extends State<CommonSlider> {
+class _SpecialSliderState extends State<SpecialSlider> {
   List<TextItem> levelTextItemList = [];
   int selectedIndex = 0;
   late double _currentValue;
@@ -193,7 +195,7 @@ class LevelTextWidget extends StatelessWidget {
     return Text(
       levelText,
       style: TextStyle(
-        fontSize: 8,
+        fontSize: 7,
         color: isSelected! ? AppColors.greenColor : AppColors.black,
       ),
     );
@@ -203,7 +205,7 @@ class LevelTextWidget extends StatelessWidget {
 class TextItem {
   final String text;
   TextStyle textStyle = TextStyle(
-    fontSize: 8,
+    fontSize: 7,
   );
 
   TextItem({required this.text});
