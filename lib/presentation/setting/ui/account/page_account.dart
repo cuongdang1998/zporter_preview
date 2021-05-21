@@ -5,6 +5,7 @@ import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_fo
 import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_yes_now_button.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_checkbox.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
+import 'package:zporter_preview/presentation/setting/ui/widget/widget_notification_item.dart';
 
 import 'widget/widget_diary_data_table.dart';
 import 'widget/widget_expansion_custom.dart';
@@ -180,6 +181,7 @@ class _AccountPageState extends State<AccountPage> {
                   print("value $value");
                 },
               ),
+              NotificationItem(),
             ],
           ),
         ),

@@ -12,12 +12,15 @@ class $AssetsImagesGen {
 
   SvgGenImage get cashIcon1 =>
       const SvgGenImage('assets/images/cash_icon_1.svg');
+  AssetGenImage get mypic => const AssetGenImage('assets/images/mypic.jpg');
   AssetGenImage get pageImageOne =>
       const AssetGenImage('assets/images/page_image_one.png');
   AssetGenImage get pageImageThree =>
       const AssetGenImage('assets/images/page_image_three.png');
   AssetGenImage get pageImageTwo =>
       const AssetGenImage('assets/images/page_image_two.png');
+  AssetGenImage get threeDots =>
+      const AssetGenImage('assets/images/three_dots.png');
 }
 
 class $AssetsTranslationsGen {
