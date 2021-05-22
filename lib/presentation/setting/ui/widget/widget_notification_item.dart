@@ -30,10 +30,10 @@ class _NotificationItemState extends State<NotificationItem> {
       controller: _slidableController,
       child: NotificationContent(
         avatarImage: Assets.images.mypic,
-        comment:
+        notifyContent:
             'I love you more than I can say. Come with me my babe. I will care you all my life from the bottom of my heart.',
-        commenterName: 'quoccuong',
-        commentTime: DateTime(2021, 05, 21, 13, 10, 22),
+        notifyName: 'quoccuong',
+        notifyTime: DateTime(2021, 05, 21, 13, 10, 22),
         isOpen: _isOpen,
       ),
       secondaryActions: <Widget>[
@@ -92,19 +92,39 @@ class _NotificationItemState extends State<NotificationItem> {
 
 class NotificationContent extends StatelessWidget {
   final AssetGenImage avatarImage;
-  final String commenterName;
-  final String comment;
-  final DateTime commentTime;
+  final String notifyName;
+  final String notifyContent;
+  final DateTime notifyTime;
   final bool isOpen;
 
-  const NotificationContent({
+  NotificationContent({
     Key? key,
     required this.avatarImage,
-    required this.commenterName,
-    required this.comment,
-    required this.commentTime,
+    required this.notifyName,
+    required this.notifyContent,
+    required this.notifyTime,
     this.isOpen = false,
   }) : super(key: key);
+
+  String getNotifyTime() {
+    var days = DateTime.now().difference(this.notifyTime).inDays;
+    var hours = DateTime.now().difference(this.notifyTime).inHours;
+    var minutes = DateTime.now().difference(this.notifyTime).inMinutes;
+    var seconds = DateTime.now().difference(this.notifyTime).inSeconds;
+    if (days == 1) {
+      return '$days day ago';
+    } else if (days > 1) {
+      return '$days days ago';
+    } else if (hours == 1) {
+      return '$hours hour ago';
+    } else if (hours > 1) {
+      return '$hours hours ago';
+    } else if (minutes >= 1) {
+      return '$minutes min ago';
+    } else {
+      return '$seconds sec ago';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +136,7 @@ class NotificationContent extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(3),
+              borderRadius: BorderRadius.circular(10),
               child: avatarImage.image(
                 fit: BoxFit.fill,
                 width: 42,
@@ -134,13 +154,22 @@ class NotificationContent extends StatelessWidget {
                         right: 10,
                       ),
                       child: Text(
-                        '#$commenterName',
+                        '#$notifyName',
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
                     Icon(
                       Icons.access_time,
                       size: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Text(
+                        getNotifyTime(),
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                     Spacer(),
                     Visibility(
@@ -161,7 +190,7 @@ class NotificationContent extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(right: 15),
                   child: Text(
-                    comment,
+                    notifyContent,
                     style: TextStyle(fontSize: 18),
                   ),
                 )
