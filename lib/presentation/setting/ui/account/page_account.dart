@@ -10,7 +10,7 @@ import 'package:zporter_preview/presentation/setting/ui/widget/widget_notificati
 import 'widget/widget_diary_data_table.dart';
 import 'widget/widget_expansion_custom.dart';
 import 'widget/widget_textfield_tags.dart';
-
+import 'dart:math' as math;
 const loremIpsum =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -62,7 +62,7 @@ class _AccountPageState extends State<AccountPage> {
               ExpandableNotifier(
                 child: ScrollOnExpand(
                   scrollOnExpand: true,
-                  scrollOnCollapse: false,
+                  scrollOnCollapse: true,
                   child: ExpandablePanelCustom(
                     header: Text("Expandable"),
                     collapsed: Text(
@@ -91,10 +91,12 @@ class _AccountPageState extends State<AccountPage> {
                       tapBodyToCollapse: true,
                       hasIcon: true,
                       tapHeaderToExpand: true,
-
+                      expandIcon: Icons.keyboard_arrow_right_sharp,
+                      collapseIcon: Icons.keyboard_arrow_down_sharp,
+                      iconRotationAngle: math.pi/2,
                       /// Duration rotate icon on header
                       animationDuration: Duration(
-                        milliseconds: 300,
+                        milliseconds: 100,
                       ),
                     ),
                     builder: (_, collapsed, expanded) {
