@@ -8,3 +8,7 @@ class SettingInitial extends SettingState {}
 class SelectIndexState extends SettingState {}
 
 class ScrollIndexState extends SettingState {}
+
+class AddFaceImageState extends SettingState {}
+
+class AddFullBodyImageState extends SettingState {}

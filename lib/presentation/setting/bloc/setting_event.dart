@@ -14,3 +14,15 @@ class ScrollMenuItemEvent extends SettingEvent {
 
   ScrollMenuItemEvent({required this.index});
 }
+
+class AddFaceImageEvent extends SettingEvent {
+  final File faceImage;
+
+  AddFaceImageEvent({required this.faceImage});
+}
+
+class AddFullBodyImageEvent extends SettingEvent {
+  final File fullBodyImage;
+
+  AddFullBodyImageEvent({required this.fullBodyImage});
+}
