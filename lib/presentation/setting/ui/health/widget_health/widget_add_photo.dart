@@ -7,6 +7,8 @@ import 'package:zporter_preview/config/colors.dart';
 class AddPhoto extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+  final double photoWidth;
+  final double photoHeight;
   final File? photo;
 
   const AddPhoto({
@@ -14,6 +16,8 @@ class AddPhoto extends StatelessWidget {
     required this.title,
     required this.onTap,
     this.photo,
+    this.photoWidth = double.infinity,
+    this.photoHeight = 160,
   }) : super(key: key);
 
   @override
@@ -37,8 +41,8 @@ class AddPhoto extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Container(
-              height: 160,
-              width: double.infinity,
+              height: photoHeight,
+              width: photoWidth,
               decoration: BoxDecoration(
                 color: AppColors.black1Color,
               ),

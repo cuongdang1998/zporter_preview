@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zporter_preview/config/constants.dart';
-import 'package:zporter_preview/presentation/common/photo_permission.dart';
+import 'package:zporter_preview/presentation/common/app_permission/photo_permission.dart';
 import 'package:zporter_preview/presentation/setting/bloc/setting_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widget_add_photo.dart';
@@ -23,16 +22,19 @@ class AddPhotoRow extends StatelessWidget {
               child: AddPhoto(
                 title: 'Face image',
                 onTap: () async {
-                  await PhotoPermission.checkPermissionAndPickImage(
-                    Constants.TYPE_PERMISSION_GALLERY,
-                    context,
-                  ).then(
-                    (value) {
-                      if (value != null) {
-                        bloc.add(AddFaceImageEvent(faceImage: value));
-                      }
-                    },
-                  );
+                  var type = await PhotoPermission.showOptionDialog(context);
+                  if (type != null) {
+                    await PhotoPermission.checkPermissionAndPickImage(
+                      type,
+                      context,
+                    ).then(
+                      (value) {
+                        if (value != null) {
+                          bloc.add(AddFaceImageEvent(faceImage: value));
+                        }
+                      },
+                    );
+                  }
                 },
                 photo: bloc.faceImage,
               ),
@@ -44,16 +46,19 @@ class AddPhotoRow extends StatelessWidget {
               child: AddPhoto(
                 title: 'Full body image',
                 onTap: () async {
-                  await PhotoPermission.checkPermissionAndPickImage(
-                    Constants.TYPE_PERMISSION_CAMERA,
-                    context,
-                  ).then(
-                    (value) {
-                      if (value != null) {
-                        bloc.add(AddFullBodyImageEvent(fullBodyImage: value));
-                      }
-                    },
-                  );
+                  var type = await PhotoPermission.showOptionDialog(context);
+                  if (type != null) {
+                    await PhotoPermission.checkPermissionAndPickImage(
+                      type,
+                      context,
+                    ).then(
+                      (value) {
+                        if (value != null) {
+                          bloc.add(AddFullBodyImageEvent(fullBodyImage: value));
+                        }
+                      },
+                    );
+                  }
                 },
                 photo: bloc.fullBodyImage,
               ),

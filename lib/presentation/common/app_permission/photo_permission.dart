@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/constants.dart';
+import 'package:zporter_preview/presentation/walk_through/ui/widget/widget_button_common.dart';
 
 class PhotoPermission {
   static var picker = ImagePicker();
@@ -119,5 +121,82 @@ class PhotoPermission {
         return File(pickedFile.path);
       }
     } catch (e) {}
+  }
+
+  static Future<String?> showOptionDialog(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      useSafeArea: false,
+      barrierDismissible: false,
+      barrierColor: const Color.fromRGBO(0, 0, 0, 0.8),
+      builder: (_) {
+        return Stack(
+          children: [
+            Positioned(
+              left: 15,
+              right: 40,
+              bottom: 40,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 30,
+                  horizontal: 30,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.black1Color,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    AppCommonButton(
+                      heightButton: 36,
+                      textButton: 'Gallery',
+                      onPress: () {
+                        Navigator.pop(
+                            context, Constants.TYPE_PERMISSION_GALLERY);
+                      },
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    AppCommonButton(
+                      heightButton: 36,
+                      textButton: 'Camera',
+                      borderColor: AppColors.greenColor,
+                      backgroundColor: AppColors.greenColor,
+                      splashColor: AppColors.greenColor,
+                      onPress: () {
+                        Navigator.pop(
+                            context, Constants.TYPE_PERMISSION_CAMERA);
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 17,
+              right: 17,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: ClipOval(
+                  child: Container(
+                    color: AppColors.black1Color,
+                    width: 50,
+                    height: 50,
+                    child: Icon(
+                      Icons.close,
+                      size: 20,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        );
+      },
+    );
   }
 }
