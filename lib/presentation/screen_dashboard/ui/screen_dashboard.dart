@@ -25,8 +25,8 @@ class ScreenDashboard extends StatelessWidget {
     FlSpot(6, 20),
   ];
 
-  final List<double> youPieDate = [13, 52, 28, 7, 7];
-  final List<double> averagePieDate = [12, 23, 20, 38, 14];
+  final List<double> youPieDate = [13, 52, 21, 7, 7];
+  final List<double> averagePieDate = [12, 23, 20, 31, 14];
 
   @override
   Widget build(BuildContext context) {
