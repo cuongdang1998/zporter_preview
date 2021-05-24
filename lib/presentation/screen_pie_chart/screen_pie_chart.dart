@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zporter_preview/presentation/screen_line_chart/ui/widget/widget_custom_pie_chart_.dart';
 
 class ScreenPieChart extends StatelessWidget {
   @override

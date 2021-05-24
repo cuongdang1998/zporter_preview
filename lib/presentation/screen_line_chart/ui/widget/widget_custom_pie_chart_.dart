@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
-import '../../../screen_pie_chart/samples/indicator.dart';
 import 'model_pie_chart_data_note.dart';
 
 class CustomPieChart extends StatelessWidget {
