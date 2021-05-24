@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/presentation/home/home_route.dart';
 import 'package:zporter_preview/presentation/login/login_route.dart';
-import 'package:zporter_preview/presentation/screen_line_chart/dashboard_route.dart';
+import 'package:zporter_preview/presentation/screen_dashboard/dashboard_route.dart';
 import 'package:zporter_preview/presentation/setting/setting_route.dart';
 import 'package:zporter_preview/presentation/walk_through/walk_through_route.dart';
 

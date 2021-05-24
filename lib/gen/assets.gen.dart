@@ -10,8 +10,14 @@ import 'package:flutter/services.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  AssetGenImage get appIcon =>
+      const AssetGenImage('assets/images/app_icon.png');
+  AssetGenImage get backBody =>
+      const AssetGenImage('assets/images/back_body.png');
   SvgGenImage get cashIcon1 =>
       const SvgGenImage('assets/images/cash_icon_1.svg');
+  AssetGenImage get frontBody =>
+      const AssetGenImage('assets/images/front_body.png');
   AssetGenImage get mypic => const AssetGenImage('assets/images/mypic.jpg');
   AssetGenImage get pageImageOne =>
       const AssetGenImage('assets/images/page_image_one.png');
@@ -19,8 +25,6 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/page_image_three.png');
   AssetGenImage get pageImageTwo =>
       const AssetGenImage('assets/images/page_image_two.png');
-  AssetGenImage get threeDots =>
-      const AssetGenImage('assets/images/three_dots.png');
 }
 
 class $AssetsTranslationsGen {

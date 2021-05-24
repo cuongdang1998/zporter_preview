@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
 
+import 'widget/widget_injury_chart_statistic.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
 
@@ -26,7 +27,7 @@ class ScreenDashboard extends StatelessWidget {
   ];
 
   final List<double> youPieDate = [13, 52, 28, 7, 7];
-  final List<double> averagePieDate = [12, 23, 27, 38, 7];
+  final List<double> averagePieDate = [12, 23, 20, 38, 14];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class ScreenDashboard extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                color: AppColors.black2Color,
+                color: AppColors.black3Color,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(40),
                   topLeft: Radius.circular(40),
@@ -62,7 +63,8 @@ class ScreenDashboard extends StatelessWidget {
                   StatisticPieChartWidget(
                     youPieData: youPieDate,
                     averagePieData: averagePieDate,
-                  )
+                  ),
+                  InjuryChartStatistic()
                 ],
               ),
             ),
