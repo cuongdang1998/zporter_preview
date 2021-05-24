@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/config/colors.dart';
 
 class PieChartNoteWidget extends StatelessWidget {
   const PieChartNoteWidget({
     Key? key,
     required this.youPercentText,
     required this.averagePercentText,
-    required this.levelText,
-    required this.colorLevelText,
+    required this.noteText,
+    required this.noteTextColor,
   }) : super(key: key);
   final String youPercentText;
-  final String levelText;
+  final String noteText;
   final String averagePercentText;
-  final Color colorLevelText;
+  final Color noteTextColor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +24,26 @@ class PieChartNoteWidget extends StatelessWidget {
         children: [
           Text(
             youPercentText,
+            style: TextStyle(
+              color: AppColors.whiteColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w500
+            ),
           ),
           Text(
-            levelText,
+            noteText,
             style: TextStyle(
-              color: colorLevelText,
+              color: noteTextColor,
+              fontSize: 16
             ),
           ),
           Text(
             averagePercentText,
+            style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w500
+            ),
           )
         ],
       ),

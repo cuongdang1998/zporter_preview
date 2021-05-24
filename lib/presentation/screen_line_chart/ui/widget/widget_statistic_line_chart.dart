@@ -1,7 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'widget_line_chart.dart';
-import 'widget_note_line_chart.dart';
+import 'package:zporter_preview/config/colors.dart';
+import 'widget_custom_line_chart.dart';
+import 'widget_line_chart_note.dart';
 
 class StatisticLineChartWidget extends StatelessWidget {
   final List<FlSpot> youData;
@@ -38,7 +39,7 @@ class StatisticLineChartWidget extends StatelessWidget {
                 Text(
                   lastDaysText,
                   style: TextStyle(
-                    color: Colors.green,
+                    color: AppColors.greenColor,
                     fontSize: 18,
                   ),
                 ),
@@ -46,6 +47,7 @@ class StatisticLineChartWidget extends StatelessWidget {
                   onTap: () {},
                   child: Icon(
                     Icons.sort,
+                    color: AppColors.whiteColor,
                   ),
                 ),
               ],
@@ -58,12 +60,12 @@ class StatisticLineChartWidget extends StatelessWidget {
             child: Text(
               topText,
               style: TextStyle(
-                color: Colors.grey,
+                color: AppColors.greyColor,
                 fontSize: 18,
               ),
             ),
           ),
-          LineChartWidget(
+          CustomLineChart(
             youData: youData,
             averageData: averageData,
             // showHorizontalLine: false,
@@ -77,7 +79,7 @@ class StatisticLineChartWidget extends StatelessWidget {
                 Text(
                   bottomText,
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: AppColors.greyColor,
                     fontSize: 18,
                   ),
                 ),
@@ -88,14 +90,14 @@ class StatisticLineChartWidget extends StatelessWidget {
                     children: [
                       NoteLineChart(
                         note: "Average",
-                        colorDot: Colors.grey,
+                        colorDot: AppColors.greyColor,
                       ),
                       SizedBox(
                         width: 18,
                       ),
                       NoteLineChart(
                         note: "You",
-                        colorDot: Colors.indigo,
+                        colorDot: AppColors.blueColor,
                       ),
                     ],
                   ),

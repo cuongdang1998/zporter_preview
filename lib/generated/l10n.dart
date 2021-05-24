@@ -148,6 +148,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Video {num}`
+  String video_num(Object num) {
+    return Intl.message(
+      'Video $num',
+      name: 'video_num',
+      desc: '',
+      args: [num],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -4,20 +4,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
 
-class AddPhoto extends StatelessWidget {
+class AddVideo extends StatelessWidget {
   final String? title;
   final VoidCallback onTap;
-  final double photoWidth;
-  final double photoHeight;
-  final File? photo;
+  final double videoWidth;
+  final double videoHeight;
+  final File? video;
 
-  const AddPhoto({
+  const AddVideo({
     Key? key,
     this.title,
     required this.onTap,
-    this.photo,
-    this.photoWidth = double.infinity,
-    this.photoHeight = 160,
+    this.video,
+    this.videoWidth = double.infinity,
+    this.videoHeight = 160,
   }) : super(key: key);
 
   @override
@@ -44,16 +44,16 @@ class AddPhoto extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Container(
-              height: photoHeight,
-              width: photoWidth,
+              height: videoHeight,
+              width: videoWidth,
               decoration: BoxDecoration(
                 color: AppColors.black1Color,
               ),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
-                child: photo != null
+                child: video != null
                     ? Image.file(
-                        photo!,
+                        video!,
                         fit: BoxFit.fill,
                         width: double.infinity,
                         height: double.infinity,
@@ -69,7 +69,7 @@ class AddPhoto extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
                             child: Text(
-                              "Add photo",
+                              'Add Video',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,

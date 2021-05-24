@@ -9,5 +9,6 @@
   "media": "Media",
   "strong": "Strong",
   "cancel": "Cancel",
-  "select": "Select"
+  "select": "Select",
+  "video_num": "Video {num}"
 }

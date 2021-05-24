@@ -61,6 +61,7 @@ class _AccountPageState extends State<AccountPage> {
                 // levelList: energyLevel,
               ),
               ExpandableNotifier(
+                initialExpanded: false,
                 child: ScrollOnExpand(
                   scrollOnExpand: true,
                   scrollOnCollapse: true,

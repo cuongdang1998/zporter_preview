@@ -1,8 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/config/colors.dart';
 
-class LineChartWidget extends StatelessWidget {
-  const LineChartWidget({
+class CustomLineChart extends StatelessWidget {
+  const CustomLineChart({
     Key? key,
     required this.youData,
     required this.averageData,
@@ -24,13 +25,13 @@ class LineChartWidget extends StatelessWidget {
       height: 160,
       child: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: RadialGradient(
-                colors: [Colors.red, Colors.blueGrey],
-              ),
-            ),
-          ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     gradient: RadialGradient(
+          //       colors: [Colors.red, Colors.blueGrey],
+          //     ),
+          //   ),
+          // ),
           Visibility(
             visible: showHorizontalLine,
             child: Positioned(
@@ -40,7 +41,7 @@ class LineChartWidget extends StatelessWidget {
               child: Container(
                 height: 1,
                 width: double.infinity,
-                color: Colors.grey,
+                color: AppColors.greyColor,
               ),
             ),
           ),
@@ -70,7 +71,7 @@ class LineChartWidget extends StatelessWidget {
                     isCurved: false,
                     barWidth: 3,
                     colors: [
-                      Colors.indigo,
+                      AppColors.blueColor,
                     ],
                   ),
                   LineChartBarData(
@@ -78,7 +79,7 @@ class LineChartWidget extends StatelessWidget {
                     isCurved: false,
                     barWidth: 3,
                     colors: [
-                      Colors.grey,
+                      AppColors.greyColor,
                     ],
                   ),
                 ],

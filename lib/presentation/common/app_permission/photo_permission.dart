@@ -127,7 +127,7 @@ class PhotoPermission {
     return showDialog<String>(
       context: context,
       useSafeArea: false,
-      barrierDismissible: false,
+      barrierDismissible: true,
       barrierColor: const Color.fromRGBO(0, 0, 0, 0.8),
       builder: (_) {
         return Stack(

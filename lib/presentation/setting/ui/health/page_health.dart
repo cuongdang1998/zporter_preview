@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/generated/l10n.dart';
+import 'package:zporter_preview/presentation/setting/ui/health/widget_health/widget_add_video.dart';
 import 'widget_health/widget_add_photo_row.dart';
 
 class HealthPage extends StatelessWidget {
@@ -12,7 +14,15 @@ class HealthPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            AddPhotoRow(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: AddPhotoRow(),
+            ),
+            AddVideo(
+              title: S.of(context).video_num(1),
+              onTap: () {},
+              videoHeight: 250,
+            )
           ],
         ),
       ),

@@ -19,6 +19,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'vi';
 
+  static m0(num) => "Vi đeo số: ${num}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "account" : MessageLookupByLibrary.simpleMessage("Tài khoản"),
@@ -30,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "media" : MessageLookupByLibrary.simpleMessage("Mạng xã hội"),
     "select" : MessageLookupByLibrary.simpleMessage("Chọn"),
     "settings" : MessageLookupByLibrary.simpleMessage("Cài đặt"),
-    "strong" : MessageLookupByLibrary.simpleMessage("Khoẻ mạnh")
+    "strong" : MessageLookupByLibrary.simpleMessage("Khoẻ mạnh"),
+    "video_num" : m0
   };
 }

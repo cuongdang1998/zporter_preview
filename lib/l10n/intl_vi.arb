@@ -9,5 +9,6 @@
   "media": "Mạng xã hội",
   "strong": "Khoẻ mạnh",
   "cancel": "Huỷ",
-  "select": "Chọn"
+  "select": "Chọn",
+  "video_num": "Vi đeo số: {num}"
 }

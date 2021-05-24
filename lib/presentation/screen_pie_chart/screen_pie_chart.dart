@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'samples/custom_pie_chart_.dart';
+import 'package:zporter_preview/presentation/screen_line_chart/ui/widget/widget_custom_pie_chart_.dart';
 
 class ScreenPieChart extends StatelessWidget {
   @override
@@ -25,13 +25,13 @@ class ScreenPieChart extends StatelessWidget {
                 ),
               ),
             ),
-            CustomPieChart(
-              chartWidth: 50,
-              chartHeight: 50,
-              centerSpaceRadius: 15,
-              outsideRadius: 10,
-              percent: [12, 53, 27, 8, 7],
-            ),
+            // CustomPieChart(
+            //   chartWidth: 50,
+            //   chartHeight: 50,
+            //   centerSpaceRadius: 15,
+            //   outsideRadius: 10,
+            //   percent: [12, 53, 27, 8, 7],
+            // ),
           ],
         ),
       ),

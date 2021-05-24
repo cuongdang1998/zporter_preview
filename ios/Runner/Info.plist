@@ -47,5 +47,10 @@
     <string>This app needs access to gallery to upload image.</string>
     <key>NSCameraUsageDescription</key>
     <string>This app needs access to camera to upload image.</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
 </dict>
 </plist>

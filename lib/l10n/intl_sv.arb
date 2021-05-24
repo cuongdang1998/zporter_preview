@@ -9,5 +9,6 @@
   "media": "Media",
   "strong": "Stark",
   "cancel": "Avbryt",
-  "select": "Välj"
+  "select": "Välj",
+  "video_num": "Viodei {num}"
 }
