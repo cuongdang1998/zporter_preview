@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
-
 import 'widget/widget_injury_chart_statistic.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
@@ -64,7 +63,14 @@ class ScreenDashboard extends StatelessWidget {
                     youPieData: youPieDate,
                     averagePieData: averagePieDate,
                   ),
-                  InjuryChartStatistic()
+                  InjuryChartStatistic(),
+                  GestureDetector(
+                    onTapDown: (detail){
+                      print('onTapDown localPosition: ${detail.localPosition}');
+                      print('onTapDown globalPosition: ${detail.globalPosition}');
+                    },
+                    child: Container(),
+                  ),
                 ],
               ),
             ),

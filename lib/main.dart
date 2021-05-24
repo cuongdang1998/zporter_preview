@@ -46,6 +46,7 @@ class _MyAppState extends State<MyApp> {
   AppTheme appTheme = getIt<AppTheme>();
   AppLanguage appLanguage = getIt<AppLanguage>();
 
+
   @override
   void initState() {
     appTheme.addListener(() {
@@ -65,6 +66,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.white, // Color for Android
+        statusBarBrightness: Brightness.dark // Dark == white status bar -- for IOS.
+    ));
     return ScreenUtilInit(
       designSize: const Size(400, 800),
       builder: () => MaterialApp(

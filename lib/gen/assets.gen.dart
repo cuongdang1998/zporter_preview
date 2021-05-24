@@ -12,6 +12,8 @@ class $AssetsImagesGen {
 
   AssetGenImage get appIcon =>
       const AssetGenImage('assets/images/app_icon.png');
+  SvgGenImage get arrowInOut =>
+      const SvgGenImage('assets/images/arrow_in_out.svg');
   AssetGenImage get backBody =>
       const AssetGenImage('assets/images/back_body.png');
   SvgGenImage get cashIcon1 =>
