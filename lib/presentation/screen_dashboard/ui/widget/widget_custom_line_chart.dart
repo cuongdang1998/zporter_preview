@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
@@ -6,6 +8,8 @@ class CustomLineChart extends StatelessWidget {
   const CustomLineChart({
     Key? key,
     required this.youData,
+    required this.youColor,
+    required this.averageColor,
     required this.averageData,
     bool? showHorizontalLine,
     double? comparePoint,
@@ -17,6 +21,8 @@ class CustomLineChart extends StatelessWidget {
   final List<FlSpot> averageData;
   final bool showHorizontalLine;
   final double comparePoint;
+  final Color youColor;
+  final Color averageColor;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,14 @@ class CustomLineChart extends StatelessWidget {
           // Container(
           //   decoration: BoxDecoration(
           //     gradient: RadialGradient(
-          //       colors: [Colors.red, Colors.blueGrey],
+          //       colors: [
+          //         AppColors.black3Color,
+          //         AppColors.blueColor.withOpacity(.3),
+          //         AppColors.blueColor.withOpacity(.3),
+          //         AppColors.blueColor.withOpacity(.3),
+          //         AppColors.blueColor.withOpacity(.3),
+          //         AppColors.black3Color,
+          //       ],
           //     ),
           //   ),
           // ),
@@ -70,17 +83,19 @@ class CustomLineChart extends StatelessWidget {
                     spots: youData,
                     isCurved: false,
                     barWidth: 3,
-                    colors: [
-                      AppColors.blueColor,
-                    ],
+                    colors: [youColor],
+                    dotData: getDotStyle(
+                      color: youColor,
+                    ),
                   ),
                   LineChartBarData(
                     spots: averageData,
                     isCurved: false,
                     barWidth: 3,
-                    colors: [
-                      AppColors.greyColor,
-                    ],
+                    colors: [averageColor],
+                    dotData: getDotStyle(
+                      color: averageColor,
+                    ),
                   ),
                 ],
               ),
@@ -89,5 +104,16 @@ class CustomLineChart extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  FlDotData getDotStyle({double radius = 4, required Color color}) {
+    return FlDotData(getDotPainter:
+        (FlSpot spot, double xPercentage, LineChartBarData bar, int index) {
+      return FlDotCirclePainter(
+        radius: radius,
+        color: color,
+        strokeColor: color,
+      );
+    });
   }
 }

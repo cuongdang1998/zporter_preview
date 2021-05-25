@@ -70,6 +70,8 @@ class StatisticLineChartWidget extends StatelessWidget {
             averageData: averageData,
             // showHorizontalLine: false,
             comparePoint: 60,
+            youColor: AppColors.blueColor,
+            averageColor: AppColors.greyColor,
           ),
           Container(
             margin: EdgeInsets.only(top: 30),

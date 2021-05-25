@@ -622,14 +622,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0"
+    version: "0.5.1"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   path_provider:
     dependency: "direct main"
     description:
@@ -929,6 +929,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  svg_path_parser:
+    dependency: "direct main"
+    description:
+      name: svg_path_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   synchronized:
     dependency: transitive
     description:
@@ -975,6 +982,13 @@ packages:
     dependency: transitive
     description:
       name: timing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  touchable:
+    dependency: "direct main"
+    description:
+      name: touchable
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
