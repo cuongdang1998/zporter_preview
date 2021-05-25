@@ -21,7 +21,12 @@ class InjuryRowChart extends StatelessWidget {
         children: [
           Container(
             child: isFont
-                ? Assets.images.frontBody.image()
+                ? GestureDetector(
+                    onTapDown: (detail) {
+                      print('local detail ${detail.localPosition}');
+                    },
+                    child: Assets.images.frontBody.image(),
+                  )
                 : Align(
                     alignment:
                         isFont ? Alignment.centerLeft : Alignment.centerRight,

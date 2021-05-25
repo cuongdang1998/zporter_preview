@@ -74,19 +74,24 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                   ),
                   InjuryChartStatistic(),
                   Container(
-                    child: CanvasTouchDetector(
-                      builder: (context) => CustomPaint(
-                        painter: PathPainter(context, this, true),
-                      ),
-                    ),
+                    height: 10,
+                    color: Colors.blue,
                   ),
-                  GestureDetector(
-                    onTapDown: (detail) {
-                      print('onTapDown localPosition: ${detail.localPosition}');
-                      print(
-                          'onTapDown globalPosition: ${detail.globalPosition}');
-                    },
-                    child: Container(),
+                  Container(
+                    width: double.infinity,
+                    height: 300,
+                    child: CanvasTouchDetector(
+                      builder: (context) {
+                        return CustomPaint(
+                          painter: PathPainter(
+                            context: context,
+                            onTap: (String circleColor) {
+                              print(circleColor);
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
