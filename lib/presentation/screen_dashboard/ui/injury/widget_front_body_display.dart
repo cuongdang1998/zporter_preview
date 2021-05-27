@@ -3,6 +3,7 @@ import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/gen/assets.gen.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_list_pointed_injury.dart';
 import 'widget_list_tap_item_injury.dart';
 
 class FrontBodyDisplay extends StatefulWidget {
@@ -39,28 +40,35 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      key: widget.boxKey,
-      child: Stack(
-        children: [
-          Assets.images.frontBody.image(
-            height: imageSize.height,
-            width: imageSize.width,
-          ),
-
-          /// Tap injury area position
-          Visibility(
-            visible: widget.enableTapInjury!,
-            child: ListTapItemInjury(
-              scaleHeightRate: scaleHeightRate,
-              scaleWidthRate: scaleWidthRate,
+    return BlocBuilder(
+        bloc: bloc,
+        builder: (context, snapshot) {
+          return Container(
+            width: double.infinity,
+            height: double.infinity,
+            key: widget.boxKey,
+            child: Stack(
+              children: [
+                Assets.images.frontBody.image(
+                  height: imageSize.height,
+                  width: imageSize.width,
+                ),
+                ListPointedInjury(
+                  scaleWidthRate: scaleWidthRate,
+                  scaleHeightRate: scaleHeightRate,
+                ),
+                /// Tap injury area position
+                Visibility(
+                  visible: widget.enableTapInjury!,
+                  child: ListTapItemInjury(
+                    scaleHeightRate: scaleHeightRate,
+                    scaleWidthRate: scaleWidthRate,
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 
   void getScaleSize(Size size) {

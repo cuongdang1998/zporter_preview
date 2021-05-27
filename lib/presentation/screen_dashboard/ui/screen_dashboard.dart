@@ -4,6 +4,7 @@ import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_front_body_display.dart';
+import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
 import 'injury/widget_injury_chart_statistic.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
@@ -66,12 +67,23 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                 children: [
                   InjuryChartStatistic(),
                   Container(
-                    color: Colors.red,
                     width: Constants.frontImageWidth,
                     height: Constants.frontImageHeight,
                     child: FrontBodyDisplay(
                       boxKey: bloc.frontVisibleTapKey,
                     ),
+                  ),
+                  CommonSlider(
+                    divisionNum: 3,
+                    minValue: 1,
+                    maxValue: 4,
+                    currentSliderValue: bloc.injuryLevel.toDouble(),
+                    onChange: (valueNode) {
+                      bloc.add(
+                        SetInjuryLevelEvent(injuryLevel: valueNode.toInt()),
+                      );
+                    },
+                    levelList: ['Very Low', 'Low', 'High', 'Very High'],
                   ),
                   StatisticLineChartWidget(
                     averageData: averageLineData,

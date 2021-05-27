@@ -226,7 +226,7 @@ class LevelTextWidget extends StatelessWidget {
       levelText,
       style: TextStyle(
         fontSize: 8,
-        color: isSelected! ? AppColors.greenColor : AppColors.black,
+        color: isSelected! ? AppColors.greenColor : AppColors.whiteColor,
       ),
     );
   }

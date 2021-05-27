@@ -20,20 +20,19 @@ class ListTapItemInjury extends StatelessWidget {
         (injuryType) {
           return Positioned(
             left: scaleWidthRate *
-                injuryType.injuryParam.tapInjuryAreaPosition.dx,
+                injuryType.originalInjuryParam.tapInjuryAreaPosition.dx,
             top: scaleHeightRate *
-                injuryType.injuryParam.tapInjuryAreaPosition.dy,
+                injuryType.originalInjuryParam.tapInjuryAreaPosition.dy,
             child: GestureDetector(
               onTap: () {
-                print(
-                    'tap injury: ${injuryType.injuryParam.injuryName} index:${injuryType.index}');
+                bloc.add(PointInjuryEvent(injuryType: injuryType));
               },
               child: Container(
-                color: injuryType.index == 0 ? Colors.red : Colors.green,
-                width:
-                    scaleWidthRate * injuryType.injuryParam.tapSizeArea.width,
-                height:
-                    scaleHeightRate * injuryType.injuryParam.tapSizeArea.height,
+                color: Colors.transparent,
+                width: scaleWidthRate *
+                    injuryType.originalInjuryParam.tapSizeArea.width,
+                height: scaleHeightRate *
+                    injuryType.originalInjuryParam.tapSizeArea.height,
               ),
             ),
           );
