@@ -15,7 +15,7 @@ class PhotoPermission {
     String type,
     BuildContext context,
   ) async {
-    if (type == Constants.TYPE_PERMISSION_GALLERY) {
+    if (type == Constants.typePermissionGallery) {
       final Map<Permission, PermissionStatus> request;
       final PermissionStatus permissionStatus;
       if (Platform.isAndroid) {
@@ -66,7 +66,7 @@ class PhotoPermission {
         return await getImage(ImageSource.gallery);
       }
     }
-    if (type == Constants.TYPE_PERMISSION_CAMERA) {
+    if (type == Constants.typePermissionCamera) {
       final Map<Permission, PermissionStatus> request =
           await [Permission.camera].request();
       PermissionStatus permissionStatus = request[Permission.camera]!;
@@ -152,7 +152,7 @@ class PhotoPermission {
                       textButton: 'Gallery',
                       onPress: () {
                         Navigator.pop(
-                            context, Constants.TYPE_PERMISSION_GALLERY);
+                            context, Constants.typePermissionGallery);
                       },
                     ),
                     SizedBox(
@@ -166,7 +166,7 @@ class PhotoPermission {
                       splashColor: AppColors.greenColor,
                       onPress: () {
                         Navigator.pop(
-                            context, Constants.TYPE_PERMISSION_CAMERA);
+                            context, Constants.typePermissionCamera);
                       },
                     )
                   ],

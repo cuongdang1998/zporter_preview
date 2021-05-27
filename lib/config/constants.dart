@@ -1,4 +1,6 @@
 class Constants {
-  static const TYPE_PERMISSION_GALLERY = 'gallery';
-  static const TYPE_PERMISSION_CAMERA = 'camera';
+  static const typePermissionGallery = 'gallery';
+  static const typePermissionCamera = 'camera';
+  static const double frontImageWidth = 252;
+  static const double frontImageHeight = 526;
 }

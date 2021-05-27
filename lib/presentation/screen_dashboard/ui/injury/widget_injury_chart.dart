@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
+import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'widget_back_body_display.dart';
 import 'widget_front_body_display.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InjuryRowChart extends StatelessWidget {
   final bool isFont;
@@ -15,6 +17,7 @@ class InjuryRowChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<DashboardBloc>();
     return SizedBox(
       width: double.infinity,
       height: 220,
@@ -22,7 +25,9 @@ class InjuryRowChart extends StatelessWidget {
         children: [
           Container(
             child: isFont
-                ? FrontBodyDisplay()
+                ? FrontBodyDisplay(
+                    boxKey: bloc.frontVisibleKey,
+                  )
                 : BackBodyDisplay(),
           ),
           Align(

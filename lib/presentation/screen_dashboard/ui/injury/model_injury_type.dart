@@ -82,33 +82,39 @@ extension InjuryTypeExtension on InjuryType {
     switch (this) {
       case InjuryType.FrontLeftHead:
         return InjuryParam(
+          injuryName: 'Front Left Head',
           injuryPosition: Offset(110, 10),
-          tapAreaPosition: Offset(110, 10),
+          tapInjuryAreaPosition: Offset(110, 10),
           tapSizeArea: Size(20, 22),
         );
 
       case InjuryType.FrontRightHead:
         return InjuryParam(
+          injuryName: 'Front Right Head',
           injuryPosition: Offset(130, 10),
-          tapAreaPosition: Offset(130, 10),
+          tapInjuryAreaPosition: Offset(130, 10),
           tapSizeArea: Size(20, 22),
         );
+      default:
+        return InjuryParam(
+          injuryName: 'None',
+          injuryPosition: Offset(0, 0),
+          tapInjuryAreaPosition: Offset(0, 0),
+          tapSizeArea: Size(0, 0),
+        );
     }
-    return InjuryParam(
-      injuryPosition: Offset(0, 0),
-      tapAreaPosition: Offset(0, 0),
-      tapSizeArea: Size(0, 0),
-    );
   }
 }
 
 class InjuryParam {
+  final String injuryName;
   final Offset injuryPosition;
-  final Offset tapAreaPosition;
+  final Offset tapInjuryAreaPosition;
   final Size tapSizeArea;
 
   InjuryParam({
-    required this.tapAreaPosition,
+    required this.injuryName,
+    required this.tapInjuryAreaPosition,
     required this.injuryPosition,
     required this.tapSizeArea,
   });

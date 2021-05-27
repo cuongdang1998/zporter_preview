@@ -1,13 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:touchable/touchable.dart';
 import 'package:zporter_preview/config/colors.dart';
-import 'package:zporter_preview/gen/assets.gen.dart';
-import 'package:zporter_preview/presentation/screen_dashboard/svg_handler/svg_painter.dart';
+import 'package:zporter_preview/config/constants.dart';
+import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_front_body_display.dart';
 import 'injury/widget_injury_chart_statistic.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ScreenDashboard extends StatefulWidget {
   @override
@@ -41,6 +41,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<DashboardBloc>();
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -64,42 +65,12 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
               child: Column(
                 children: [
                   InjuryChartStatistic(),
-                  GestureDetector(
-                    onTapDown: (detail) {
-                      print('detail ${detail.localPosition}');
-                    },
-                    child: Stack(
-                      children: [
-                        Assets.images.frontBody.image(),
-                        Positioned(
-                          left: 110,
-                          top: 10,
-                          child: GestureDetector(
-                            onTap: () {
-                              print('tap left head');
-                            },
-                            child: Container(
-                              color: Colors.red,
-                              width: 20,
-                              height: 22,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 10,
-                          child: GestureDetector(
-                            onTap: () {
-                              print('tap right head');
-                            },
-                            child: Container(
-                              color: Colors.green,
-                              width: 20,
-                              height: 22,
-                            ),
-                          ),
-                        ),
-                      ],
+                  Container(
+                    color: Colors.red,
+                    width: Constants.frontImageWidth,
+                    height: Constants.frontImageHeight,
+                    child: FrontBodyDisplay(
+                      boxKey: bloc.frontVisibleTapKey,
                     ),
                   ),
                   StatisticLineChartWidget(

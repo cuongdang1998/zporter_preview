@@ -1,54 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/gen/assets.gen.dart';
+import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'widget_list_tap_item_injury.dart';
 
-class FrontBodyDisplay extends StatelessWidget {
-  final double? imageWidth;
-  final double? imageHeight;
-
+class FrontBodyDisplay extends StatefulWidget {
   const FrontBodyDisplay({
     Key? key,
-    this.imageWidth = 106,
-    this.imageHeight = 220,
+    this.enableTapInjury = true,
+    required this.boxKey,
   }) : super(key: key);
+  final bool? enableTapInjury;
+  final GlobalKey boxKey;
+
+  @override
+  _FrontBodyDisplayState createState() => _FrontBodyDisplayState();
+}
+
+class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
+  Size imageSize = Size(0, 0);
+  double scaleWidthRate = 0;
+  double scaleHeightRate = 0;
+  late DashboardBloc bloc;
+
+  @override
+  void initState() {
+    bloc = context.read<DashboardBloc>();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      final RenderBox? renderBoxRed =
+          widget.boxKey.currentContext!.findRenderObject() as RenderBox?;
+      final Size size = renderBoxRed!.size;
+      getScaleSize(size);
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: imageHeight,
-      width: imageWidth,
+      width: double.infinity,
+      height: double.infinity,
+      key: widget.boxKey,
       child: Stack(
         children: [
-          Assets.images.frontBody.image(fit: BoxFit.fill),
-          Positioned(
-            left: (imageWidth! / 252) * 110,
-            top: (imageHeight! / 526) * 10,
-            child: GestureDetector(
-              onTap: () {
-                print('tap left head');
-              },
-              child: Container(
-                color: Colors.red,
-                width: (imageWidth! / 252) * 20,
-                height: (imageHeight! / 526) * 22,
-              ),
-            ),
+          Assets.images.frontBody.image(
+            height: imageSize.height,
+            width: imageSize.width,
           ),
-          Positioned(
-            left: (imageWidth! / 252) * 130,
-            top: (imageHeight! / 526) * 10,
-            child: GestureDetector(
-              onTap: () {
-                print('tap right head');
-              },
-              child: Container(
-                color: Colors.green,
-                width: (imageWidth! / 252) * 20,
-                height: (imageHeight! / 526) * 22,
-              ),
+
+          /// Tap injury area position
+          Visibility(
+            visible: widget.enableTapInjury!,
+            child: ListTapItemInjury(
+              scaleHeightRate: scaleHeightRate,
+              scaleWidthRate: scaleWidthRate,
             ),
           ),
         ],
       ),
     );
+  }
+
+  void getScaleSize(Size size) {
+    double scaleWidth = size.width / Constants.frontImageWidth;
+    double scaleHeight = size.height / Constants.frontImageHeight;
+    double scaleImage = scaleHeight < scaleWidth ? scaleHeight : scaleWidth;
+
+    imageSize = Size(
+      Constants.frontImageWidth * scaleImage,
+      Constants.frontImageHeight * scaleImage,
+    );
+    scaleWidthRate = imageSize.width / Constants.frontImageWidth;
+    scaleHeightRate = imageSize.height / Constants.frontImageHeight;
   }
 }
