@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
-import 'package:zporter_preview/gen/assets.gen.dart';
+import 'widget_back_body_display.dart';
+import 'widget_front_body_display.dart';
 
 class InjuryRowChart extends StatelessWidget {
   final bool isFont;
@@ -21,19 +22,8 @@ class InjuryRowChart extends StatelessWidget {
         children: [
           Container(
             child: isFont
-                ? GestureDetector(
-                    onTapDown: (detail) {
-                      print('local detail ${detail.localPosition}');
-                    },
-                    child: Assets.images.frontBody.image(),
-                  )
-                : Align(
-                    alignment:
-                        isFont ? Alignment.centerLeft : Alignment.centerRight,
-                    child: isFont
-                        ? Assets.images.frontBody.image()
-                        : Assets.images.backBody.image(),
-                  ),
+                ? FrontBodyDisplay()
+                : BackBodyDisplay(),
           ),
           Align(
             alignment: isFont ? Alignment.topRight : Alignment.topLeft,

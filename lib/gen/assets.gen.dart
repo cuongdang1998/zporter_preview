@@ -12,14 +12,14 @@ class $AssetsImagesGen {
 
   AssetGenImage get appIcon =>
       const AssetGenImage('assets/images/app_icon.png');
-  SvgGenImage get arrowInOut =>
-      const SvgGenImage('assets/images/arrow_in_out.svg');
   AssetGenImage get backBody =>
       const AssetGenImage('assets/images/back_body.png');
   SvgGenImage get cashIcon1 =>
       const SvgGenImage('assets/images/cash_icon_1.svg');
   AssetGenImage get frontBody =>
       const AssetGenImage('assets/images/front_body.png');
+  SvgGenImage get googlePlayDe =>
+      const SvgGenImage('assets/images/google_play_de.svg');
   AssetGenImage get mypic => const AssetGenImage('assets/images/mypic.jpg');
   AssetGenImage get pageImageOne =>
       const AssetGenImage('assets/images/page_image_one.png');
