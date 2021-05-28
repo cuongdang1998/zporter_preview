@@ -53,6 +53,7 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
                 print('detail ${detail.localPosition}');
               },
               child: Stack(
+                clipBehavior: Clip.none,
                 children: [
                   Assets.images.frontBody.image(
                     height: imageSize.height,

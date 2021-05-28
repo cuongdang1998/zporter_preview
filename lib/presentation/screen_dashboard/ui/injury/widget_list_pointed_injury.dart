@@ -19,6 +19,7 @@ class ListPointedInjury extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<DashboardBloc>();
     return Stack(
+      clipBehavior: Clip.none,
       children: listPointedInjuries.map(
         (injuryModel) {
           return getInjurySticker(injuryModel);

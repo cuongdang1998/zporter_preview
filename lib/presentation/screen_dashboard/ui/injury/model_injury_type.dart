@@ -41,8 +41,10 @@ enum InjuryType {
   BackRightLowerArm,
 
   /// Wrist (Co tay)
-  LeftWrist,
-  RightWrist,
+  FrontLeftWrist,
+  FrontRightWrist,
+  BackLeftWrist,
+  BackRightWrist,
 
   /// Back
   LeftBack,
@@ -93,52 +95,52 @@ extension InjuryTypeExtension on InjuryType {
           tapSizeArea: Size(20, 22),
           isFront: true,
         );
-
       case InjuryType.FrontRightHead:
         return OriginalInjuryParams(
           injuryName: 'Front Right Head',
           injuryPosition: Offset(140, 22),
-          // tapInjuryAreaPosition: Offset(130, 10),
           tapSizeArea: Size(20, 22),
           isFront: true,
         );
-      case InjuryType.FrontLeftUpperArm:
+      case InjuryType.LeftShoulder:
         return OriginalInjuryParams(
-          injuryName: 'Left Front Upper Arm',
-          injuryPosition: Offset(130, 10),
-          // tapInjuryAreaPosition: Offset(52, 132),
-          tapSizeArea: Size(24, 37),
+          injuryName: 'Front Right Head',
+          injuryPosition: Offset(93, 99),
+          tapSizeArea: Size(45, 22),
           isFront: true,
         );
       case InjuryType.FrontLeftUpperArm:
         return OriginalInjuryParams(
           injuryName: 'Front Left UpperArm',
-          injuryPosition: Offset(52, 132),
-          // tapInjuryAreaPosition: Offset(52, 132),
+          injuryPosition: Offset(64, 155),
           tapSizeArea: Size(24, 37),
           isFront: true,
         );
       case InjuryType.FrontLeftElbow:
         return OriginalInjuryParams(
           injuryName: 'Front Left Elbow',
-          injuryPosition: Offset(44, 165),
-          // tapInjuryAreaPosition: Offset(44, 165),
+          injuryPosition: Offset(51, 183),
           tapSizeArea: Size(24, 22),
           isFront: true,
         );
       case InjuryType.FrontLeftLowerArm:
         return OriginalInjuryParams(
           injuryName: 'Front Left Lower Arm',
-          injuryPosition: Offset(44, 165),
-          // tapInjuryAreaPosition: Offset(34, 184),
-          tapSizeArea: Size(24, 22),
+          injuryPosition: Offset(35, 212),
+          tapSizeArea: Size(24, 40),
+          isFront: true,
+        );
+      case InjuryType.FrontLeftWrist:
+        return OriginalInjuryParams(
+          injuryName: 'Front Left Wrist',
+          injuryPosition: Offset(20, 243),
+          tapSizeArea: Size(22, 22),
           isFront: true,
         );
       default:
         return OriginalInjuryParams(
           injuryName: 'None',
           injuryPosition: Offset(0, 0),
-          // tapInjuryAreaPosition: Offset(0, 0),
           tapSizeArea: Size(0, 0),
           isFront: true,
         );
@@ -150,7 +152,6 @@ class OriginalInjuryParams {
   final String injuryName;
   final Offset injuryPosition;
 
-  // final Offset tapInjuryAreaPosition;
   final Size tapSizeArea;
   final int injuryLevel;
   final bool isFront;
@@ -158,7 +159,6 @@ class OriginalInjuryParams {
   OriginalInjuryParams({
     this.injuryLevel = 0,
     required this.injuryName,
-    // required this.tapInjuryAreaPosition,
     required this.injuryPosition,
     required this.tapSizeArea,
     required this.isFront,
