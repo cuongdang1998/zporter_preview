@@ -23,20 +23,22 @@ enum InjuryType {
   RightChest,
 
   /// Upper arm
-  LeftFrontUpperArm,
-  RightFrontUpperArm,
-  LeftBackUpperArm,
-  RightBackUpperArm,
+  FrontLeftUpperArm,
+  FrontRightUpperArm,
+  BackLeftUpperArm,
+  BackRightUpperArm,
 
   /// Elbow
-  LeftElbow,
-  RightElbow,
+  FrontLeftElbow,
+  FrontRightElbow,
+  BackLeftElbow,
+  BackRightElbow,
 
   /// Lower Arm
-  LeftFrontLowerArm,
-  RightFrontLowerArm,
-  LeftBackULowerArm,
-  RightBackLowerArm,
+  FrontLeftLowerArm,
+  FrontRightLowerArm,
+  BackLeftLowerArm,
+  BackRightLowerArm,
 
   /// Wrist (Co tay)
   LeftWrist,
@@ -54,20 +56,20 @@ enum InjuryType {
   RightButtock,
 
   /// Thigh
-  LeftFrontThigh,
-  RightFrontThigh,
-  LeftBackThigh,
-  RightBackThigh,
+  FrontLeftThigh,
+  FrontRightThigh,
+  BackLeftThigh,
+  BackRightThigh,
 
   /// Knee
   LeftKnee,
   RightKnee,
 
   /// Calf
-  LeftFrontCalf,
-  RightFrontCalf,
-  LeftBackCalf,
-  RightBackCalf,
+  FrontLeftCalf,
+  FrontRightCalf,
+  BackLeftCalf,
+  BackRightCalf,
 
   /// Ankle
   LeftOutAnkle,
@@ -85,26 +87,61 @@ extension InjuryTypeExtension on InjuryType {
     switch (this) {
       case InjuryType.FrontLeftHead:
         return OriginalInjuryParams(
-            injuryName: 'Front Left Head',
-            injuryPosition: Offset(110, 10),
-            tapInjuryAreaPosition: Offset(110, 10),
-            tapSizeArea: Size(20, 22),
-            isFront: true);
+          injuryName: 'Front Left Head',
+          injuryPosition: Offset(110, 10),
+          tapInjuryAreaPosition: Offset(110, 10),
+          tapSizeArea: Size(20, 22),
+          isFront: true,
+        );
 
       case InjuryType.FrontRightHead:
         return OriginalInjuryParams(
-            injuryName: 'Front Right Head',
-            injuryPosition: Offset(130, 10),
-            tapInjuryAreaPosition: Offset(130, 10),
-            tapSizeArea: Size(20, 22),
-            isFront: true);
+          injuryName: 'Front Right Head',
+          injuryPosition: Offset(130, 10),
+          tapInjuryAreaPosition: Offset(130, 10),
+          tapSizeArea: Size(20, 22),
+          isFront: true,
+        );
+      case InjuryType.FrontLeftUpperArm:
+        return OriginalInjuryParams(
+          injuryName: 'Left Front Upper Arm',
+          injuryPosition: Offset(130, 10),
+          tapInjuryAreaPosition: Offset(52, 132),
+          tapSizeArea: Size(24, 37),
+          isFront: true,
+        );
+      case InjuryType.FrontLeftUpperArm:
+        return OriginalInjuryParams(
+          injuryName: 'Front Left UpperArm',
+          injuryPosition: Offset(52, 132),
+          tapInjuryAreaPosition: Offset(52, 132),
+          tapSizeArea: Size(24, 37),
+          isFront: true,
+        );
+      case InjuryType.FrontLeftElbow:
+        return OriginalInjuryParams(
+          injuryName: 'Front Left Elbow',
+          injuryPosition: Offset(44, 165),
+          tapInjuryAreaPosition: Offset(44, 165),
+          tapSizeArea: Size(24, 22),
+          isFront: true,
+        );
+      case InjuryType.FrontLeftLowerArm:
+        return OriginalInjuryParams(
+          injuryName: 'Front Left Lower Arm',
+          injuryPosition: Offset(44, 165),
+          tapInjuryAreaPosition: Offset(34, 184),
+          tapSizeArea: Size(24, 22),
+          isFront: true,
+        );
       default:
         return OriginalInjuryParams(
-            injuryName: 'None',
-            injuryPosition: Offset(0, 0),
-            tapInjuryAreaPosition: Offset(0, 0),
-            tapSizeArea: Size(0, 0),
-            isFront: true);
+          injuryName: 'None',
+          injuryPosition: Offset(0, 0),
+          tapInjuryAreaPosition: Offset(0, 0),
+          tapSizeArea: Size(0, 0),
+          isFront: true,
+        );
     }
   }
 }

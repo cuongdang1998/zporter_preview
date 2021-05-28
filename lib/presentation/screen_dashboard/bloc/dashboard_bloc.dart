@@ -18,7 +18,9 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
   final List<InjuryType> listDefinedInjuries = [
     InjuryType.FrontLeftHead,
-    InjuryType.FrontRightHead
+    InjuryType.FrontRightHead,
+    InjuryType.FrontLeftUpperArm,
+    InjuryType.FrontLeftElbow
   ];
 
   List<InjuryModel> listPointedInjuries = [];

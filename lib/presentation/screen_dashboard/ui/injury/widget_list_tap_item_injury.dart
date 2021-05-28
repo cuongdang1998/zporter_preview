@@ -30,7 +30,7 @@ class ListTapItemInjury extends StatelessWidget {
                 bloc.add(PointInjuryEvent(injuryType: injuryType));
               },
               child: Container(
-                color: Colors.transparent,
+                color: Colors.red,
                 width: scaleWidthRate *
                     injuryType.originalInjuryParam.tapSizeArea.width,
                 height: scaleHeightRate *

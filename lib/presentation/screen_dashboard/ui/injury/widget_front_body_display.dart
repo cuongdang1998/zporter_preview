@@ -48,34 +48,39 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
             width: double.infinity,
             height: double.infinity,
             key: widget.boxKey,
-            child: Stack(
-              children: [
-                Assets.images.frontBody.image(
-                  height: imageSize.height,
-                  width: imageSize.width,
-                ),
-                ListPointedInjury(
-                  scaleWidthRate: scaleWidthRate,
-                  scaleHeightRate: scaleHeightRate,
-                  listPointedInjuries: bloc.listPointedInjuries
-                      .where((injuryModel) =>
-                          injuryModel.injuryType.originalInjuryParam.isFront)
-                      .toList(),
-                ),
-
-                /// Tap injury area position
-                Visibility(
-                  visible: widget.enableTapInjury!,
-                  child: ListTapItemInjury(
-                    scaleHeightRate: scaleHeightRate,
+            child: GestureDetector(
+              onTapDown: (detail){
+                print('detail ${detail.localPosition}');
+              },
+              child: Stack(
+                children: [
+                  Assets.images.frontBody.image(
+                    height: imageSize.height,
+                    width: imageSize.width,
+                  ),
+                  ListPointedInjury(
                     scaleWidthRate: scaleWidthRate,
-                    listDefinedInjuries: bloc.listDefinedInjuries
-                        .where((injuryType) =>
-                            injuryType.originalInjuryParam.isFront)
+                    scaleHeightRate: scaleHeightRate,
+                    listPointedInjuries: bloc.listPointedInjuries
+                        .where((injuryModel) =>
+                            injuryModel.injuryType.originalInjuryParam.isFront)
                         .toList(),
                   ),
-                ),
-              ],
+
+                  /// Tap injury area position
+                  Visibility(
+                    visible: widget.enableTapInjury!,
+                    child: ListTapItemInjury(
+                      scaleHeightRate: scaleHeightRate,
+                      scaleWidthRate: scaleWidthRate,
+                      listDefinedInjuries: bloc.listDefinedInjuries
+                          .where((injuryType) =>
+                              injuryType.originalInjuryParam.isFront)
+                          .toList(),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         });
