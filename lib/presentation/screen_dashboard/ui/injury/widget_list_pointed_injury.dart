@@ -21,56 +21,82 @@ class ListPointedInjury extends StatelessWidget {
     return Stack(
       children: listPointedInjuries.map(
         (injuryModel) {
-          return Positioned(
-            left: scaleWidthRate *
-                injuryModel.injuryType.originalInjuryParam.injuryPosition.dx,
-            top: scaleHeightRate *
-                injuryModel.injuryType.originalInjuryParam.injuryPosition.dy,
-            child: getInjurySticker(
-              injuryModel.injuryLevel,
-            ),
-          );
+          return getInjurySticker(injuryModel);
         },
       ).toList(),
     );
   }
 
-  Widget getInjurySticker(int injuryLevel) {
-    switch (injuryLevel) {
+  Widget getInjurySticker(InjuryModel injuryModel) {
+    switch (injuryModel.injuryLevel) {
       case 1:
-        return ClipOval(
-          child: Container(
-            color: Colors.yellow,
-            width: scaleWidthRate * 10,
-            height: scaleWidthRate * 20,
+        return Positioned(
+          left: getLeftPosition(
+              injuryModel.injuryType, (scaleWidthRate * 20) / 2),
+          top: getTopPosition(
+              injuryModel.injuryType, (scaleHeightRate * 20) / 2),
+          child: ClipOval(
+            child: Container(
+              color: Colors.yellow,
+              width: scaleWidthRate * 20,
+              height: scaleHeightRate * 20,
+            ),
           ),
         );
       case 2:
-        return ClipOval(
-          child: Container(
-            color: Colors.cyan,
-            width: scaleWidthRate * 15,
-            height: scaleWidthRate * 25,
+        return Positioned(
+          left: getLeftPosition(
+              injuryModel.injuryType, (scaleWidthRate * 30) / 2),
+          top: getTopPosition(
+              injuryModel.injuryType, (scaleHeightRate * 30) / 2),
+          child: ClipOval(
+            child: Container(
+              color: Colors.cyan,
+              width: scaleWidthRate * 30,
+              height: scaleHeightRate * 30,
+            ),
           ),
         );
       case 3:
-        return ClipOval(
-          child: Container(
-            color: Colors.orange,
-            width: scaleWidthRate * 20,
-            height: scaleWidthRate * 30,
+        return Positioned(
+          left: getLeftPosition(
+              injuryModel.injuryType, (scaleWidthRate * 40) / 2),
+          top: getTopPosition(
+              injuryModel.injuryType, (scaleHeightRate * 40) / 2),
+          child: ClipOval(
+            child: Container(
+              color: Colors.orange,
+              width: scaleWidthRate * 40,
+              height: scaleHeightRate * 40,
+            ),
           ),
         );
       case 4:
-        return ClipOval(
-          child: Container(
-            color: Colors.purple,
-            width: scaleWidthRate * 25,
-            height: scaleWidthRate * 35,
+        return Positioned(
+          left: getLeftPosition(
+              injuryModel.injuryType, (scaleWidthRate * 50) / 2),
+          top: getTopPosition(
+              injuryModel.injuryType, (scaleHeightRate * 50) / 2),
+          child: ClipOval(
+            child: Container(
+              color: Colors.purple,
+              width: scaleWidthRate * 50,
+              height: scaleHeightRate * 50,
+            ),
           ),
         );
       default:
         return Container();
     }
+  }
+
+  double getLeftPosition(InjuryType injuryType, double minus) {
+    return scaleWidthRate * injuryType.originalInjuryParam.injuryPosition.dx -
+        minus;
+  }
+
+  double getTopPosition(InjuryType injuryType, double minus) {
+    return scaleWidthRate * injuryType.originalInjuryParam.injuryPosition.dy -
+        minus;
   }
 }

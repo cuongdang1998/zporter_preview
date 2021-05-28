@@ -88,8 +88,8 @@ extension InjuryTypeExtension on InjuryType {
       case InjuryType.FrontLeftHead:
         return OriginalInjuryParams(
           injuryName: 'Front Left Head',
-          injuryPosition: Offset(110, 10),
-          tapInjuryAreaPosition: Offset(110, 10),
+          injuryPosition: Offset(120, 22),
+          // tapInjuryAreaPosition: Offset(110, 10),
           tapSizeArea: Size(20, 22),
           isFront: true,
         );
@@ -97,8 +97,8 @@ extension InjuryTypeExtension on InjuryType {
       case InjuryType.FrontRightHead:
         return OriginalInjuryParams(
           injuryName: 'Front Right Head',
-          injuryPosition: Offset(130, 10),
-          tapInjuryAreaPosition: Offset(130, 10),
+          injuryPosition: Offset(140, 22),
+          // tapInjuryAreaPosition: Offset(130, 10),
           tapSizeArea: Size(20, 22),
           isFront: true,
         );
@@ -106,7 +106,7 @@ extension InjuryTypeExtension on InjuryType {
         return OriginalInjuryParams(
           injuryName: 'Left Front Upper Arm',
           injuryPosition: Offset(130, 10),
-          tapInjuryAreaPosition: Offset(52, 132),
+          // tapInjuryAreaPosition: Offset(52, 132),
           tapSizeArea: Size(24, 37),
           isFront: true,
         );
@@ -114,7 +114,7 @@ extension InjuryTypeExtension on InjuryType {
         return OriginalInjuryParams(
           injuryName: 'Front Left UpperArm',
           injuryPosition: Offset(52, 132),
-          tapInjuryAreaPosition: Offset(52, 132),
+          // tapInjuryAreaPosition: Offset(52, 132),
           tapSizeArea: Size(24, 37),
           isFront: true,
         );
@@ -122,7 +122,7 @@ extension InjuryTypeExtension on InjuryType {
         return OriginalInjuryParams(
           injuryName: 'Front Left Elbow',
           injuryPosition: Offset(44, 165),
-          tapInjuryAreaPosition: Offset(44, 165),
+          // tapInjuryAreaPosition: Offset(44, 165),
           tapSizeArea: Size(24, 22),
           isFront: true,
         );
@@ -130,7 +130,7 @@ extension InjuryTypeExtension on InjuryType {
         return OriginalInjuryParams(
           injuryName: 'Front Left Lower Arm',
           injuryPosition: Offset(44, 165),
-          tapInjuryAreaPosition: Offset(34, 184),
+          // tapInjuryAreaPosition: Offset(34, 184),
           tapSizeArea: Size(24, 22),
           isFront: true,
         );
@@ -138,7 +138,7 @@ extension InjuryTypeExtension on InjuryType {
         return OriginalInjuryParams(
           injuryName: 'None',
           injuryPosition: Offset(0, 0),
-          tapInjuryAreaPosition: Offset(0, 0),
+          // tapInjuryAreaPosition: Offset(0, 0),
           tapSizeArea: Size(0, 0),
           isFront: true,
         );
@@ -149,7 +149,8 @@ extension InjuryTypeExtension on InjuryType {
 class OriginalInjuryParams {
   final String injuryName;
   final Offset injuryPosition;
-  final Offset tapInjuryAreaPosition;
+
+  // final Offset tapInjuryAreaPosition;
   final Size tapSizeArea;
   final int injuryLevel;
   final bool isFront;
@@ -157,7 +158,7 @@ class OriginalInjuryParams {
   OriginalInjuryParams({
     this.injuryLevel = 0,
     required this.injuryName,
-    required this.tapInjuryAreaPosition,
+    // required this.tapInjuryAreaPosition,
     required this.injuryPosition,
     required this.tapSizeArea,
     required this.isFront,

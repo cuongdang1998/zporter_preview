@@ -21,16 +21,14 @@ class ListTapItemInjury extends StatelessWidget {
       children: listDefinedInjuries.map(
         (injuryType) {
           return Positioned(
-            left: scaleWidthRate *
-                injuryType.originalInjuryParam.tapInjuryAreaPosition.dx,
-            top: scaleHeightRate *
-                injuryType.originalInjuryParam.tapInjuryAreaPosition.dy,
+            left: getLeftPosition(injuryType),
+            top: getTopPosition(injuryType),
             child: GestureDetector(
               onTap: () {
                 bloc.add(PointInjuryEvent(injuryType: injuryType));
               },
               child: Container(
-                color: Colors.red,
+                color: Colors.transparent,
                 width: scaleWidthRate *
                     injuryType.originalInjuryParam.tapSizeArea.width,
                 height: scaleHeightRate *
@@ -41,5 +39,17 @@ class ListTapItemInjury extends StatelessWidget {
         },
       ).toList(),
     );
+  }
+
+  double getLeftPosition(InjuryType injuryType) {
+    return scaleWidthRate * injuryType.originalInjuryParam.injuryPosition.dx -
+        (scaleWidthRate * injuryType.originalInjuryParam.tapSizeArea.width / 2);
+  }
+
+  double getTopPosition(InjuryType injuryType) {
+    return scaleWidthRate * injuryType.originalInjuryParam.injuryPosition.dy -
+        (scaleWidthRate *
+            injuryType.originalInjuryParam.tapSizeArea.height /
+            2);
   }
 }
