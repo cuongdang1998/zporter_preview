@@ -12,21 +12,17 @@ part 'dashboard_state.dart';
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   DashboardBloc() : super(DashboardInitial());
 
-  // key
+  /// key
   GlobalKey frontVisibleKey = GlobalKey();
   GlobalKey frontVisibleTapKey = GlobalKey();
-  int injuryLevel = 1;
+
   final List<InjuryType> listDefinedInjuries = [
     InjuryType.FrontLeftHead,
     InjuryType.FrontRightHead
   ];
-  final List<InjuryModel> listPointedInjuries = [
-    InjuryModel(
-      isFront: true,
-      injuryType: InjuryType.FrontLeftHead,
-      injuryLevel: 2,
-    ),
-  ];
+
+  List<InjuryModel> listPointedInjuries = [];
+  int injuryLevel = 1;
   InjuryType currentInjuryType = InjuryType.NoneInjury;
 
   @override
@@ -43,25 +39,43 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
   Stream<DashboardState> _mapPointInjuryEventToState(
       PointInjuryEvent event) async* {
-    bool isPointed = listPointedInjuries
+    final List<InjuryType> mapPointedType = listPointedInjuries
         .map((injuryModel) => injuryModel.injuryType)
-        .toList()
-        .contains(event.injuryType);
-    if (!isPointed) {
-      listPointedInjuries.add(InjuryModel(
-        isFront: true,
-        injuryType: event.injuryType,
-        injuryLevel: injuryLevel,
-      ));
-      yield PointInjuryState();
-    }
+        .toList();
+    bool isAlreadyPointed = mapPointedType.contains(event.injuryType);
     currentInjuryType = event.injuryType;
+    if (isAlreadyPointed) {
+      injuryLevel =
+          listPointedInjuries[mapPointedType.indexOf(event.injuryType)]
+              .injuryLevel;
+    } else {
+      listPointedInjuries.add(
+        InjuryModel(
+          isFront: true,
+          injuryType: event.injuryType,
+          injuryLevel: injuryLevel,
+        ),
+      );
+    }
+    yield PointInjuryState();
   }
 
   Stream<DashboardState> _mapSetInjuryLevelEventToState(
       SetInjuryLevelEvent event) async* {
-    if(currentInjuryType != InjuryType.NoneInjury){
+    if (currentInjuryType != InjuryType.NoneInjury) {
+      var mapPointedType = listPointedInjuries
+          .map((injuryModel) => injuryModel.injuryType)
+          .toList();
+      listPointedInjuries[mapPointedType.indexOf(currentInjuryType)]
+          .injuryLevel = event.injuryLevel;
     }
+    injuryLevel = event.injuryLevel;
     yield SetInjuryLevelState();
+  }
+
+  void resetValue() {
+    listPointedInjuries = [];
+    currentInjuryType = InjuryType.NoneInjury;
+    injuryLevel = 1;
   }
 }

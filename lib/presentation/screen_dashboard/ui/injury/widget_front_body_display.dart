@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/gen/assets.gen.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
@@ -28,13 +29,13 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
   @override
   void initState() {
     bloc = context.read<DashboardBloc>();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
       final RenderBox? renderBoxRed =
           widget.boxKey.currentContext!.findRenderObject() as RenderBox?;
       final Size size = renderBoxRed!.size;
       getScaleSize(size);
+      setState(() {});
     });
-
     super.initState();
   }
 
@@ -57,6 +58,7 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
                   scaleWidthRate: scaleWidthRate,
                   scaleHeightRate: scaleHeightRate,
                 ),
+
                 /// Tap injury area position
                 Visibility(
                   visible: widget.enableTapInjury!,

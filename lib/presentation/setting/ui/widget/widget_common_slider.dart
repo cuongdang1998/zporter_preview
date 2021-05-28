@@ -4,8 +4,9 @@ import 'package:zporter_preview/config/colors.dart';
 final double _levelPdLeft = 15;
 final double _levelPdRight = 15;
 
+// ignore: must_be_immutable
 class CommonSlider extends StatefulWidget {
-  final double currentSliderValue;
+  double currentSliderValue;
   final int divisionNum;
   final double minValue;
   final double maxValue;
@@ -13,11 +14,13 @@ class CommonSlider extends StatefulWidget {
   final ValueChanged onChange;
   final String measureUnit;
   final bool isShowStar;
+  final TextStyle textStyle;
 
   CommonSlider({
     Key? key,
     double? currentSliderValue,
     List<String>? levelList,
+    TextStyle? textStyle,
     required this.divisionNum,
     this.minValue = 0,
     this.maxValue = 100,
@@ -26,6 +29,10 @@ class CommonSlider extends StatefulWidget {
     this.isShowStar = false,
   })  : this.levelList = levelList ?? [],
         this.currentSliderValue = currentSliderValue ?? minValue,
+        this.textStyle = TextStyle(
+          fontSize: 8,
+          color: AppColors.whiteColor,
+        ),
         super(key: key);
 
   @override
@@ -33,17 +40,18 @@ class CommonSlider extends StatefulWidget {
 }
 
 class _CommonSliderState extends State<CommonSlider> {
-  List<TextItem> levelTextItemList = [];
+  List<LevelTextWidget> levelTextItemList = [];
   int selectedIndex = 0;
-  late double _currentValue;
 
   @override
   void initState() {
-    _currentValue = widget.currentSliderValue;
     if (widget.levelList.isNotEmpty) {
       selectedIndex = _getSelectedIndex();
       for (var levelText in widget.levelList) {
-        levelTextItemList.add(TextItem(text: levelText));
+        levelTextItemList.add(LevelTextWidget(
+          levelText: levelText,
+          textStyle: widget.textStyle,
+        ));
       }
     }
     super.initState();
@@ -78,14 +86,14 @@ class _CommonSliderState extends State<CommonSlider> {
                   showValueIndicator: ShowValueIndicator.never,
                 ),
                 child: Slider(
-                  value: _currentValue,
+                  value: widget.currentSliderValue,
                   min: widget.minValue,
                   max: widget.maxValue,
                   divisions: widget.divisionNum,
                   onChanged: (double value) {
                     selectedIndex = _getSelectedIndex();
                     setState(() {
-                      _currentValue = value;
+                      widget.currentSliderValue = value;
                       selectedIndex = _getSelectedIndex();
                     });
                     widget.onChange(value);
@@ -116,6 +124,7 @@ class _CommonSliderState extends State<CommonSlider> {
                                 isSelected: selectedIndex ==
                                     widget.levelList.indexOf(levelItem),
                                 levelText: levelItem,
+                                textStyle: widget.textStyle,
                               ),
                             )
                           : widget.levelList.indexOf(levelItem) ==
@@ -126,6 +135,7 @@ class _CommonSliderState extends State<CommonSlider> {
                                     isSelected: selectedIndex ==
                                         widget.levelList.indexOf(levelItem),
                                     levelText: levelItem,
+                                    textStyle: widget.textStyle,
                                   ),
                                 )
                               : Positioned(
@@ -135,6 +145,7 @@ class _CommonSliderState extends State<CommonSlider> {
                                     isSelected: selectedIndex ==
                                         widget.levelList.indexOf(levelItem),
                                     levelText: levelItem,
+                                    textStyle: widget.textStyle,
                                   ),
                                 ),
                     )
@@ -150,7 +161,7 @@ class _CommonSliderState extends State<CommonSlider> {
             child: Padding(
               padding: EdgeInsets.only(right: _levelPdRight),
               child: Text(
-                '${_currentValue.toInt()} ${widget.measureUnit}',
+                '${widget.currentSliderValue.toInt()} ${widget.measureUnit}',
                 style: TextStyle(
                   fontSize: 16,
                   color: AppColors.black,
@@ -168,12 +179,12 @@ class _CommonSliderState extends State<CommonSlider> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(
-                  _currentValue % 2 != 0
-                      ? (_currentValue ~/ 2) + 1
-                      : _currentValue ~/ 2,
+                  widget.currentSliderValue % 2 != 0
+                      ? (widget.currentSliderValue ~/ 2) + 1
+                      : widget.currentSliderValue ~/ 2,
                   (index) {
-                    return (index == (_currentValue ~/ 2) &&
-                            _currentValue % 2 != 0)
+                    return (index == (widget.currentSliderValue ~/ 2) &&
+                            widget.currentSliderValue % 2 != 0)
                         ? Icon(
                             Icons.star_half,
                             size: 12,
@@ -205,18 +216,21 @@ class _CommonSliderState extends State<CommonSlider> {
   }
 
   int _getSelectedIndex() {
-    return ((_currentValue / widget.maxValue) * widget.divisionNum).toInt();
+    return ((widget.currentSliderValue / widget.maxValue) * widget.divisionNum)
+        .toInt();
   }
 }
 
 class LevelTextWidget extends StatelessWidget {
   final String levelText;
   final bool? isSelected;
+  final TextStyle textStyle;
 
   const LevelTextWidget({
     Key? key,
     required this.levelText,
     bool? isSelected,
+    required this.textStyle,
   })  : this.isSelected = isSelected ?? false,
         super(key: key);
 
@@ -224,27 +238,19 @@ class LevelTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       levelText,
-      style: TextStyle(
-        fontSize: 8,
+      style: textStyle.copyWith(
         color: isSelected! ? AppColors.greenColor : AppColors.whiteColor,
       ),
     );
   }
-}
-
-class TextItem {
-  final String text;
-  TextStyle textStyle = TextStyle(
-    fontSize: 8,
-  );
-
-  TextItem({required this.text});
 
   Size getSize(BuildContext context) {
     return (TextPainter(
       text: TextSpan(
-        text: text,
-        style: textStyle,
+        text: levelText,
+        style: textStyle.copyWith(
+          color: isSelected! ? AppColors.greenColor : AppColors.whiteColor,
+        ),
       ),
       maxLines: 1,
       textScaleFactor: MediaQuery.of(context).textScaleFactor,

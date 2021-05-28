@@ -114,8 +114,10 @@ class OriginalInjuryParams {
   final Offset injuryPosition;
   final Offset tapInjuryAreaPosition;
   final Size tapSizeArea;
+  final int injuryLevel;
 
   OriginalInjuryParams({
+    this.injuryLevel = 0,
     required this.injuryName,
     required this.tapInjuryAreaPosition,
     required this.injuryPosition,

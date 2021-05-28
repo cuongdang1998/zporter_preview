@@ -73,18 +73,31 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                       boxKey: bloc.frontVisibleTapKey,
                     ),
                   ),
-                  CommonSlider(
-                    divisionNum: 3,
-                    minValue: 1,
-                    maxValue: 4,
-                    currentSliderValue: bloc.injuryLevel.toDouble(),
-                    onChange: (valueNode) {
-                      bloc.add(
-                        SetInjuryLevelEvent(injuryLevel: valueNode.toInt()),
-                      );
-                    },
-                    levelList: ['Very Low', 'Low', 'High', 'Very High'],
-                  ),
+                  BlocBuilder(
+                      bloc: bloc,
+                      buildWhen: (pre, cur) {
+                        if (cur is PointInjuryState) {
+                          return true;
+                        }
+                        return false;
+                      },
+                      builder: (context, state) {
+                        print('render slider');
+                        return CommonSlider(
+                          divisionNum: 3,
+                          minValue: 1,
+                          maxValue: 4,
+                          currentSliderValue: bloc.injuryLevel.toDouble(),
+                          onChange: (valueNode) {
+                            bloc.add(
+                              SetInjuryLevelEvent(
+                                injuryLevel: valueNode.toInt(),
+                              ),
+                            );
+                          },
+                          levelList: ['Very Low', 'Low', 'High', 'Very High'],
+                        );
+                      }),
                   StatisticLineChartWidget(
                     averageData: averageLineData,
                     youData: youLineData,
