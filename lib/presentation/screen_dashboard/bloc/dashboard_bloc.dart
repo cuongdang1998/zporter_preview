@@ -51,7 +51,6 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     } else {
       listPointedInjuries.add(
         InjuryModel(
-          isFront: true,
           injuryType: event.injuryType,
           injuryLevel: injuryLevel,
         ),

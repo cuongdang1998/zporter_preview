@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/gen/assets.gen.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_list_pointed_injury.dart';
 import 'widget_list_tap_item_injury.dart';
+import 'model_injury_type.dart';
 
 class FrontBodyDisplay extends StatefulWidget {
   const FrontBodyDisplay({
@@ -29,7 +29,7 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
   @override
   void initState() {
     bloc = context.read<DashboardBloc>();
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       final RenderBox? renderBoxRed =
           widget.boxKey.currentContext!.findRenderObject() as RenderBox?;
       final Size size = renderBoxRed!.size;
@@ -57,6 +57,10 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
                 ListPointedInjury(
                   scaleWidthRate: scaleWidthRate,
                   scaleHeightRate: scaleHeightRate,
+                  listPointedInjuries: bloc.listPointedInjuries
+                      .where((injuryModel) =>
+                          injuryModel.injuryType.originalInjuryParam.isFront)
+                      .toList(),
                 ),
 
                 /// Tap injury area position
@@ -65,6 +69,10 @@ class _FrontBodyDisplayState extends State<FrontBodyDisplay> {
                   child: ListTapItemInjury(
                     scaleHeightRate: scaleHeightRate,
                     scaleWidthRate: scaleWidthRate,
+                    listDefinedInjuries: bloc.listDefinedInjuries
+                        .where((injuryType) =>
+                            injuryType.originalInjuryParam.isFront)
+                        .toList(),
                   ),
                 ),
               ],

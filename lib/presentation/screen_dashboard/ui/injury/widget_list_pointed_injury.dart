@@ -6,20 +6,20 @@ import 'model_injury_type.dart';
 class ListPointedInjury extends StatelessWidget {
   final double scaleWidthRate;
   final double scaleHeightRate;
+  final List<InjuryModel> listPointedInjuries;
 
   const ListPointedInjury({
     Key? key,
     required this.scaleWidthRate,
     required this.scaleHeightRate,
+    required this.listPointedInjuries,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<DashboardBloc>();
     return Stack(
-      children: bloc.listPointedInjuries
-          .where((injuryModel) => injuryModel.isFront)
-          .map(
+      children: listPointedInjuries.map(
         (injuryModel) {
           return Positioned(
             left: scaleWidthRate *

@@ -8,15 +8,17 @@ class ListTapItemInjury extends StatelessWidget {
     Key? key,
     required this.scaleWidthRate,
     required this.scaleHeightRate,
+    required this.listDefinedInjuries,
   }) : super(key: key);
   final double scaleWidthRate;
   final double scaleHeightRate;
+  final List<InjuryType> listDefinedInjuries;
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<DashboardBloc>();
     return Stack(
-      children: bloc.listDefinedInjuries.map(
+      children: listDefinedInjuries.map(
         (injuryType) {
           return Positioned(
             left: scaleWidthRate *
