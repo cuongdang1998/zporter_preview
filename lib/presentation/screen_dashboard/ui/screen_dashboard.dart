@@ -1,11 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_front_body_display.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
+import 'datatable/widget_diary_datatable.dart';
 import 'injury/widget_injury_chart_statistic.dart';
+import 'datatable/widget_custom_data_table.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -108,6 +111,11 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                   StatisticPieChartWidget(
                     youPieData: youPieDate,
                     averagePieData: averagePieDate,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 50, horizontal: 15),
+                    child: DiaryDataTable(),
                   ),
                 ],
               ),
