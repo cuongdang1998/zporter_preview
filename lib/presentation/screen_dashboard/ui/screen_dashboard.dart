@@ -50,6 +50,15 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     final bloc = context.read<DashboardBloc>();
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

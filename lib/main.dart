@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
         // ],
         navigatorKey: NavigationUtil.rootKey,
         debugShowCheckedModeBanner: false,
-        initialRoute: RouteDefine.DashBoardScreen.name,
+        initialRoute: RouteDefine.SettingScreen.name,
         onGenerateRoute: AppRouting.generateRoute,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
