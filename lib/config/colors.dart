@@ -28,4 +28,6 @@ class AppColors {
   static final whiteColor = Color(0xffffffff);
   static final yellowColor = Color(0xffff9607);
   static final greenColor = Color(0xff09E099);
+  static final purpleColor = Colors.purple;
+  static final redColor = Colors.red;
 }

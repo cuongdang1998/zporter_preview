@@ -3,16 +3,16 @@ import 'package:zporter_preview/config/colors.dart';
 
 import 'widget_custom_data_table.dart';
 
-class DiaryDataTable extends StatefulWidget {
-  DiaryDataTable({
+class DiaryUpdateTable extends StatefulWidget {
+  DiaryUpdateTable({
     Key? key,
   }) : super(key: key);
 
   @override
-  _DiaryDataTableState createState() => _DiaryDataTableState();
+  _DiaryUpdateTableState createState() => _DiaryUpdateTableState();
 }
 
-class _DiaryDataTableState extends State<DiaryDataTable> {
+class _DiaryUpdateTableState extends State<DiaryUpdateTable> {
   final List<String> columnsTitle = [
     'Date',
     'Energy',
@@ -28,28 +28,39 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
       data: Theme.of(context).copyWith(
         dividerColor: AppColors.greyColor,
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: CustomDataTable(
-          dataRowHeight: 40,
-          headingRowHeight: 40,
-          dataTextStyle: TextStyle(
-            color: AppColors.greyColor,
-            fontSize: 14,
+      child: Column(
+        children: [
+          Text(
+            'Diary Updates',
+            style: TextStyle(
+              color: AppColors.greyColor,
+              fontSize: 18,
+            ),
           ),
-          headingTextStyle: TextStyle(
-            color: AppColors.greyColor,
-            fontSize: 16,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: CustomDataTable(
+              dataRowHeight: 40,
+              headingRowHeight: 40,
+              dataTextStyle: TextStyle(
+                color: AppColors.greyColor,
+                fontSize: 14,
+              ),
+              headingTextStyle: TextStyle(
+                color: AppColors.greyColor,
+                fontSize: 16,
+              ),
+              showBottomBorder: true,
+              horizontalMargin: 0,
+              extraWidth: -30,
+              sortColumnIndex: 0,
+              sortAscending: _isAscending,
+              isShowBorderRowTitle: false,
+              columns: buildColumnTitles(),
+              rows: buildDataRow(),
+            ),
           ),
-          showBottomBorder: true,
-          horizontalMargin: 0,
-          extraWidth: -30,
-          sortColumnIndex: 0,
-          sortAscending: _isAscending,
-          isShowBorderRowTitle: false,
-          columns: buildColumnTitles(),
-          rows: buildDataRow(),
-        ),
+        ],
       ),
     );
   }
@@ -98,12 +109,12 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
                 if (_isAscending == true) {
                   _isAscending = false;
                   listDiaryDatas.sort(
-                    (diaryA, diaryB) => diaryB.date.compareTo(diaryA.date),
+                    (diaryA, diaryB) => diaryA.date.compareTo(diaryB.date),
                   );
                 } else {
                   _isAscending = true;
                   listDiaryDatas.sort(
-                    (diaryA, diaryB) => diaryA.date.compareTo(diaryB.date),
+                    (diaryA, diaryB) => diaryB.date.compareTo(diaryA.date),
                   );
                 }
               });
@@ -132,7 +143,11 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
 
   TextStyle getTextStyle(text, columnIndex) {
     Color color;
-    if (columnIndex == 1) {
+    double fontSize = 14;
+    if (columnIndex == 0) {
+      color = AppColors.whiteColor;
+      fontSize = 16;
+    } else if (columnIndex == 1) {
       switch (text) {
         case 'Very H':
           color = AppColors.blueColor;
@@ -141,10 +156,10 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
           color = AppColors.greenColor;
           break;
         case 'Low':
-          color = Colors.purple;
+          color = AppColors.purpleColor;
           break;
         case 'Very L':
-          color = Colors.red;
+          color = AppColors.redColor;
           break;
         default:
           color = AppColors.greyColor;
@@ -159,10 +174,10 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
           color = AppColors.greenColor;
           break;
         case 'Bad':
-          color = Colors.purple;
+          color = AppColors.purpleColor;
           break;
         case 'Very B':
-          color = Colors.red;
+          color = AppColors.redColor;
           break;
         default:
           color = AppColors.greyColor;
@@ -174,10 +189,10 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
           color = AppColors.greenColor;
           break;
         case 'Bad':
-          color = Colors.purple;
+          color = AppColors.purpleColor;
           break;
         case 'Very B':
-          color = Colors.red;
+          color = AppColors.redColor;
           break;
         default:
           color = AppColors.greyColor;
@@ -189,13 +204,13 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
           color = AppColors.greenColor;
           break;
         case 'Low':
-          color = Colors.purple;
+          color = AppColors.purpleColor;
           break;
         case 'High':
           color = AppColors.yellowColor;
           break;
         case 'Very H':
-          color = Colors.red;
+          color = AppColors.redColor;
           break;
         default:
           color = AppColors.greyColor;
@@ -204,7 +219,7 @@ class _DiaryDataTableState extends State<DiaryDataTable> {
     }
     return TextStyle(
       color: color,
-      fontSize: 14,
+      fontSize: fontSize,
     );
   }
 }

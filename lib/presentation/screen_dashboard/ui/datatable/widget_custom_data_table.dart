@@ -101,32 +101,6 @@ class CustomDataRow {
   /// table.
   final List<CustomDataCell> cells;
 
-  /// The color for the row.
-  ///
-  /// By default, the color is transparent unless selected. Selected rows has
-  /// a grey translucent color.
-  ///
-  /// The effective color can depend on the [MaterialState] state, if the
-  /// row is selected, pressed, hovered, focused, disabled or enabled. The
-  /// color is painted as an overlay to the row. To make sure that the row's
-  /// [InkWell] is visible (when pressed, hovered and focused), it is
-  /// recommended to use a translucent color.
-  ///
-  /// ```dart
-  /// DataRow(
-  ///   color: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-  ///     if (states.contains(MaterialState.selected))
-  ///       return Theme.of(context).colorScheme.primary.withOpacity(0.08);
-  ///     return null;  // Use the default value.
-  ///   }),
-  /// )
-  /// ```
-  ///
-  /// See also:
-  ///
-  ///  * The Material Design specification for overlay colors and how they
-  ///    match a component's state:
-  ///    <https://material.io/design/interaction/states.html#anatomy>.
   final MaterialStateProperty<Color?>? color;
 
   bool get _debugInteractive =>

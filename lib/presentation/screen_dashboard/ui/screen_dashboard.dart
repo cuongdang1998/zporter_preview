@@ -6,7 +6,8 @@ import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_blo
 import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_front_body_display.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/widget/widget_pie_chart_column_note.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
-import 'datatable/widget_diary_datatable.dart';
+import 'datatable/widget_diary_table.dart';
+import 'datatable/widget_injury_report_table.dart';
 import 'injury/widget_injury_chart_statistic.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
@@ -133,7 +134,14 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                       vertical: 50,
                       horizontal: 15,
                     ),
-                    child: DiaryDataTable(),
+                    child: DiaryUpdateTable(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 50,
+                      horizontal: 15,
+                    ),
+                    child: InjuryReportTable(),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
