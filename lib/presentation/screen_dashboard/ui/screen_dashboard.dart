@@ -39,8 +39,9 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     FlSpot(6, 20),
   ];
 
-  final List<double> youPieData = [0, 0, 0, 0, 0];
-  final List<double> zeroPieData = [0, 0, 0, 0];
+  final List<double> youPieData = [0, 0, 0, 0, 30];
+
+  final List<double> zeroPieData = [25, 0, 0, 0];
 
   final List<double> averagePieData = [12, 23, 20, 31, 14];
 

@@ -63,20 +63,23 @@ class CustomPieChart extends StatelessWidget {
         ),
       );
     }).toList();
-    if (list.length == 0) {
-      list = [
-        PieChartSectionData(
-          color: zeroPercentColor,
-          value: 100,
-          title: '',
-          radius: outsideRadius,
-          titleStyle: TextStyle(
-            fontSize: fontSize,
-            fontWeight: FontWeight.bold,
-            color: AppColors.whiteColor,
-          ),
-        )
-      ];
+    double restPercent = 100 -
+        sectionDataList
+            .map((model) => model.percent)
+            .toList()
+            .fold(0, (p, c) => p + c);
+    if (restPercent != 0) {
+      list.add(PieChartSectionData(
+        color: zeroPercentColor,
+        value: restPercent,
+        title: '',
+        radius: outsideRadius,
+        titleStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: AppColors.whiteColor,
+        ),
+      ));
     }
     return list;
   }
