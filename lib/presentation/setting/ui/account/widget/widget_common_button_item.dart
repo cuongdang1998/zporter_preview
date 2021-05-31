@@ -10,6 +10,8 @@ class CommonButtonItem extends StatelessWidget {
   final Color unSelectedColor;
   final Color selectedTextColor;
   final Color unSelectedTextColor;
+  final bool isShowBorder;
+  final Color borderColor;
 
   CommonButtonItem({
     Key? key,
@@ -17,14 +19,17 @@ class CommonButtonItem extends StatelessWidget {
     this.isSelected = false,
     this.onTap,
     this.buttonWidth,
+    this.isShowBorder = false,
     Color? selectedColor,
     Color? unSelectedColor,
     Color? selectedTextColor,
     Color? unSelectedTextColor,
+    Color? borderColor,
   })  : this.selectedColor = selectedColor ?? AppColors.greenColor,
         this.unSelectedColor = unSelectedColor ?? Colors.transparent,
         this.selectedTextColor = selectedTextColor ?? AppColors.blackColor,
         this.unSelectedTextColor = unSelectedTextColor ?? AppColors.whiteColor,
+        this.borderColor = borderColor ?? AppColors.greyColor,
         super(key: key);
 
   @override
@@ -36,6 +41,11 @@ class CommonButtonItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: isSelected ? selectedColor : unSelectedColor,
+          border: Border.all(
+            width: 1,
+            color:
+                !isSelected && isShowBorder ? borderColor : Colors.transparent,
+          ),
         ),
         duration: Duration(
           milliseconds: 200,

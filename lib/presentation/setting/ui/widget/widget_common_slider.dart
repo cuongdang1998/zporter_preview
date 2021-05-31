@@ -29,10 +29,11 @@ class CommonSlider extends StatefulWidget {
     this.isShowStar = false,
   })  : this.levelList = levelList ?? [],
         this.currentSliderValue = currentSliderValue ?? minValue,
-        this.textStyle = textStyle ??  TextStyle(
-          fontSize: 8,
-          color: AppColors.whiteColor,
-        ),
+        this.textStyle = textStyle ??
+            TextStyle(
+              fontSize: 9,
+              color: AppColors.whiteColor,
+            ),
         super(key: key);
 
   @override

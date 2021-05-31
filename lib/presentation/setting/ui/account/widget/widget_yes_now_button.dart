@@ -49,6 +49,7 @@ class _YesNoButtonState extends State<YesNoButton> {
             unSelectedColor: AppColors.black3Color,
             isSelected: _isYes,
             buttonName: 'Yes',
+            isShowBorder: true,
           ),
           SizedBox(
             width: 10,
@@ -66,6 +67,7 @@ class _YesNoButtonState extends State<YesNoButton> {
             unSelectedColor: AppColors.black3Color,
             isSelected: !_isYes,
             buttonName: 'No',
+            isShowBorder: true,
           ),
         ],
       ),

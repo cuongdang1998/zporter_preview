@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
-import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_common_button_item.dart';
+import 'package:zporter_preview/generated/l10n.dart';
 import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_font_back_button.dart';
 import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_yes_now_button.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_checkbox.dart';
@@ -12,6 +12,7 @@ import 'package:zporter_preview/utils/route/app_routing.dart';
 
 import 'widget/widget_diary_data_table.dart';
 import 'widget/widget_expansion_custom.dart';
+import 'widget/widget_select_text_list.dart';
 import 'widget/widget_textfield_tags.dart';
 import 'dart:math' as math;
 
@@ -47,21 +48,21 @@ class _AccountPageState extends State<AccountPage> {
         FocusScope.of(context).unfocus();
       },
       child: Container(
-        color: Colors.white,
+        color: AppColors.black3Color,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CommonSlider(
-                divisionNum: 10,
+                divisionNum: 5,
                 minValue: 0,
-                maxValue: 10,
+                maxValue: 100,
                 currentSliderValue: 0,
                 onChange: (valueNode) {
                   print('$valueNode');
                 },
-                isShowStar: true,
-                // levelList: energyLevel,
+                // isShowStar: true,
+                levelList: energyLevel,
               ),
               ExpandableNotifier(
                 initialExpanded: false,
@@ -69,7 +70,10 @@ class _AccountPageState extends State<AccountPage> {
                   scrollOnExpand: true,
                   scrollOnCollapse: true,
                   child: ExpandablePanelCustom(
-                    header: Text("Expandable"),
+                    header: Text(
+                      "Expandable",
+                      style: TextStyle(color: AppColors.whiteColor),
+                    ),
                     // collapsed: Text(
                     //   loremIpsum,
                     //   softWrap: true,
@@ -82,12 +86,14 @@ class _AccountPageState extends State<AccountPage> {
                       children: <Widget>[
                         for (var _ in Iterable.generate(5))
                           Padding(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: Text(
-                                loremIpsum,
-                                softWrap: true,
-                                overflow: TextOverflow.fade,
-                              )),
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: Text(
+                              loremIpsum,
+                              softWrap: true,
+                              overflow: TextOverflow.fade,
+                              style: TextStyle(color: AppColors.whiteColor),
+                            ),
+                          ),
                       ],
                     ),
                     theme: ExpandableThemeData(
@@ -199,6 +205,26 @@ class _AccountPageState extends State<AccountPage> {
                     Navigator.pushNamed(
                         context, RouteDefine.DashBoardScreen.name);
                   },
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(15),
+                child: SelectTextList(
+                  textStyle: TextStyle(
+                    fontSize: 9,
+                  ),
+                  onSelect: (value) {
+                    print('==== selected index $value');
+                    print('===== ${S.current.cancel}');
+                  },
+                  textList: [
+                    'No, rest day',
+                    'Other training',
+                    'Gym',
+                    'PT/Group',
+                    'Team Training',
+                    'Match'
+                  ],
                 ),
               )
             ],
