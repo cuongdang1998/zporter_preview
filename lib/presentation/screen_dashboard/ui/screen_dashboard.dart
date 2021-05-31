@@ -4,11 +4,10 @@ import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_front_body_display.dart';
+import 'package:zporter_preview/presentation/screen_dashboard/ui/widget/widget_pie_chart_column_note.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
 import 'datatable/widget_diary_datatable.dart';
 import 'injury/widget_injury_chart_statistic.dart';
-import 'widget/model_pie_chart_data_note.dart';
-import 'widget/widget_custom_pie_chart_.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -114,19 +113,49 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                   StatisticPieChartWidget(
                     youPieData: youPieData,
                     averagePieData: averagePieData,
+                    textNoteList: [
+                      'Very High',
+                      'High',
+                      'Normal',
+                      'Low',
+                      'Very Low'
+                    ],
+                    sectionColors: [
+                      AppColors.blueColor,
+                      AppColors.greenColor,
+                      AppColors.greyColor,
+                      Colors.purpleAccent,
+                      Colors.red
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 50, horizontal: 15),
+                      vertical: 50,
+                      horizontal: 15,
+                    ),
                     child: DiaryDataTable(),
                   ),
-                  CustomPieChart(
-                    chartWidth: 50,
-                    chartHeight: 50,
-                    centerSpaceRadius: 17,
-                    outsideRadius: 8,
-                    sectionDataList: getSectionDataList(zeroPieData),
-                    zeroPercentColor: AppColors.greyColor,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 50,
+                      horizontal: 15,
+                    ),
+                    child: PieChartColumnNote(
+                      sectionColors: [
+                        AppColors.blueColor,
+                        Colors.purpleAccent,
+                        AppColors.greenColor,
+                        Colors.blue
+                      ],
+                      noteListText: [
+                        'Technical',
+                        'Tactical',
+                        'Mental',
+                        'Physical',
+                      ],
+                      pieChartTitle: 'Category',
+                      pieChartData: zeroPieData,
+                    ),
                   ),
                 ],
               ),
@@ -134,31 +163,6 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
           ],
         ),
       ),
-    );
-  }
-
-  List<PieChartDataNoteModel> getSectionDataList(List<double> percentList) {
-    final List<Color> colors = [
-      AppColors.blueColor,
-      Colors.purpleAccent,
-      AppColors.greenColor,
-      Colors.blue
-    ];
-    final List<String> sectionNotes = [
-      'Technical',
-      'Tactical',
-      'Mental',
-      'Physical',
-    ];
-    return List.generate(
-      percentList.length,
-      (index) {
-        return PieChartDataNoteModel(
-          colorSection: colors[index],
-          percent: percentList[index],
-          sectionNote: sectionNotes[index],
-        );
-      },
     );
   }
 }

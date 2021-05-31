@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
-
-import 'model_pie_chart_data_note.dart';
 import 'widget_custom_pie_chart_.dart';
 import 'widget_pie_chart_note.dart';
 
 class StatisticPieChartWidget extends StatelessWidget {
   final List<double> youPieData;
   final List<double> averagePieData;
+  final List<Color> sectionColors;
+  final List<String> textNoteList;
 
-  const StatisticPieChartWidget({
+  StatisticPieChartWidget({
     Key? key,
     required this.youPieData,
     required this.averagePieData,
+    required this.sectionColors,
+    required this.textNoteList,
   }) : super(key: key);
 
   @override
@@ -76,7 +78,9 @@ class StatisticPieChartWidget extends StatelessWidget {
                       chartHeight: 50,
                       centerSpaceRadius: 17,
                       outsideRadius: 8,
-                      sectionDataList: getSectionDataList(youPieData),
+                      sectionColors: sectionColors,
+                      noteListText: textNoteList,
+                      pieChartData: youPieData,
                       zeroPercentColor: AppColors.yellowColor,
                     ),
                   ),
@@ -90,10 +94,8 @@ class StatisticPieChartWidget extends StatelessWidget {
                         itemBuilder: (context, i) => PieChartNoteWidget(
                           averagePercentText: '${averagePieData[i].toInt()}%',
                           youPercentText: '${youPieData[i].toInt()}%',
-                          noteText:
-                              '${getSectionDataList(youPieData)[i].sectionNote}',
-                          noteTextColor:
-                              getSectionDataList(youPieData)[i].colorSection,
+                          noteText: '${textNoteList[i]}',
+                          noteTextColor: sectionColors[i],
                         ),
                       ),
                     ),
@@ -105,8 +107,10 @@ class StatisticPieChartWidget extends StatelessWidget {
                       chartHeight: 50,
                       centerSpaceRadius: 17,
                       outsideRadius: 8,
-                      sectionDataList: getSectionDataList(averagePieData),
                       zeroPercentColor: AppColors.yellowColor,
+                      sectionColors: sectionColors,
+                      noteListText: textNoteList,
+                      pieChartData: averagePieData,
                     ),
                   ),
                 ],
@@ -115,33 +119,6 @@ class StatisticPieChartWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  List<PieChartDataNoteModel> getSectionDataList(List<double> percentList) {
-    final List<Color> colors = [
-      AppColors.blueColor,
-      AppColors.greenColor,
-      AppColors.greyColor,
-      Colors.purpleAccent,
-      Colors.red
-    ];
-    final List<String> sectionNotes = [
-      'Very High',
-      'High',
-      'Normal',
-      'Low',
-      'Very Low'
-    ];
-    return List.generate(
-      percentList.length,
-      (index) {
-        return PieChartDataNoteModel(
-          colorSection: colors[index],
-          percent: percentList[index],
-          sectionNote: sectionNotes[index],
-        );
-      },
     );
   }
 }
