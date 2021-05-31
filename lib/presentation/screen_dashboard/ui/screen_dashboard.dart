@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
@@ -8,7 +7,8 @@ import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_f
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
 import 'datatable/widget_diary_datatable.dart';
 import 'injury/widget_injury_chart_statistic.dart';
-import 'datatable/widget_custom_data_table.dart';
+import 'widget/model_pie_chart_data_note.dart';
+import 'widget/widget_custom_pie_chart_.dart';
 import 'widget/widget_statistic_line_chart.dart';
 import 'widget/widget_statistic_pie_chart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,9 +39,10 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     FlSpot(6, 20),
   ];
 
-  final List<double> youPieDate = [13, 52, 21, 7, 7];
+  final List<double> youPieData = [0, 0, 0, 0, 0];
+  final List<double> zeroPieData = [0, 0, 0, 0];
 
-  final List<double> averagePieDate = [12, 23, 20, 31, 14];
+  final List<double> averagePieData = [12, 23, 20, 31, 14];
 
   @override
   Widget build(BuildContext context) {
@@ -77,30 +78,31 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                     ),
                   ),
                   BlocBuilder(
-                      bloc: bloc,
-                      buildWhen: (pre, cur) {
-                        if (cur is PointInjuryState) {
-                          return true;
-                        }
-                        return false;
-                      },
-                      builder: (context, state) {
-                        print('render slider');
-                        return CommonSlider(
-                          divisionNum: 3,
-                          minValue: 1,
-                          maxValue: 4,
-                          currentSliderValue: bloc.injuryLevel.toDouble(),
-                          onChange: (valueNode) {
-                            bloc.add(
-                              SetInjuryLevelEvent(
-                                injuryLevel: valueNode.toInt(),
-                              ),
-                            );
-                          },
-                          levelList: ['Very Low', 'Low', 'High', 'Very High'],
-                        );
-                      }),
+                    bloc: bloc,
+                    buildWhen: (pre, cur) {
+                      if (cur is PointInjuryState) {
+                        return true;
+                      }
+                      return false;
+                    },
+                    builder: (context, state) {
+                      print('render slider');
+                      return CommonSlider(
+                        divisionNum: 3,
+                        minValue: 1,
+                        maxValue: 4,
+                        currentSliderValue: bloc.injuryLevel.toDouble(),
+                        onChange: (valueNode) {
+                          bloc.add(
+                            SetInjuryLevelEvent(
+                              injuryLevel: valueNode.toInt(),
+                            ),
+                          );
+                        },
+                        levelList: ['Very Low', 'Low', 'High', 'Very High'],
+                      );
+                    },
+                  ),
                   StatisticLineChartWidget(
                     averageData: averageLineData,
                     youData: youLineData,
@@ -109,13 +111,21 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
                     bottomText: "Very Low",
                   ),
                   StatisticPieChartWidget(
-                    youPieData: youPieDate,
-                    averagePieData: averagePieDate,
+                    youPieData: youPieData,
+                    averagePieData: averagePieData,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 50, horizontal: 15),
                     child: DiaryDataTable(),
+                  ),
+                  CustomPieChart(
+                    chartWidth: 50,
+                    chartHeight: 50,
+                    centerSpaceRadius: 17,
+                    outsideRadius: 8,
+                    sectionDataList: getSectionDataList(zeroPieData),
+                    zeroPercentColor: AppColors.greyColor,
                   ),
                 ],
               ),
@@ -123,6 +133,31 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
           ],
         ),
       ),
+    );
+  }
+
+  List<PieChartDataNoteModel> getSectionDataList(List<double> percentList) {
+    final List<Color> colors = [
+      AppColors.blueColor,
+      Colors.purpleAccent,
+      AppColors.greenColor,
+      Colors.blue
+    ];
+    final List<String> sectionNotes = [
+      'Technical',
+      'Tactical',
+      'Mental',
+      'Physical',
+    ];
+    return List.generate(
+      percentList.length,
+      (index) {
+        return PieChartDataNoteModel(
+          colorSection: colors[index],
+          percent: percentList[index],
+          sectionNote: sectionNotes[index],
+        );
+      },
     );
   }
 }

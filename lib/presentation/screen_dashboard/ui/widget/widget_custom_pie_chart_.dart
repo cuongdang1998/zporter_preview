@@ -9,6 +9,7 @@ class CustomPieChart extends StatelessWidget {
   final double centerSpaceRadius;
   final double outsideRadius;
   final List<PieChartDataNoteModel> sectionDataList;
+  final Color zeroPercentColor;
 
   const CustomPieChart({
     Key? key,
@@ -17,6 +18,7 @@ class CustomPieChart extends StatelessWidget {
     required this.centerSpaceRadius,
     required this.outsideRadius,
     required this.sectionDataList,
+    required this.zeroPercentColor,
   }) : super(key: key);
 
   @override
@@ -47,7 +49,8 @@ class CustomPieChart extends StatelessWidget {
 
   List<PieChartSectionData> showingSections() {
     final double fontSize = 6;
-    return sectionDataList.map((section) {
+    var list =
+        sectionDataList.where((model) => model.percent != 0).map((section) {
       return PieChartSectionData(
         color: section.colorSection,
         value: section.percent,
@@ -60,5 +63,21 @@ class CustomPieChart extends StatelessWidget {
         ),
       );
     }).toList();
+    if (list.length == 0) {
+      list = [
+        PieChartSectionData(
+          color: zeroPercentColor,
+          value: 100,
+          title: '',
+          radius: outsideRadius,
+          titleStyle: TextStyle(
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+            color: AppColors.whiteColor,
+          ),
+        )
+      ];
+    }
+    return list;
   }
 }

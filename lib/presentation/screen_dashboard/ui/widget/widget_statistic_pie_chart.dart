@@ -77,6 +77,7 @@ class StatisticPieChartWidget extends StatelessWidget {
                       centerSpaceRadius: 17,
                       outsideRadius: 8,
                       sectionDataList: getSectionDataList(youPieData),
+                      zeroPercentColor: AppColors.yellowColor,
                     ),
                   ),
                   Expanded(
@@ -105,6 +106,7 @@ class StatisticPieChartWidget extends StatelessWidget {
                       centerSpaceRadius: 17,
                       outsideRadius: 8,
                       sectionDataList: getSectionDataList(averagePieData),
+                      zeroPercentColor: AppColors.yellowColor,
                     ),
                   ),
                 ],
