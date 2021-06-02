@@ -122,6 +122,7 @@ class GradientPainter extends CustomPainter {
       ..color = AppColors.blueColor.withOpacity(.18)
       ..maskFilter = MaskFilter.blur(BlurStyle.normal, 100);
     canvas.drawPath(path, paint);
+    canvas.drawPath(path, paint);
   }
 
   @override
