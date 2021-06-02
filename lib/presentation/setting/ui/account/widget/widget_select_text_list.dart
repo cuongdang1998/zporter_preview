@@ -28,7 +28,7 @@ class _SelectTextListState extends State<SelectTextList> {
       children: List.generate(
         widget.textList.length,
         (index) {
-          return GestureDetector(
+          return InkWell(
             onTap: () {
               widget.initialSelected = index;
               widget.onSelect(widget.initialSelected);
