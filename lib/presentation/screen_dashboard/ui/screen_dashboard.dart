@@ -39,7 +39,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
     FlSpot(6, 20),
   ];
 
-  final List<double> youPieData = [0, 0, 0, 0, 30];
+  final List<double> youPieData = [0, 0, 0, 0, 100];
 
   final List<double> zeroPieData = [25, 0, 0, 0];
 
