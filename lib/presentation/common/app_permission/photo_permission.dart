@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/constants.dart';
-import 'package:zporter_preview/presentation/walk_through/ui/widget/widget_button_common.dart';
+import 'package:zporter_preview/presentation/common/buttons/widget_app_common_button.dart';
 
 class PhotoPermission {
   static var picker = ImagePicker();

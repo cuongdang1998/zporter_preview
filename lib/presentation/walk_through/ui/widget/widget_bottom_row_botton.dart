@@ -1,8 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
-
-import 'widget_button_common.dart';
+import 'package:zporter_preview/presentation/common/buttons/widget_app_common_button.dart';
 
 class BottomRowButton extends StatelessWidget {
   const BottomRowButton({

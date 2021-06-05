@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/generated/l10n.dart';
-import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_font_back_button.dart';
-import 'package:zporter_preview/presentation/setting/ui/account/widget/widget_yes_now_button.dart';
+import 'package:zporter_preview/presentation/common/buttons/widget_font_back_button.dart';
+import 'package:zporter_preview/presentation/common/buttons/widget_yes_now_button.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_checkbox.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_notification_item.dart';
-import 'package:zporter_preview/presentation/walk_through/ui/widget/widget_button_common.dart';
+import 'package:zporter_preview/presentation/common/buttons/widget_app_common_button.dart';
 import 'package:zporter_preview/utils/route/app_routing.dart';
 
 import 'widget/widget_diary_data_table.dart';
@@ -197,15 +197,30 @@ class _AccountPageState extends State<AccountPage> {
                 },
               ),
               NotificationItem(),
-              Center(
-                child: AppCommonButton(
-                  widthButton: 200,
-                  textButton: 'Go to Dashboard',
-                  onPress: () {
-                    Navigator.pushNamed(
-                        context, RouteDefine.DashBoardScreen.name);
-                  },
-                ),
+              Row(
+                children: [
+                  Expanded(
+                    child: AppCommonButton(
+                      textButton: 'Go to Dashboard',
+                      onPress: () {
+                        Navigator.pushNamed(
+                            context, RouteDefine.DashBoardScreen.name);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: AppCommonButton(
+                      textButton: 'Login',
+                      onPress: () {
+                        Navigator.pushNamed(
+                            context, RouteDefine.LoginScreen.name);
+                      },
+                    ),
+                  ),
+                ],
               ),
               Container(
                 padding: EdgeInsets.all(15),
