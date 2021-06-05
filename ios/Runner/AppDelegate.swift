@@ -11,11 +11,10 @@ import Firebase
     if #available(iOS 13.0, *) {
        FirebaseApp.configure()
      }
-    GeneratedPluginRegistrant.register(with: self)
-    
     let flavor = Bundle.main.infoDictionary?["Flavor"] as! String;
     print("Flavor : " + flavor);
 
+    GeneratedPluginRegistrant.register(with: self)
     let controller = self.window.rootViewController as! FlutterViewController
     let channel = FlutterMethodChannel.init(name: "flavor", binaryMessenger: controller.binaryMessenger)
     channel.setMethodCallHandler { (call, result) in
