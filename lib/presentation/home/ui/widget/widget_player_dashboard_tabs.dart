@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:zporter_preview/presentation/setting/bloc/setting_bloc.dart';
-import 'tab_menu_model.dart';
-import '../../../common/buttons/widget_tab_item.dart';
+import 'package:zporter_preview/presentation/common/buttons/widget_tab_item.dart';
+import 'package:zporter_preview/presentation/home/bloc/player_dashboard_bloc.dart';
 
-class TabMenuListWidget extends StatelessWidget {
-  final Size size;
+import 'widget_player_dashboard_tab_model.dart';
 
-  const TabMenuListWidget({Key? key, required this.size}) : super(key: key);
+class PlayerDashboardTabs extends StatelessWidget {
+  const PlayerDashboardTabs({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<SettingBloc>();
-    return BlocConsumer<SettingBloc, SettingState>(
-      listener: (context, state) {
-        print("state $state");
-      },
+    final bloc = context.read<PlayerDashboardBloc>();
+    final size = MediaQuery.of(context).size;
+    return BlocConsumer<PlayerDashboardBloc, PlayerDashboardState>(
+      listener: (context, state) {},
       bloc: bloc,
       buildWhen: (pre, cur) {
         if (cur is SelectIndexState) {
@@ -26,8 +24,6 @@ class TabMenuListWidget extends StatelessWidget {
       },
       builder: (context, state) {
         return Container(
-          color: Colors.black,
-          height: 50,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             controller: bloc.tabScrollController,
