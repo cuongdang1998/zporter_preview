@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/language.dart';
-import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_date_picker.dart';
-import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_dropdown.dart';
-import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_text_field.dart';
+import 'package:zporter_preview/presentation/common/widget/widget_common_date_picker.dart';
+import 'package:zporter_preview/presentation/common/widget/widget_common_dropdown.dart';
+import 'package:zporter_preview/presentation/common/widget/widget_common_text_field.dart';
 import 'package:zporter_preview/utils/di/injection.dart';
 import 'widget_settings/widget_notification_tile.dart';
 

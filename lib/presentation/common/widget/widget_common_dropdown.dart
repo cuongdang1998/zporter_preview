@@ -2,7 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
 
-import 'model_drop_down_item.dart';
+import '../../setting/ui/widget/model_drop_down_item.dart';
 
 class CommonDropDown extends StatelessWidget {
   final List<ModelDropDownItem> items;

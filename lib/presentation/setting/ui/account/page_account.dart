@@ -4,8 +4,8 @@ import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/generated/l10n.dart';
 import 'package:zporter_preview/presentation/common/buttons/widget_font_back_button.dart';
 import 'package:zporter_preview/presentation/common/buttons/widget_yes_now_button.dart';
-import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_checkbox.dart';
-import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
+import 'package:zporter_preview/presentation/common/widget/widget_common_checkbox.dart';
+import 'package:zporter_preview/presentation/common/widget/widget_common_slider.dart';
 import 'package:zporter_preview/presentation/setting/ui/widget/widget_notification_item.dart';
 import 'package:zporter_preview/presentation/common/buttons/widget_app_common_button.dart';
 import 'package:zporter_preview/utils/route/app_routing.dart';
@@ -201,7 +201,7 @@ class _AccountPageState extends State<AccountPage> {
                 children: [
                   Expanded(
                     child: AppCommonButton(
-                      textButton: 'Go to Dashboard',
+                      textButton: 'Dashboard',
                       onPress: () {
                         Navigator.pushNamed(
                             context, RouteDefine.DashBoardScreen.name);
@@ -217,6 +217,18 @@ class _AccountPageState extends State<AccountPage> {
                       onPress: () {
                         Navigator.pushNamed(
                             context, RouteDefine.LoginScreen.name);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: AppCommonButton(
+                      textButton: 'Home',
+                      onPress: () {
+                        Navigator.pushNamed(
+                            context, RouteDefine.HomeScreen.name);
                       },
                     ),
                   ),

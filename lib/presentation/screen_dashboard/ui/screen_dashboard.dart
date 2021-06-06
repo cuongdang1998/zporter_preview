@@ -5,7 +5,7 @@ import 'package:zporter_preview/config/constants.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/bloc/dashboard_bloc.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/injury/widget_front_body_display.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/ui/widget/widget_pie_chart_column_note.dart';
-import 'package:zporter_preview/presentation/setting/ui/widget/widget_common_slider.dart';
+import 'package:zporter_preview/presentation/common/widget/widget_common_slider.dart';
 import 'datatable/widget_diary_table.dart';
 import 'datatable/widget_injury_report_table.dart';
 import 'injury/widget_injury_chart_statistic.dart';

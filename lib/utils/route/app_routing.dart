@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/presentation/home/home_route.dart';
-import 'package:zporter_preview/presentation/login/login_route.dart';
+import 'package:zporter_preview/presentation/login/sign_up_route.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/dashboard_route.dart';
 import 'package:zporter_preview/presentation/setting/setting_route.dart';
 import 'package:zporter_preview/presentation/walk_through/walk_through_route.dart';
@@ -11,17 +11,22 @@ enum RouteDefine {
   ListUserScreen,
   SettingScreen,
   DashBoardScreen,
-  WalkThroughScreen
+  WalkThroughScreen,
+  SignUpVerificationScreen,
 }
 
 class AppRouting {
   static MaterialPageRoute generateRoute(RouteSettings settings) {
     final routes = <String, WidgetBuilder>{
-      RouteDefine.LoginScreen.name: (_) => LoginRoute.route,
+      RouteDefine.LoginScreen.name: (_) => SignUpRoute.route,
       RouteDefine.HomeScreen.name: (_) => HomeRoute.route,
       RouteDefine.SettingScreen.name: (_) => SettingRoute.route,
       RouteDefine.DashBoardScreen.name: (_) => DashBoardRoute.route,
       RouteDefine.WalkThroughScreen.name: (_) => WalkThroughRoute.route,
+      RouteDefine.SignUpVerificationScreen.name: (_) {
+        final args = settings.arguments as BuildContext;
+        return SignUpRoute.signUpVerificationRoute(args);
+      }
     };
 
     final routeBuilder = routes[settings.name];

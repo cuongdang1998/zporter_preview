@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:zporter_preview/config/app_config.dart';
@@ -10,6 +11,7 @@ import 'package:zporter_preview/data/utils/shared_pref_manager.dart';
 import 'package:zporter_preview/domain/login/repositories/login_repository.dart';
 
 GetIt getIt = GetIt.instance;
+FirebaseAuth auth = FirebaseAuth.instance;
 
 Future setupInjection() async {
   await _registerAppComponents();

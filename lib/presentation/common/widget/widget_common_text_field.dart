@@ -24,7 +24,13 @@ class CommonTextField extends StatefulWidget {
 }
 
 class _CommonTextFieldState extends State<CommonTextField> {
-  bool isShowPass = false;
+  late bool isObscureText;
+
+  @override
+  void initState() {
+    isObscureText = widget.isPassword;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,8 @@ class _CommonTextFieldState extends State<CommonTextField> {
         onChanged: widget.onChange,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(15, 40, 15, 0),
+          contentPadding:
+              EdgeInsets.fromLTRB(15, 40, widget.isPassword ? 0 : 15, 0),
           hintText: widget.hintText,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -58,25 +65,25 @@ class _CommonTextFieldState extends State<CommonTextField> {
               ? GestureDetector(
                   onTap: () {
                     setState(() {
-                      isShowPass = !isShowPass;
+                      isObscureText = !isObscureText;
                     });
                   },
                   child: Icon(
                     Icons.remove_red_eye_sharp,
-                    color: isShowPass
+                    color: isObscureText
                         ? AppColors.greyColor
                         : AppColors.blueColor,
                   ),
                 )
-              : SizedBox(),
+              : null,
           alignLabelWithHint: true,
         ),
-        obscureText: isShowPass,
+        obscureText: isObscureText,
         cursorColor: Colors.black,
         autofocus: widget.isAutoFocus,
         style: TextStyle(
           fontSize: 16,
-          height: 1.1,
+          // height: 1
         ),
       ),
     );

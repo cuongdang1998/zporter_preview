@@ -17,42 +17,48 @@ class ArrowAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      color: AppColors.blackColor,
-      height: 56,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleBorderSplashButton(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            icon: Assets.images.keyboardArrowLeft24px.svg(),
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: AppColors.whiteColor,
-            ),
-          ),
-          Visibility(
-            visible: isShowSearch,
-            child: Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: CircleBorderSplashButton(
-                  onTap: onSearchTap ?? () {},
-                  icon: Assets.images.searchIcon.svg(),
-                  padding: 16,
+    return Column(
+      children: [
+        Container(
+          height: MediaQuery.of(context).padding.top,
+          color: AppColors.black2Color,
+        ),
+        Container(
+          height: 56,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleBorderSplashButton(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                icon: Assets.images.keyboardArrowLeft24px.svg(),
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.whiteColor,
                 ),
               ),
-            ),
-          )
-        ],
-      ),
+              Visibility(
+                visible: isShowSearch,
+                child: Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: CircleBorderSplashButton(
+                      onTap: onSearchTap ?? () {},
+                      icon: Assets.images.searchIcon.svg(),
+                      padding: 16,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

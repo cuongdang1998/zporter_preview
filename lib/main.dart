@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'config/app_config.dart';
+import 'config/colors.dart';
 import 'config/language.dart';
 import 'config/navigation_util.dart';
 import 'config/theme.dart';
@@ -71,7 +72,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.white, // Color for Android
+        statusBarColor: AppColors.whiteColor, // Color for Android
         statusBarBrightness:
             Brightness.dark // Dark == white status bar -- for IOS.
         ));

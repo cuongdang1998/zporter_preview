@@ -14,12 +14,17 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/app_icon.png');
   AssetGenImage get backBody =>
       const AssetGenImage('assets/images/back_body.png');
+  SvgGenImage get bellNotiIcon =>
+      const SvgGenImage('assets/images/bell_noti_icon.svg');
   SvgGenImage get cashIcon1 =>
       const SvgGenImage('assets/images/cash_icon_1.svg');
   AssetGenImage get frontBody =>
       const AssetGenImage('assets/images/front_body.png');
   SvgGenImage get googlePlayDe =>
       const SvgGenImage('assets/images/google_play_de.svg');
+  SvgGenImage get keyboardArrowLeft24px =>
+      const SvgGenImage('assets/images/keyboard_arrow_left-24px.svg');
+  SvgGenImage get menuIcon => const SvgGenImage('assets/images/menu_icon.svg');
   AssetGenImage get mypic => const AssetGenImage('assets/images/mypic.jpg');
   AssetGenImage get pageImageOne =>
       const AssetGenImage('assets/images/page_image_one.png');
@@ -27,6 +32,8 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/page_image_three.png');
   AssetGenImage get pageImageTwo =>
       const AssetGenImage('assets/images/page_image_two.png');
+  SvgGenImage get searchIcon =>
+      const SvgGenImage('assets/images/search_icon.svg');
 }
 
 class $AssetsTranslationsGen {

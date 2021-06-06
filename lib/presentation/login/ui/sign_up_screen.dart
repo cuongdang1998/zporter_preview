@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zporter_preview/presentation/common/buttons/widget_app_common_button.dart';
-import 'package:zporter_preview/presentation/common/dialog/loading_dialog.dart';
 import 'package:zporter_preview/presentation/common/widget/widget_common_text_field.dart';
-import 'package:zporter_preview/presentation/login/bloc/login_bloc.dart';
+import 'package:zporter_preview/presentation/login/bloc/sign_up_bloc.dart';
 import 'package:zporter_preview/utils/route/app_routing.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<LoginBloc>(context);
-    return BlocConsumer<LoginBloc, LoginState>(
+    final bloc = BlocProvider.of<SignUpBloc>(context);
+    return BlocConsumer<SignUpBloc, SignUpState>(
       bloc: bloc,
       listener: (context, state) {
+        print('state $state');
         switch (state.runtimeType) {
-          case LoginSuccessState:
-            LoadingDialog.hideLoadingDialog;
-            Navigator.pushNamed(context, RouteDefine.HomeScreen.name);
-            break;
-          case LoginErrorState:
-            print("Login error");
-            LoadingDialog.hideLoadingDialog;
-            break;
-          case LoginLoadingState:
-            LoadingDialog.showLoadingDialog(context);
+          case SignUpSuccessState:
+            Navigator.pushNamed(
+              context,
+              RouteDefine.SignUpVerificationScreen.name,
+              arguments: context,
+            );
             break;
         }
       },
@@ -56,11 +52,32 @@ class SignUpScreen extends StatelessWidget {
                   textButton: 'Sign up',
                   onPress: () {
                     bloc.add(
-                      SignUpEvent(
+                      SignUpEmailWithPassEvent(
                         bloc.emailController.text.trim(),
                         bloc.passController.text.trim(),
                         bloc.repeatController.text.trim(),
                       ),
+                    );
+                  },
+                ),
+                AppCommonButton(
+                  textButton: 'Sign in',
+                  onPress: () {
+                    bloc.add(
+                      SignInEmailWithPassEvent(
+                        bloc.emailController.text.trim(),
+                        bloc.passController.text.trim(),
+                      ),
+                    );
+                  },
+                ),
+                AppCommonButton(
+                  textButton: 'Next',
+                  onPress: () {
+                    Navigator.pushNamed(
+                      context,
+                      RouteDefine.SignUpVerificationScreen.name,
+                      arguments: context,
                     );
                   },
                 )
