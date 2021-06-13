@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:video_player/video_player.dart';
 
 part 'media_picker_event.dart';
 
@@ -13,7 +14,9 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
   List<AssetEntity> assetEntityList = [];
   List<AssetPathEntity> assetPathList = [];
   List<AssetEntity> selectedAssetList = [];
-  late final AssetPathEntity path;
+  late AssetPathEntity path;
+  String pathName = '';
+  late VideoPlayerController videoController;
 
   @override
   Stream<MediaPickerState> mapEventToState(
@@ -25,32 +28,61 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
     if (event is SelectOrUnSelectMediaEvent) {
       yield* _mapSelectOrUnSelectMediaEventToState(event);
     }
+    if (event is SelectAnotherPathEvent) {
+      yield* _mapSelectAnotherPathEventToState(event);
+    }
+    if (event is PlayOrPauseVideoEvent) {
+      yield* _mapPlayOrPauseEventToState(event);
+    }
   }
 
+  /// Stream
   Stream<MediaPickerState> _mapGetAllMediaResourceEventToState() async* {
-    await refreshGalleryList();
-    path = assetPathList[0];
-    await path.refreshPathProperties(
-      maxDateTimeToNow: true,
-    );
-    assetEntityList = await path.getAssetListPaged(0, 1000);
-    _cacheImage();
+    await getPathList();
+    await getMediaList(0);
+    yield GetAllMediaResourceState();
+  }
+
+  Stream<MediaPickerState> _mapSelectAnotherPathEventToState(
+      SelectAnotherPathEvent event) async* {
+    await getPathList();
+    await getMediaList(event.pathIndex);
     yield GetAllMediaResourceState();
   }
 
   Stream<MediaPickerState> _mapSelectOrUnSelectMediaEventToState(
       SelectOrUnSelectMediaEvent event) async* {
-    List<String> listEntityId = selectedAssetList.map((e) => e.id).toList();
-    if (listEntityId.contains(event.assetEntity.id)) {
-      selectedAssetList.removeAt(listEntityId.indexOf(event.assetEntity.id));
+    if (selectedAssetList.contains(event.assetEntity)) {
+      selectedAssetList.remove(event.assetEntity);
     } else {
       selectedAssetList.add(event.assetEntity);
     }
     yield SelectOrUnSelectMediaState();
   }
 
-  Future<void> refreshGalleryList() async {
-    reset();
+  Stream<MediaPickerState> _mapPlayOrPauseEventToState(
+      PlayOrPauseVideoEvent event) async* {
+    if (videoController.value.isPlaying) {
+      videoController.pause();
+    } else {
+      videoController.play();
+    }
+    yield SelectOrUnSelectMediaState();
+  }
+
+  /// All methods
+  Future<void> getMediaList(int index) async {
+    path = assetPathList[index];
+    pathName = path.name;
+    await path.refreshPathProperties(
+      maxDateTimeToNow: true,
+    );
+    assetEntityList = await path.getAssetListPaged(0, 1000);
+    _cacheImage();
+  }
+
+  Future<void> getPathList() async {
+    assetPathList.clear();
     List<AssetPathEntity> galleryList = await PhotoManager.getAssetPathList(
       type: RequestType.common,
       hasAll: true,
@@ -102,10 +134,6 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
       );
   }
 
-  void reset() {
-    this.assetPathList.clear();
-  }
-
   void _cacheImage() {
     path.getAssetListRange(start: 0, end: path.assetCount).then((value) {
       if (value.isEmpty) {
@@ -114,11 +142,16 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
       PhotoCachingManager().requestCacheAssets(
         assets: value,
         option: ThumbOption(
-          width: 300,
-          height: 300,
+          width: 130,
+          height: 130,
           format: ThumbFormat.png,
         ),
       );
     });
+  }
+
+  void resetAllValues() {
+    selectedAssetList = [];
+    pathName = '';
   }
 }

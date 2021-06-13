@@ -5,6 +5,8 @@ import 'package:zporter_preview/gen/assets.gen.dart';
 import 'package:zporter_preview/presentation/common/buttons/widget_circle_border_splash_button.dart';
 import 'package:zporter_preview/presentation/media_picker/bloc/media_picker_bloc.dart';
 
+import 'widget_path_text.dart';
+
 class PickMediaBar extends StatelessWidget {
   const PickMediaBar({
     Key? key,
@@ -34,7 +36,7 @@ class PickMediaBar extends StatelessWidget {
                     },
                     icon: Assets.images.keyboardArrowLeft24px.svg(),
                   ),
-                  buildSelectPath(bloc),
+                  buildSelectPath(bloc, context),
                   buildRightButtons(bloc)
                 ],
               ),
@@ -60,18 +62,25 @@ class PickMediaBar extends StatelessWidget {
         ),
       );
 
-  Center buildSelectPath(MediaPickerBloc bloc) => Center(
+  Center buildSelectPath(MediaPickerBloc bloc, BuildContext context) => Center(
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'Latest',
-              style: TextStyle(color: AppColors.whiteColor),
+            GestureDetector(
+              onTap: () {
+                _selectPath(context, bloc);
+              },
+              child: Text(
+                bloc.pathName,
+                style: TextStyle(color: AppColors.whiteColor),
+              ),
             ),
             Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  _selectPath(context, bloc);
+                },
                 customBorder: CircleBorder(),
                 child: Padding(
                   padding: EdgeInsets.all(5),
@@ -82,4 +91,31 @@ class PickMediaBar extends StatelessWidget {
           ],
         ),
       );
+
+  void _selectPath(BuildContext context, MediaPickerBloc bloc) async {
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) {
+        return Container(
+          height: MediaQuery.of(context).size.height -
+              56 -
+              MediaQuery.of(context).padding.top,
+          color: AppColors.black2Color,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: List.generate(
+              bloc.assetPathList.length,
+              (index) => PathText(
+                pathName: '${bloc.assetPathList[index].name}',
+                index: index,
+                bloc: bloc,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 }

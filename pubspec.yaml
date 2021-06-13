@@ -53,11 +53,10 @@ dependencies:
   flutter_slidable: ^0.6.0
   image_picker: ^0.7.5+2
   permission_handler: ^8.0.0+1
-  video_player: ^2.1.1
+  video_player: ^2.1.6
 #  file_picker: ^3.0.1
   touchable: ^1.0.0
   path_drawing: ^0.5.1
-  file_picker: ^3.0.2+2
   photo_manager: ^1.2.2
   provider: ^5.0.0
 

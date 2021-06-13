@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/presentation/common/buttons/widget_app_common_button.dart';
 import 'package:zporter_preview/presentation/media_picker/bloc/media_picker_bloc.dart';
@@ -20,15 +19,41 @@ class MediaPickerScreen extends StatelessWidget {
         children: [
           PickMediaBar(),
           Expanded(
-            child: Column(
+            child: Stack(
               children: [
-                Expanded(child: LastSelectedMedia()),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      GridViewMedia(),
-                      buildButton(),
-                    ],
+                Column(
+                  children: [
+                    Expanded(
+                      child: BlocBuilder<MediaPickerBloc, MediaPickerState>(
+                        bloc: bloc,
+                        builder: (context, state) => LastSelectedMedia(),
+                      ),
+                    ),
+                    Expanded(
+                      child: SizedBox(),
+                    )
+                  ],
+                ),
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  // color: AppColors.greyCardColor,
+                  child: DraggableScrollableSheet(
+                    initialChildSize: 0.5,
+                    minChildSize: 0.5,
+                    maxChildSize: 0.99,
+                    expand: true,
+                    builder: (context, scrollController) => Container(
+                      color: AppColors.greyCardColor,
+                      child: Stack(
+                        children: [
+                          GridViewMedia(
+                            scrollController: scrollController,
+                          ),
+                          buildButton(),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ],

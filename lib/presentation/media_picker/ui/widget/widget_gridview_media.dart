@@ -5,6 +5,11 @@ import 'package:zporter_preview/presentation/media_picker/bloc/media_picker_bloc
 import 'widget_media_item.dart';
 
 class GridViewMedia extends StatelessWidget {
+  final ScrollController scrollController;
+
+  const GridViewMedia({Key? key, required this.scrollController})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<MediaPickerBloc>();
@@ -14,8 +19,9 @@ class GridViewMedia extends StatelessWidget {
           cur is GetAllMediaResourceState || cur is SelectOrUnSelectMediaState,
       builder: (context, state) => Scrollbar(
         child: Padding(
-          padding: EdgeInsets.only(right: 16, left: 16, bottom: 10),
+          padding: EdgeInsets.only(right: 16, left: 16, bottom: 50),
           child: GridView.builder(
+            controller: scrollController,
             itemCount: bloc.assetEntityList.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: 1,

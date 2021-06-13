@@ -10,3 +10,15 @@ class SelectOrUnSelectMediaEvent extends MediaPickerEvent {
 
   SelectOrUnSelectMediaEvent({required this.assetEntity});
 }
+
+class SelectAnotherPathEvent extends MediaPickerEvent {
+  final int pathIndex;
+
+  SelectAnotherPathEvent({required this.pathIndex});
+}
+
+class PlayOrPauseVideoEvent extends MediaPickerEvent {
+  final bool isPlaying;
+
+  PlayOrPauseVideoEvent({required this.isPlaying});
+}

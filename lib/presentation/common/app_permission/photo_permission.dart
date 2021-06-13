@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +13,7 @@ class PhotoPermission {
 
   static Future<File?> checkPermissionAndPickImage(
       String type, BuildContext context,
-      {bool isPickAnImage = false}) async {
+      {bool isPickAnImage = true}) async {
     if (type == Constants.typePermissionGallery) {
       final Map<Permission, PermissionStatus> request;
       final PermissionStatus permissionStatus;
@@ -66,7 +65,7 @@ class PhotoPermission {
         if (isPickAnImage) {
           return await getImage(ImageSource.gallery);
         } else {
-          return await getMultipleImages();
+          // return await getMultipleImages();
         }
       }
     }
@@ -127,17 +126,17 @@ class PhotoPermission {
     } catch (e) {}
   }
 
-  static Future<File?> getMultipleImages() async {
-    final result = await FilePicker.platform
-        .pickFiles(allowMultiple: true, type: FileType.image);
-
-    if (result != null) {
-      List<File> files = result.paths.map((path) => File(path!)).toList();
-      print('${files.toString()}');
-    } else {
-      // User canceled the picker
-    }
-  }
+  // static Future<File?> getMultipleImages() async {
+  //   final result = await FilePicker.platform
+  //       .pickFiles(allowMultiple: true, type: FileType.image);
+  //
+  //   if (result != null) {
+  //     List<File> files = result.paths.map((path) => File(path!)).toList();
+  //     print('${files.toString()}');
+  //   } else {
+  //     // User canceled the picker
+  //   }
+  // }
 
   static Future<String?> showOptionDialog(BuildContext context) {
     return showDialog<String>(

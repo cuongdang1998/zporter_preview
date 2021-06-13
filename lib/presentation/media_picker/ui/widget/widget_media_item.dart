@@ -115,6 +115,9 @@ final loadWidget = Center(
     size: Size.square(30),
     child: (Platform.isIOS || Platform.isMacOS)
         ? CupertinoActivityIndicator()
-        : CircularProgressIndicator(),
+        : CircularProgressIndicator(
+            color: AppColors.greenColor,
+            strokeWidth: 1,
+          ),
   ),
 );

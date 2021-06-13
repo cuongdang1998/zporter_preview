@@ -8,3 +8,5 @@ class MediaPickerInitial extends MediaPickerState {}
 class GetAllMediaResourceState extends MediaPickerState {}
 
 class SelectOrUnSelectMediaState extends MediaPickerState {}
+
+class PlayOrPauseState extends MediaPickerState {}
