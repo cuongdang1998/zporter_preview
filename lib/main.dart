@@ -71,11 +71,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: AppColors.whiteColor, // Color for Android
-        statusBarBrightness:
-            Brightness.dark // Dark == white status bar -- for IOS.
-        ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(
+          statusBarColor: AppColors.whiteColor, // Color for Android
+          statusBarBrightness:
+              Brightness.dark // Dark == white status bar -- for IOS.
+          ),
+    );
     return ScreenUtilInit(
       designSize: const Size(400, 800),
       builder: () => MaterialApp(

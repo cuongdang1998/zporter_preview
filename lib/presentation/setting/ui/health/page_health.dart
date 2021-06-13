@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/generated/l10n.dart';
+import 'package:zporter_preview/presentation/common/buttons/widget_app_common_button.dart';
 import 'package:zporter_preview/presentation/setting/ui/health/widget_health/widget_add_video.dart';
 import 'widget_health/widget_add_photo_row.dart';
 
@@ -22,6 +23,14 @@ class HealthPage extends StatelessWidget {
               title: S.of(context).video_num(1),
               onTap: () {},
               videoHeight: 250,
+            ),
+            AppCommonButton(
+              textButton: 'Add images',
+              onPress: () {},
+            ),
+            AppCommonButton(
+              textButton: 'Upload',
+              onPress: () {},
             )
           ],
         ),

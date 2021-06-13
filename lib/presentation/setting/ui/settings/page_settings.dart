@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/config/language.dart';
 import 'package:zporter_preview/presentation/common/widget/widget_common_date_picker.dart';
 import 'package:zporter_preview/presentation/common/widget/widget_common_dropdown.dart';
@@ -17,6 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: AppColors.black3Color,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: SingleChildScrollView(
         child: Column(

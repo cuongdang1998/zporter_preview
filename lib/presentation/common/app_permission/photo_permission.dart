@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,9 +13,8 @@ class PhotoPermission {
   static var picker = ImagePicker();
 
   static Future<File?> checkPermissionAndPickImage(
-    String type,
-    BuildContext context,
-  ) async {
+      String type, BuildContext context,
+      {bool isPickAnImage = false}) async {
     if (type == Constants.typePermissionGallery) {
       final Map<Permission, PermissionStatus> request;
       final PermissionStatus permissionStatus;
@@ -63,7 +63,11 @@ class PhotoPermission {
               ]),
         );
       } else if (permissionStatus.isGranted) {
-        return await getImage(ImageSource.gallery);
+        if (isPickAnImage) {
+          return await getImage(ImageSource.gallery);
+        } else {
+          return await getMultipleImages();
+        }
       }
     }
     if (type == Constants.typePermissionCamera) {
@@ -123,6 +127,18 @@ class PhotoPermission {
     } catch (e) {}
   }
 
+  static Future<File?> getMultipleImages() async {
+    final result = await FilePicker.platform
+        .pickFiles(allowMultiple: true, type: FileType.image);
+
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File(path!)).toList();
+      print('${files.toString()}');
+    } else {
+      // User canceled the picker
+    }
+  }
+
   static Future<String?> showOptionDialog(BuildContext context) {
     return showDialog<String>(
       context: context,
@@ -151,8 +167,7 @@ class PhotoPermission {
                       heightButton: 36,
                       textButton: 'Gallery',
                       onPress: () {
-                        Navigator.pop(
-                            context, Constants.typePermissionGallery);
+                        Navigator.pop(context, Constants.typePermissionGallery);
                       },
                     ),
                     SizedBox(
@@ -165,8 +180,7 @@ class PhotoPermission {
                       backgroundColor: AppColors.greenColor,
                       splashColor: AppColors.greenColor,
                       onPress: () {
-                        Navigator.pop(
-                            context, Constants.typePermissionCamera);
+                        Navigator.pop(context, Constants.typePermissionCamera);
                       },
                     )
                   ],

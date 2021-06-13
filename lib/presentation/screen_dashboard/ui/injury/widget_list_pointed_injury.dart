@@ -17,7 +17,6 @@ class ListPointedInjury extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<DashboardBloc>();
     return Stack(
       clipBehavior: Clip.none,
       children: listPointedInjuries.map(

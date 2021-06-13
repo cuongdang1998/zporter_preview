@@ -232,6 +232,20 @@ class _AccountPageState extends State<AccountPage> {
                       },
                     ),
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: AppCommonButton(
+                      textButton: 'Image',
+                      onPress: () async {
+                        Navigator.pushNamed(
+                          context,
+                          RouteDefine.MediaPickerScreen.name,
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
               Container(

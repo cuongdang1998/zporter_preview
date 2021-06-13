@@ -10,8 +10,12 @@ import 'package:flutter/services.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  SvgGenImage get addImageIcon =>
+      const SvgGenImage('assets/images/add_image_icon.svg');
   AssetGenImage get appIcon =>
       const AssetGenImage('assets/images/app_icon.png');
+  SvgGenImage get arrowDownIcon =>
+      const SvgGenImage('assets/images/arrow_down_icon.svg');
   AssetGenImage get backBody =>
       const AssetGenImage('assets/images/back_body.png');
   SvgGenImage get bellNotiIcon =>
@@ -26,12 +30,16 @@ class $AssetsImagesGen {
       const SvgGenImage('assets/images/keyboard_arrow_left-24px.svg');
   SvgGenImage get menuIcon => const SvgGenImage('assets/images/menu_icon.svg');
   AssetGenImage get mypic => const AssetGenImage('assets/images/mypic.jpg');
+  SvgGenImage get openCameraIcon =>
+      const SvgGenImage('assets/images/open_camera_icon.svg');
   AssetGenImage get pageImageOne =>
       const AssetGenImage('assets/images/page_image_one.png');
   AssetGenImage get pageImageThree =>
       const AssetGenImage('assets/images/page_image_three.png');
   AssetGenImage get pageImageTwo =>
       const AssetGenImage('assets/images/page_image_two.png');
+  SvgGenImage get playCircleIcon =>
+      const SvgGenImage('assets/images/play_circle_icon.svg');
   SvgGenImage get searchIcon =>
       const SvgGenImage('assets/images/search_icon.svg');
 }

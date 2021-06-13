@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/presentation/home/home_route.dart';
 import 'package:zporter_preview/presentation/login/sign_up_route.dart';
+import 'package:zporter_preview/presentation/media_picker/media_picker_router.dart';
 import 'package:zporter_preview/presentation/screen_dashboard/dashboard_route.dart';
 import 'package:zporter_preview/presentation/setting/setting_route.dart';
 import 'package:zporter_preview/presentation/walk_through/walk_through_route.dart';
@@ -13,6 +14,7 @@ enum RouteDefine {
   DashBoardScreen,
   WalkThroughScreen,
   SignUpVerificationScreen,
+  MediaPickerScreen,
 }
 
 class AppRouting {
@@ -23,6 +25,7 @@ class AppRouting {
       RouteDefine.SettingScreen.name: (_) => SettingRoute.route,
       RouteDefine.DashBoardScreen.name: (_) => DashBoardRoute.route,
       RouteDefine.WalkThroughScreen.name: (_) => WalkThroughRoute.route,
+      RouteDefine.MediaPickerScreen.name: (_) => MediaPickerRoute.route,
       RouteDefine.SignUpVerificationScreen.name: (_) {
         final args = settings.arguments as BuildContext;
         return SignUpRoute.signUpVerificationRoute(args);

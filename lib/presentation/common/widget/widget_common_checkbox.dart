@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zporter_preview/config/colors.dart';
 
+// ignore: must_be_immutable
 class CommonCheckBox extends StatefulWidget {
-  final bool checkStatus;
+  bool checkStatus;
   final ValueChanged onChange;
   final Color tickColor;
   final Color selectedColor;
@@ -22,12 +23,12 @@ class CommonCheckBox extends StatefulWidget {
     double? width,
     double? height,
   })  : checkStatus = checkStatus ?? false,
-        tickColor = tickColor ?? AppColors.whiteColor,
+        tickColor = tickColor ?? AppColors.greenColor,
         selectedColor = selectedColor ?? AppColors.greenColor,
         unselectedColor = unselectedColor ?? AppColors.greyColor,
         borderRadius = borderRadius ?? 3,
-        width = width ?? 18,
-        height = height ?? 18,
+        width = width ?? 20,
+        height = height ?? 20,
         super(key: key);
 
   @override
@@ -35,38 +36,41 @@ class CommonCheckBox extends StatefulWidget {
 }
 
 class _CommonCheckBoxState extends State<CommonCheckBox> {
-  late bool _checkStatus;
-
   @override
   void initState() {
-    _checkStatus = widget.checkStatus;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: widget.checkStatus ? widget.tickColor : widget.unselectedColor,
+          width: 2,
+        ),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+      ),
       width: widget.width,
       height: widget.height,
       child: Theme(
         data: ThemeData(
-          unselectedWidgetColor: widget.unselectedColor,
+          unselectedWidgetColor: Colors.transparent,
         ),
         child: Checkbox(
-          activeColor:
-              _checkStatus ? widget.selectedColor : widget.unselectedColor,
+          activeColor: widget.selectedColor,
           checkColor: widget.tickColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
               widget.borderRadius,
             ),
           ),
-          splashRadius: 20,
-          value: _checkStatus,
+          splashRadius: widget.borderRadius,
+          value: widget.checkStatus,
           onChanged: (isChecked) {
-            _checkStatus = isChecked!;
+            widget.checkStatus = isChecked!;
             setState(() {});
-            widget.onChange(_checkStatus);
+            widget.onChange(widget.checkStatus);
           },
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zporter_preview/gen/assets.gen.dart';
 
 class CircleBorderSplashButton extends StatelessWidget {
   final VoidCallback onTap;

@@ -54,7 +54,7 @@ class AddPhoto extends StatelessWidget {
                 child: photo != null
                     ? Image.file(
                         photo!,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,
                       )
