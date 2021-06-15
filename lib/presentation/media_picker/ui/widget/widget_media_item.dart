@@ -42,7 +42,6 @@ class MediaItemWidget extends StatelessWidget {
     final u8List = ImageLruCache.getData(entity, option.width, ThumbFormat.png);
 
     Widget image;
-
     if (u8List != null) {
       return _buildImageWidget(entity, u8List, size);
     } else {

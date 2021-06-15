@@ -55,12 +55,12 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
           );
         }
         if (snapshot.hasData) {
+          bloc.videoController = VideoPlayerController.file(snapshot.data!)
+            ..setLooping(true)
+            ..initialize()
+            ..play();
           switch (entity.type) {
             case AssetType.video:
-              bloc.videoController = VideoPlayerController.file(snapshot.data!)
-                ..setLooping(true)
-                ..initialize()
-                ..play();
               w = GestureDetector(
                 onTap: () {
                   bloc.add(PlayOrPauseVideoEvent(
