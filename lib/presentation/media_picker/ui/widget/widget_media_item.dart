@@ -7,7 +7,8 @@ import 'package:photo_manager/photo_manager.dart';
 import 'package:zporter_preview/config/colors.dart';
 import 'package:zporter_preview/gen/assets.gen.dart';
 import 'package:zporter_preview/presentation/common/widget/widget_common_checkbox.dart';
-import 'package:zporter_preview/presentation/media_picker/ui/widget/lru_map.dart';
+
+import 'lru_map.dart';
 
 // ignore: must_be_immutable
 class MediaItemWidget extends StatelessWidget {
@@ -30,6 +31,7 @@ class MediaItemWidget extends StatelessWidget {
   }
 
   Widget buildContent() {
+    Widget image;
     if (entity.type == AssetType.audio) {
       return Center(
         child: Icon(
@@ -38,30 +40,20 @@ class MediaItemWidget extends StatelessWidget {
         ),
       );
     }
-    final size = option.width;
     final u8List = ImageLruCache.getData(entity, option.width, ThumbFormat.png);
-
-    Widget image;
     if (u8List != null) {
-      return _buildImageWidget(entity, u8List, size);
+      return _buildImageWidget(entity, u8List, option.width);
     } else {
       image = FutureBuilder<Uint8List?>(
-        future: entity.thumbDataWithOption(option),
+        future: entity.thumbData,
         builder: (context, snapshot) {
           Widget w;
-          if (snapshot.hasError) {
-            w = Center(
-              child: Text("load error, error: ${snapshot.error}"),
-            );
-          }
-          if (snapshot.hasData) {
-            ImageLruCache.setData(
-                entity, size, ThumbFormat.png, snapshot.data!);
-            w = _buildImageWidget(entity, snapshot.data!, size);
+          if (snapshot.data == null) {
+            w = loadWidget;
           } else {
-            w = Center(
-              child: loadWidget,
-            );
+            ImageLruCache.setData(
+                entity, option.width, ThumbFormat.png, snapshot.data!);
+            w = _buildImageWidget(entity, snapshot.data!, option.width);
           }
           return w;
         },

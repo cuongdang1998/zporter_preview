@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:isolate';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -17,7 +16,6 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
   List<AssetEntity> selectedAssetList = [];
   late AssetPathEntity path;
   String pathName = '';
-  late VideoPlayerController videoController;
 
   @override
   Stream<MediaPickerState> mapEventToState(
@@ -31,9 +29,6 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
     }
     if (event is SelectAnotherPathEvent) {
       yield* _mapSelectAnotherPathEventToState(event);
-    }
-    if (event is PlayOrPauseVideoEvent) {
-      yield* _mapPlayOrPauseEventToState(event);
     }
   }
 
@@ -59,16 +54,6 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
       selectedAssetList.add(event.assetEntity);
     }
     yield SelectOrUnSelectMediaState();
-  }
-
-  Stream<MediaPickerState> _mapPlayOrPauseEventToState(
-      PlayOrPauseVideoEvent event) async* {
-    if (videoController.value.isPlaying) {
-      videoController.pause();
-    } else {
-      videoController.play();
-    }
-    yield PlayOrPauseState();
   }
 
   /// All methods

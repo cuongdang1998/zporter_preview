@@ -9,6 +9,8 @@ import 'package:zporter_preview/presentation/media_picker/ui/widget/widget_last_
 import 'widget/widget_gridview_media.dart';
 import 'widget/widget_pick_media_bar.dart';
 
+
+
 class MediaPickerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,6 @@ class MediaPickerScreen extends StatelessWidget {
                 cur is SelectOrUnSelectMediaState ||
                 cur is GetAllMediaResourceState,
             builder: (context, state) {
-              print('state here $state');
               return LastSelectedMedia();
             },
           ),

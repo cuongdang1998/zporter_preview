@@ -2,36 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:video_player/video_player.dart';
-import 'package:zporter_preview/gen/assets.gen.dart';
 import 'package:zporter_preview/presentation/media_picker/bloc/media_picker_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widget_media_item.dart';
+import 'widget_selected_image.dart';
+import 'widget_selected_video.dart';
 
-class LastSelectedMedia extends StatefulWidget {
-  @override
-  _LastSelectedMediaState createState() => _LastSelectedMediaState();
-}
-
-class _LastSelectedMediaState extends State<LastSelectedMedia> {
-  late final MediaPickerBloc bloc;
-
-  @override
-  void initState() {
-    bloc = context.read();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    disposeVideoController();
-    super.dispose();
-  }
-
+class LastSelectedMedia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<MediaPickerBloc>();
+    final MediaPickerBloc bloc = context.read();
     if (bloc.selectedAssetList.length <= 0 && bloc.assetEntityList.length > 0) {
       AssetEntity entity = bloc.assetEntityList[0];
       return buildSelectedMedia(entity);
@@ -45,6 +26,7 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
   }
 
   Widget buildSelectedMedia(AssetEntity entity) {
+    print('================================ render ===============');
     return FutureBuilder<File?>(
       future: entity.file,
       builder: (context, snapshot) {
@@ -55,42 +37,13 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
           );
         }
         if (snapshot.hasData) {
-          print('entity.type ${entity.type}');
           switch (entity.type) {
             case AssetType.video:
-              bloc.videoController = VideoPlayerController.file(snapshot.data!)
-                ..setLooping(true)
-                ..initialize()
-                ..play();
-              w = GestureDetector(
-                onTap: () {
-                  bloc.add(
-                    PlayOrPauseVideoEvent(
-                        isPlaying: bloc.videoController.value.isPlaying),
-                  );
-                },
-                child: BlocBuilder(
-                    bloc: context.read<MediaPickerBloc>(),
-                    buildWhen: (_, cur) => cur is PlayOrPauseState,
-                    builder: (context, state) {
-                      return Stack(
-                        children: [
-                          VideoPlayer(
-                            bloc.videoController,
-                          ),
-                          Visibility(
-                            visible: !bloc.videoController.value.isPlaying,
-                            child: Center(
-                              child: Assets.images.playCircleIcon.svg(),
-                            ),
-                          )
-                        ],
-                      );
-                    }),
+              w = LastSelectedVideo(
+                videoFile: entity.file,
               );
               break;
             case AssetType.image:
-              disposeVideoController();
               w = Container(
                 width: double.infinity,
                 child: InteractiveViewer(
@@ -98,15 +51,13 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
                   minScale: 0.1,
                   maxScale: 2,
                   constrained: true,
-                  child: Image.file(
-                    snapshot.data!,
-                    fit: BoxFit.contain,
+                  child: LastSelectedImage(
+                    imageFile: entity.file,
                   ),
                 ),
               );
               break;
             case AssetType.audio:
-              disposeVideoController();
               w = Center(
                 child: Icon(
                   Icons.audiotrack,
@@ -115,7 +66,6 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
               );
               break;
             default:
-              bloc.videoController.pause();
           }
         } else {
           w = Center(
@@ -125,10 +75,5 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
         return w;
       },
     );
-  }
-  void disposeVideoController(){
-    try {
-      bloc.videoController.pause();
-    } catch (ex) {}
   }
 }
