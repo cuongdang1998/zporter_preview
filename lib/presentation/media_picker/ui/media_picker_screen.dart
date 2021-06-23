@@ -21,27 +21,14 @@ class MediaPickerScreen extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: BlocBuilder<MediaPickerBloc, MediaPickerState>(
-                        bloc: bloc,
-                        builder: (context, state) => LastSelectedMedia(),
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(),
-                    )
-                  ],
-                ),
+                buildSelectMedia(bloc),
                 Container(
                   width: double.infinity,
                   height: double.infinity,
-                  // color: AppColors.greyCardColor,
                   child: DraggableScrollableSheet(
                     initialChildSize: 0.5,
                     minChildSize: 0.5,
-                    maxChildSize: 0.99,
+                    maxChildSize: 1,
                     expand: true,
                     builder: (context, scrollController) => Container(
                       color: AppColors.greyCardColor,
@@ -61,6 +48,28 @@ class MediaPickerScreen extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Column buildSelectMedia(MediaPickerBloc bloc) {
+    return Column(
+      children: [
+        Expanded(
+          child: BlocBuilder<MediaPickerBloc, MediaPickerState>(
+            bloc: bloc,
+            buildWhen: (_, cur) =>
+                cur is SelectOrUnSelectMediaState ||
+                cur is GetAllMediaResourceState,
+            builder: (context, state) {
+              print('state here $state');
+              return LastSelectedMedia();
+            },
+          ),
+        ),
+        Expanded(
+          child: SizedBox(),
+        )
+      ],
     );
   }
 

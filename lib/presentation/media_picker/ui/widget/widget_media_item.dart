@@ -111,7 +111,7 @@ class MediaItemWidget extends StatelessWidget {
 
 final loadWidget = Center(
   child: SizedBox.fromSize(
-    size: Size.square(30),
+    size: Size.square(20),
     child: (Platform.isIOS || Platform.isMacOS)
         ? CupertinoActivityIndicator()
         : CircularProgressIndicator(

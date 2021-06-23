@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -67,7 +68,7 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
     } else {
       videoController.play();
     }
-    yield SelectOrUnSelectMediaState();
+    yield PlayOrPauseState();
   }
 
   /// All methods

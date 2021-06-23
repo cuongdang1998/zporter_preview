@@ -25,7 +25,7 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
 
   @override
   void dispose() {
-    bloc.videoController.dispose();
+    disposeVideoController();
     super.dispose();
   }
 
@@ -48,39 +48,49 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
     return FutureBuilder<File?>(
       future: entity.file,
       builder: (context, snapshot) {
-        Widget w;
+        Widget w = SizedBox();
         if (snapshot.hasError) {
           w = Center(
             child: Text('${snapshot.error}'),
           );
         }
         if (snapshot.hasData) {
-          bloc.videoController = VideoPlayerController.file(snapshot.data!)
-            ..setLooping(true)
-            ..initialize()
-            ..play();
+          print('entity.type ${entity.type}');
           switch (entity.type) {
             case AssetType.video:
+              bloc.videoController = VideoPlayerController.file(snapshot.data!)
+                ..setLooping(true)
+                ..initialize()
+                ..play();
               w = GestureDetector(
                 onTap: () {
-                  bloc.add(PlayOrPauseVideoEvent(
-                      isPlaying: bloc.videoController.value.isPlaying));
+                  bloc.add(
+                    PlayOrPauseVideoEvent(
+                        isPlaying: bloc.videoController.value.isPlaying),
+                  );
                 },
-                child: Stack(
-                  children: [
-                    VideoPlayer(bloc.videoController),
-                    Visibility(
-                      visible: !bloc.videoController.value.isPlaying,
-                      child: Center(
-                        child: Assets.images.playCircleIcon.svg(),
-                      ),
-                    )
-                  ],
-                ),
+                child: BlocBuilder(
+                    bloc: context.read<MediaPickerBloc>(),
+                    buildWhen: (_, cur) => cur is PlayOrPauseState,
+                    builder: (context, state) {
+                      return Stack(
+                        children: [
+                          VideoPlayer(
+                            bloc.videoController,
+                          ),
+                          Visibility(
+                            visible: !bloc.videoController.value.isPlaying,
+                            child: Center(
+                              child: Assets.images.playCircleIcon.svg(),
+                            ),
+                          )
+                        ],
+                      );
+                    }),
               );
               break;
             case AssetType.image:
-              bloc.videoController.pause();
+              disposeVideoController();
               w = Container(
                 width: double.infinity,
                 child: InteractiveViewer(
@@ -90,13 +100,13 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
                   constrained: true,
                   child: Image.file(
                     snapshot.data!,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
               );
               break;
             case AssetType.audio:
-              bloc.videoController.pause();
+              disposeVideoController();
               w = Center(
                 child: Icon(
                   Icons.audiotrack,
@@ -106,7 +116,6 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
               break;
             default:
               bloc.videoController.pause();
-              w = SizedBox();
           }
         } else {
           w = Center(
@@ -116,5 +125,10 @@ class _LastSelectedMediaState extends State<LastSelectedMedia> {
         return w;
       },
     );
+  }
+  void disposeVideoController(){
+    try {
+      bloc.videoController.pause();
+    } catch (ex) {}
   }
 }
